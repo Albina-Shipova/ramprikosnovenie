@@ -86,6 +86,25 @@ function setupReveals() {
       observer.observe(item);
     }
   });
+
+  // При быстрой прокрутке наблюдатель пропускает блоки, пролетевшие между кадрами:
+  // добираем всё, что уже попало в экран или ушло выше него.
+  let scheduled = false;
+  const sweep = () => {
+    scheduled = false;
+    items.forEach(item => {
+      if (item.classList.contains('visible')) return;
+      if (item.getBoundingClientRect().top < window.innerHeight * 1.05) {
+        item.classList.add('visible');
+        observer.unobserve(item);
+      }
+    });
+  };
+  window.addEventListener('scroll', () => {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(sweep);
+  }, { passive: true });
 }
 
 function setupServices() {
