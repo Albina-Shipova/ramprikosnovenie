@@ -733,6 +733,9 @@ em { font-style: normal; color: var(--wood); }
 .footer-grid a, .footer-grid p { display: block; margin: 0 0 10px; color: var(--gray-light); opacity: .8; font-size: .9375rem; }
 .footer-grid a { transition: color var(--dur) var(--ease), opacity var(--dur) var(--ease); }
 .footer-grid a:hover { color: var(--warm); opacity: 1; }
+/* VK в колонке адреса нужен только на мобильном, где колонку «Связаться» прячем */
+.footer-vk { display: none; }
+
 .footer-brand { opacity: 1; }
 .footer-brand .brand__mark { border-color: var(--line-dark-strong); color: var(--white); }
 .footer-brand .brand__name { color: var(--white); }
@@ -1042,6 +1045,15 @@ em { font-style: normal; color: var(--wood); }
 
   .about__figures img:last-child { margin-top: 0; }
   .mobile-actions { display: flex; }
+
+  /* Короткий футер: «Разделы» дублируют бургер, «Связаться» — нижнюю панель */
+  .footer-col--extra { display: none; }
+  .footer-vk { display: block; }
+  .footer-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(22px, 4vw, 32px);
+  }
+  .footer-bottom { flex-direction: column; gap: 6px; }
 
   /* На узком экране графит уходит вниз, фото открывается сверху */
   .hero { min-height: auto; padding-block: clamp(52px, 12vw, 88px) clamp(72px, 14vw, 104px); }
