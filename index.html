@@ -9,7 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="styles.css?v=20260823">
+  <link rel="preload" as="image" href="assets/images/hero-lobby.webp" media="(min-width: 701px)">
+  <link rel="preload" as="image" href="assets/images/hero-lobby-900.webp" media="(max-width: 700px)">
+  <link rel="stylesheet" href="styles.css?v=20260824">
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -39,30 +41,25 @@
 
   <main id="main">
 
-    <!-- 1. Первый экран — светлая -->
-    <section class="shell hero">
-      <div class="hero__copy reveal">
-        <p class="eyebrow">Раменское · Северное шоссе, 10</p>
-        <h1 class="hero__title">Студия массажа<br>и эстетики <em>«Прикосновение»</em></h1>
-        <p class="lead hero__lead">Массаж лица и тела, SPA-программы, пилинги и уходы. Тридцать семь процедур, восемь мастеров и запись без звонков.</p>
-        <div class="button-row">
-          <a class="button" href="https://dikidi.net/1188196" target="_blank" rel="noopener">Выбрать услугу и время</a>
-          <a class="text-link" href="services.html">Смотреть цены</a>
+    <!-- 1. Первый экран — фото студии с переходом графита в фотографию -->
+    <section class="hero section--graphite">
+      <div class="hero__bg" role="img" aria-label="Зона ожидания студии «Прикосновение»: чёрный диван, полки с зеленью и часы на стене"></div>
+      <div class="shell hero__inner">
+        <div class="hero__copy reveal">
+          <p class="eyebrow">Раменское · Северное шоссе, 10</p>
+          <h1 class="hero__title">Студия массажа<br>и эстетики <em>«Прикосновение»</em></h1>
+          <p class="lead hero__lead">Массаж лица и тела, SPA-программы, пилинги и уходы. Тридцать семь процедур, восемь мастеров и запись без звонков.</p>
+          <div class="button-row">
+            <a class="button button--light" href="https://dikidi.net/1188196" target="_blank" rel="noopener">Выбрать услугу и время</a>
+            <a class="text-link text-link--light" href="services.html">Смотреть цены</a>
+          </div>
+          <dl class="hero__facts">
+            <div><dt>5,0</dt><dd>78 оценок на Яндекс&nbsp;Картах</dd></div>
+            <div><dt>09–21</dt><dd>ежедневно, по записи</dd></div>
+            <div><dt>37</dt><dd>процедур в каталоге</dd></div>
+          </dl>
         </div>
-        <dl class="hero__facts">
-          <div><dt>5,0</dt><dd>78 оценок на Яндекс Картах</dd></div>
-          <div><dt>09:00–21:00</dt><dd>ежедневно, по записи</dd></div>
-          <div><dt>37</dt><dd>процедур в каталоге</dd></div>
-        </dl>
       </div>
-      <figure class="hero__visual reveal">
-        <img src="assets/images/hero-studio.webp" alt="Графитовый интерьер студии «Прикосновение» с креслами и тёплым светом" width="1500" height="2000" fetchpriority="high">
-        <figcaption class="hero__caption"><span>Графит</span><span>Мягкий свет</span><span>Тишина</span></figcaption>
-        <div class="rating-badge" aria-label="Рейтинг 5,0 на основании 78 оценок на Яндекс Картах">
-          <strong>5,0</strong>
-          <span><b>★★★★★</b>78 оценок · Яндекс Карты</span>
-        </div>
-      </figure>
     </section>
 
     <div class="shell">
@@ -407,6 +404,6 @@
     <a href="https://dikidi.net/1188196" target="_blank" rel="noopener">Записаться</a>
   </nav>
 
-  <script src="script.js?v=20260823"></script>
+  <script src="script.js?v=20260824"></script>
 </body>
 </html>
