@@ -767,6 +767,11 @@ em { font-style: normal; color: var(--wood); }
   -webkit-mask-repeat: no-repeat;
 }
 
+/* Те же цифры, что и на главной, но на светлом фоне */
+.page-hero__facts { border-top-color: var(--line); }
+.page-hero__facts dt { color: var(--graphite); }
+.page-hero__facts dd { color: var(--gray); opacity: 1; }
+
 .first-visit {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);

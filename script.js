@@ -124,11 +124,17 @@ function setupServices() {
       const matchesQuery = service.name.toLocaleLowerCase('ru').includes(query);
       return matchesFilter && matchesQuery;
     });
-    grid.innerHTML = filtered.map((service, index) => `
+    grid.innerHTML = filtered.map(service => `
       <article class="service-card reveal visible">
-        <div class="service-category"><span>${service.label}</span><span>${String(index + 1).padStart(2, '0')}</span></div>
-        <h2>${service.name}</h2>
-        <div class="service-bottom"><div><div class="service-price">${service.price}</div><div class="service-duration">${service.duration}</div></div><a class="service-book" href="${bookingUrl}" target="_blank" rel="noopener" aria-label="Записаться на ${service.name}">↗</a></div>
+        <p class="service-card__label">${service.label}</p>
+        <h3>${service.name}</h3>
+        <div class="service-card__bottom">
+          <div>
+            <div class="service-card__price">${service.price}</div>
+            <div class="service-card__duration">${service.duration}</div>
+          </div>
+          <a class="service-card__book" href="${bookingUrl}" target="_blank" rel="noopener" aria-label="Записаться на ${service.name}">↗</a>
+        </div>
       </article>`).join('');
     count.textContent = `Показано ${filtered.length} ${serviceWord(filtered.length)}`;
     empty.hidden = filtered.length !== 0;
