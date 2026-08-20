@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
   <link rel="preload" as="image" href="assets/images/hero-lobby.webp" media="(min-width: 701px)">
   <link rel="preload" as="image" href="assets/images/hero-lobby-900.webp" media="(max-width: 700px)">
-  <link rel="stylesheet" href="styles.css?v=20260825">
+  <link rel="stylesheet" href="styles.css?v=20260828">
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -78,8 +78,8 @@
       <div class="shell">
         <div class="section-head reveal">
           <div>
-            <p class="eyebrow">Направления</p>
-            <h2>Четыре формата, из которых собран каталог</h2>
+            <p class="eyebrow">Каталог</p>
+            <h2>Направления студии</h2>
           </div>
           <a class="text-link" href="services.html">Все 37 процедур</a>
         </div>
@@ -182,7 +182,8 @@
           </div>
           <p class="section-head__note">Мастера выбирают при записи — под свой запрос, а не по остаточному принципу.</p>
         </div>
-        <div class="team">
+        <div class="carousel" data-carousel>
+        <div class="team carousel__track" role="group" aria-label="Мастера студии">
           <article class="team__row reveal">
             <div><h3>Оксана</h3><p class="team__role">Основатель студии, топ-мастер</p></div>
             <p class="team__fit">Массаж и косметология у одного мастера</p>
@@ -224,6 +225,12 @@
             <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/4551597" target="_blank" rel="noopener">Профиль ↗</a>
           </article>
         </div>
+          <div class="carousel__controls">
+            <button class="carousel__btn" type="button" data-carousel-prev aria-label="Предыдущие мастера">←</button>
+            <div class="carousel__progress" aria-hidden="true"><span></span></div>
+            <button class="carousel__btn" type="button" data-carousel-next aria-label="Следующие мастера">→</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -246,7 +253,8 @@
           <button class="filter-button" type="button" data-gallery-filter="process">Процесс</button>
         </div>
 
-        <div class="gallery-grid">
+        <div class="carousel" data-carousel>
+        <div class="gallery-grid carousel__track" role="group" aria-label="Фотографии студии">
           <button class="gallery-item reveal" type="button" data-gallery-category="interior" data-lightbox="assets/images/hero-studio.webp" data-caption="Графитовая зона отдыха студии"><img src="assets/images/hero-studio.webp" alt="Графитовая зона отдыха студии" width="1500" height="2000" loading="lazy"><span>Интерьер</span></button>
           <button class="gallery-item reveal" type="button" data-gallery-category="team" data-lightbox="assets/images/master-01.webp" data-caption="Мастер студии"><img src="assets/images/master-01.webp" alt="Мастер студии на фоне графитовой стены" width="1500" height="2000" loading="lazy"><span>Команда</span></button>
           <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-face-massage.webp" data-caption="Массаж лица"><img src="assets/images/process-face-massage.webp" alt="Мастер выполняет массаж лица" width="1500" height="2000" loading="lazy"><span>Массаж лица</span></button>
@@ -263,6 +271,12 @@
           <button class="gallery-item reveal" type="button" data-gallery-category="interior" data-lightbox="assets/images/studio-wall.webp" data-caption="Графика и растения в интерьере"><img src="assets/images/studio-wall.webp" alt="Настенный декор и растения в интерьере" width="1500" height="2000" loading="lazy"><span>Интерьер</span></button>
           <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-neck-massage.webp" data-caption="Массаж шейно-воротниковой зоны"><img src="assets/images/process-neck-massage.webp" alt="Массаж шейно-воротниковой зоны" width="1500" height="2000" loading="lazy"><span>Массаж</span></button>
           <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-body-massage.webp" data-caption="Ручная техника массажа"><img src="assets/images/process-body-massage.webp" alt="Ручная техника массажа тела" width="1500" height="2000" loading="lazy"><span>Процесс</span></button>
+        </div>
+          <div class="carousel__controls">
+            <button class="carousel__btn" type="button" data-carousel-prev aria-label="Предыдущие фотографии">←</button>
+            <div class="carousel__progress" aria-hidden="true"><span></span></div>
+            <button class="carousel__btn" type="button" data-carousel-next aria-label="Следующие фотографии">→</button>
+          </div>
         </div>
       </div>
     </section>
@@ -423,6 +437,6 @@
     <a href="https://dikidi.net/1188196" target="_blank" rel="noopener">Записаться</a>
   </nav>
 
-  <script src="script.js?v=20260825"></script>
+  <script src="script.js?v=20260828"></script>
 </body>
 </html>

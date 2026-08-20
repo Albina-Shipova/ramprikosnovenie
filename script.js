@@ -161,6 +161,153 @@ function serviceWord(number) {
   return 'услуг';
 }
 
+// Карусель: с планшета и ниже дорожка становится горизонтальной лентой.
+// Прокрутка — родная (палец, трекпад, колесо), плюс стрелки и перетаскивание мышью.
+function setupCarousels() {
+  const carousels = [...document.querySelectorAll('[data-carousel]')];
+  if (!carousels.length) return;
+
+  const query = window.matchMedia('(max-width: 1024px)');
+
+  carousels.forEach(carousel => {
+    const track = carousel.querySelector('.carousel__track');
+    const previous = carousel.querySelector('[data-carousel-prev]');
+    const next = carousel.querySelector('[data-carousel-next]');
+    const progress = carousel.querySelector('.carousel__progress span');
+    if (!track) return;
+
+    const step = () => {
+      const item = [...track.children].find(child => !child.classList.contains('filtered-out'));
+      if (!item) return track.clientWidth;
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      return item.getBoundingClientRect().width + gap;
+    };
+
+    const update = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      const ratio = max > 1 ? track.scrollLeft / max : 0;
+      if (progress) {
+        // Ползунок шириной с видимую долю ленты, едет по остатку дорожки.
+        const share = Math.max(.12, Math.min(1, track.clientWidth / track.scrollWidth));
+        progress.style.width = `${share * 100}%`;
+        progress.style.transform = `translateX(${ratio * (100 / share - 100)}%)`;
+      }
+      if (previous) previous.disabled = track.scrollLeft <= 2;
+      if (next) next.disabled = track.scrollLeft >= max - 2;
+    };
+
+    let scheduled = false;
+    track.addEventListener('scroll', () => {
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(() => { scheduled = false; update(); });
+    }, { passive: true });
+
+    // Своя анимация вместо scroll-behavior: браузер отменяет плавную прокрутку
+    // контейнера со scroll-snap, и лента остаётся на месте.
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let animation = null;
+
+    let guard = null;
+
+    const finish = to => {
+      if (animation) cancelAnimationFrame(animation);
+      if (guard) clearTimeout(guard);
+      animation = null;
+      guard = null;
+      track.scrollLeft = to;
+      track.style.scrollSnapType = '';
+      update();
+    };
+
+    const animateTo = target => {
+      const max = track.scrollWidth - track.clientWidth;
+      const to = Math.max(0, Math.min(max, target));
+      const from = track.scrollLeft;
+      const distance = to - from;
+      if (Math.abs(distance) < 1) return;
+      if (calm.matches) { finish(to); return; }
+
+      if (animation) cancelAnimationFrame(animation);
+      if (guard) clearTimeout(guard);
+      const duration = Math.min(600, 280 + Math.abs(distance) * 0.35);
+      const started = performance.now();
+      track.style.scrollSnapType = 'none';
+
+      const tick = now => {
+        const part = Math.min(1, (now - started) / duration);
+        const eased = 1 - Math.pow(1 - part, 3);
+        track.scrollLeft = from + distance * eased;
+        if (part < 1) animation = requestAnimationFrame(tick);
+        else finish(to);
+      };
+      animation = requestAnimationFrame(tick);
+      // Во вкладке без отрисовки кадры не приходят — дожимаем прокрутку и
+      // возвращаем снап, иначе лента застрянет на месте.
+      guard = setTimeout(() => finish(to), duration + 220);
+    };
+
+    const scrollBy = delta => animateTo(track.scrollLeft + delta * step());
+    if (previous) previous.addEventListener('click', () => scrollBy(-1));
+    if (next) next.addEventListener('click', () => scrollBy(1));
+
+    // Перетаскивание мышью. Палец обрабатывает сам браузер — так плавнее.
+    let dragging = false;
+    let moved = 0;
+    let startX = 0;
+    let startScroll = 0;
+
+    track.addEventListener('pointerdown', event => {
+      if (event.pointerType !== 'mouse' || event.button !== 0 || !query.matches) return;
+      dragging = true;
+      moved = 0;
+      startX = event.clientX;
+      startScroll = track.scrollLeft;
+      carousel.classList.add('is-dragging');
+      track.setPointerCapture(event.pointerId);
+    });
+    track.addEventListener('pointermove', event => {
+      if (!dragging) return;
+      const shift = event.clientX - startX;
+      moved = Math.max(moved, Math.abs(shift));
+      track.scrollLeft = startScroll - shift;
+    });
+    const endDrag = event => {
+      if (!dragging) return;
+      dragging = false;
+      carousel.classList.remove('is-dragging');
+      if (track.hasPointerCapture(event.pointerId)) track.releasePointerCapture(event.pointerId);
+    };
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+
+    // После перетаскивания не открывать лайтбокс и не уходить по ссылке.
+    track.addEventListener('click', event => {
+      if (moved > 6) { event.preventDefault(); event.stopPropagation(); }
+      moved = 0;
+    }, true);
+
+    const apply = () => {
+      carousel.classList.toggle('is-active', query.matches);
+      if (query.matches) {
+        // В ленте наблюдатель не увидит карточки, уехавшие вбок, — показываем сразу.
+        track.querySelectorAll('.reveal').forEach(item => item.classList.add('visible'));
+      } else {
+        track.scrollLeft = 0;
+      }
+      update();
+    };
+
+    query.addEventListener('change', apply);
+    window.addEventListener('resize', update, { passive: true });
+    document.addEventListener('carousel:refresh', () => {
+      track.scrollLeft = 0;
+      update();
+    });
+    apply();
+  });
+}
+
 function setupGallery() {
   const items = [...document.querySelectorAll('.gallery-item')];
   if (!items.length) return;
@@ -169,6 +316,7 @@ function setupGallery() {
     const filter = button.dataset.galleryFilter;
     filters.forEach(item => item.classList.toggle('active', item === button));
     items.forEach(item => item.classList.toggle('filtered-out', filter !== 'all' && item.dataset.galleryCategory !== filter));
+    document.dispatchEvent(new CustomEvent('carousel:refresh'));
   }));
 
   const lightbox = document.querySelector('.lightbox');
@@ -231,4 +379,5 @@ function setupGallery() {
 setupNavigation();
 setupReveals();
 setupServices();
+setupCarousels();
 setupGallery();

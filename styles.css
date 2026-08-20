@@ -891,6 +891,91 @@ em { font-style: normal; color: var(--wood); }
 .booking-band .eyebrow { color: var(--gray-light); }
 .booking-band .eyebrow::before { background: var(--warm); }
 
+/* ------------------------------ Карусель ------------------------------ */
+/* На десктопе дорожка остаётся обычной сеткой, элементы управления скрыты.
+   С планшета и ниже дорожка становится горизонтальной лентой со снапом. */
+
+.carousel { position: relative; }
+.carousel__controls { display: none; }
+
+.carousel__btn {
+  display: grid; place-items: center;
+  width: 46px; height: 46px; flex: none;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-button);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+.carousel__btn:hover:not(:disabled) { background: var(--graphite); border-color: var(--graphite); color: var(--white); }
+.carousel__btn:disabled { opacity: .3; cursor: default; }
+
+.carousel__progress {
+  flex: 1 1 auto; height: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+.carousel__progress span {
+  display: block; height: 100%; width: 0;
+  background: var(--wood);
+}
+
+@media (max-width: 1024px) {
+  .carousel__controls {
+    display: flex; align-items: center; gap: 18px;
+    margin-top: clamp(22px, 3vw, 32px);
+  }
+
+  .carousel__track {
+    display: flex;
+    columns: auto;
+    gap: var(--col-gap);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 2px;
+    /* лента выходит за поля секции и уходит под край экрана */
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    scroll-padding-inline: var(--gutter);
+  }
+  .carousel__track::-webkit-scrollbar { display: none; }
+
+  .carousel__track > * {
+    flex: 0 0 clamp(230px, 62vw, 340px);
+    margin-bottom: 0;
+    scroll-snap-align: start;
+  }
+
+  /* Перетаскивание мышью */
+  .carousel__track { cursor: grab; }
+  .carousel.is-dragging .carousel__track {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    user-select: none;
+  }
+  .carousel.is-dragging .carousel__track * { pointer-events: none; }
+
+  /* Галерея: в ленте у всех кадров одна пропорция */
+  .gallery-grid.carousel__track .gallery-item img { aspect-ratio: 3 / 4; }
+
+  /* Команда: строки превращаются в карточки */
+  .team.carousel__track { border-top: 0; }
+  .team.carousel__track .team__row {
+    display: flex; flex-direction: column;
+    align-items: flex-start; justify-content: flex-start;
+    gap: 14px;
+    padding: clamp(22px, 3vw, 28px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+  }
+  .team.carousel__track .team__row:hover { background: transparent; padding-inline: clamp(22px, 3vw, 28px); }
+  .team.carousel__track .team__fit { margin-top: auto; }
+  .team.carousel__track .team__link { margin-top: 4px; }
+}
+
 /* ------------------------------ Появление при прокрутке ------------------------------ */
 
 .reveal {
@@ -917,8 +1002,6 @@ em { font-style: normal; color: var(--wood); }
   .contact-grid { grid-template-columns: minmax(0, 1fr); }
   .first-visit, .booking-band { grid-template-columns: minmax(0, 1fr); }
   .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .team__row { grid-template-columns: minmax(0, 1fr) auto; }
-  .team__fit { grid-column: 1 / -1; }
 }
 
 @media (max-width: 820px) {
@@ -947,7 +1030,7 @@ em { font-style: normal; color: var(--wood); }
   }
   .site-nav a::after { display: none; }
 
-  .gallery-grid { columns: 2; }
+
   .about__figures img:last-child { margin-top: 0; }
   .mobile-actions { display: flex; }
 
@@ -978,7 +1061,7 @@ em { font-style: normal; color: var(--wood); }
   .direction-grid, .reason-grid, .access-grid, .steps, .service-grid, .review-grid, .footer-grid {
     grid-template-columns: minmax(0, 1fr);
   }
-  .gallery-grid { columns: 1; }
+
   .tag-strip span { flex: 1 1 50%; border-bottom: 1px solid var(--line); }
   .button, .button--sm { width: 100%; }
   .button-row { gap: 14px; }
