@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
   <link rel="preload" as="image" href="assets/images/hero-lobby.webp" media="(min-width: 701px)">
   <link rel="preload" as="image" href="assets/images/hero-lobby-900.webp" media="(max-width: 700px)">
-  <link rel="stylesheet" href="styles.css?v=20260829">
+  <link rel="stylesheet" href="styles.css?v=20260830">
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -297,7 +297,9 @@
         </div>
       </div>
 
-      <ul class="shell review-grid">
+      <div class="shell">
+      <div class="carousel" data-carousel>
+      <ul class="review-grid carousel__track" role="group" aria-label="Отзывы гостей">
         <li class="review reveal">
           <span class="review__stars" aria-label="Оценка 5 из 5">★★★★★</span>
           <blockquote>Уже после первого сеанса почувствовала невероятную лёгкость и прилив энергии. Мышцы отлично проработаны, напряжение ушло. Очень внимательный специалист, который знает своё дело.</blockquote>
@@ -329,6 +331,13 @@
           <p class="review__meta"><b>Екатерина Адамова</b><span>17 ноября 2024</span></p>
         </li>
       </ul>
+        <div class="carousel__controls">
+          <button class="carousel__btn" type="button" data-carousel-prev aria-label="Предыдущие отзывы">←</button>
+          <div class="carousel__progress" aria-hidden="true"><span></span></div>
+          <button class="carousel__btn" type="button" data-carousel-next aria-label="Следующие отзывы">→</button>
+        </div>
+      </div>
+      </div>
     </section>
 
     <!-- 9. Удобства — белая -->
@@ -437,6 +446,6 @@
     <a href="https://dikidi.net/1188196" target="_blank" rel="noopener">Записаться</a>
   </nav>
 
-  <script src="script.js?v=20260829"></script>
+  <script src="script.js?v=20260830"></script>
 </body>
 </html>

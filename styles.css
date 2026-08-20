@@ -910,6 +910,11 @@ em { font-style: normal; color: var(--wood); }
 .carousel__btn:hover:not(:disabled) { background: var(--graphite); border-color: var(--graphite); color: var(--white); }
 .carousel__btn:disabled { opacity: .3; cursor: default; }
 
+.section--graphite .carousel__btn { border-color: var(--line-dark-strong); color: var(--white); }
+.section--graphite .carousel__btn:hover:not(:disabled) { background: var(--white); border-color: var(--white); color: var(--graphite); }
+.section--graphite .carousel__progress { background: var(--line-dark); }
+.section--graphite .carousel__progress span { background: var(--warm); }
+
 .carousel__progress {
   flex: 1 1 auto; height: 2px;
   background: var(--line);
@@ -957,6 +962,10 @@ em { font-style: normal; color: var(--wood); }
     user-select: none;
   }
   .carousel.is-dragging .carousel__track * { pointer-events: none; }
+
+  /* Отзывам нужна карточка пошире, чтобы цитата не рвалась */
+  .review-grid.carousel__track > * { flex-basis: clamp(260px, 76vw, 380px); }
+  .review-grid.carousel__track { margin-top: clamp(36px, 5vw, 60px); }
 
   /* Галерея: в ленте у всех кадров одна пропорция */
   .gallery-grid.carousel__track .gallery-item img { aspect-ratio: 3 / 4; }
