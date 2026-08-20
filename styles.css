@@ -664,29 +664,7 @@ em { font-style: normal; color: var(--wood); }
 }
 .review__meta span { color: var(--gray-light); opacity: .6; font-size: .8125rem; }
 
-/* ------------------------------ Адрес и удобства ------------------------------ */
-
-.location {
-  display: grid;
-  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
-  gap: clamp(32px, 5vw, 72px);
-  align-items: start;
-  margin-bottom: clamp(48px, 6vw, 88px);
-}
-.location h2 { margin-bottom: 18px; }
-.location p { color: var(--gray); }
-
-.location__meta {
-  display: grid; gap: 20px;
-  padding: clamp(24px, 2.6vw, 36px);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-}
-.location__meta dt { color: var(--gray); font-size: .8125rem; letter-spacing: .13em; text-transform: uppercase; }
-.location__meta dd {
-  margin: 6px 0 0;
-  font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: -.02em;
-}
+/* ------------------------------ Удобства ------------------------------ */
 
 .access-grid {
   display: grid;
@@ -930,7 +908,7 @@ em { font-style: normal; color: var(--wood); }
 }
 
 @media (max-width: 1024px) {
-  .about, .reviews, .location, .safety-note__inner {
+  .about, .reviews, .safety-note__inner {
     grid-template-columns: minmax(0, 1fr);
   }
   .rating-panel { padding: 0 0 28px; border-right: 0; border-bottom: 1px solid var(--line-dark); }
