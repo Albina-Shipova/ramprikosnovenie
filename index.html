@@ -4,18 +4,28 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Студия массажа и эстетики «Прикосновение» в Раменском: массаж лица и тела, SPA-программы, пилинги и уходы. Северное шоссе, 10. Ежедневно 09:00–21:00, онлайн-запись.">
+  <meta name="theme-color" content="#f5f3ef">
   <title>Прикосновение — студия массажа и эстетики в Раменском</title>
-  <link rel="stylesheet" href="styles.css?v=20260822">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="styles.css?v=20260823">
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
+
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="index.html" aria-label="Прикосновение — главная">
-        <span class="brand-mark" aria-hidden="true">П</span>
-        <span><b>Прикосновение</b><small>массаж · эстетика · spa</small></span>
+        <span class="brand__mark" aria-hidden="true">П</span>
+        <span>
+          <span class="brand__name">Прикосновение</span>
+          <span class="brand__tag">массаж · эстетика · spa</span>
+        </span>
       </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span><span class="sr-only">Открыть меню</span></button>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span><span class="sr-only">Открыть меню</span>
+      </button>
       <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
         <a href="services.html" data-nav="services">Услуги и цены</a>
         <a href="#about">О студии</a>
@@ -23,157 +33,284 @@
         <a href="#gallery">Галерея</a>
         <a href="#contacts">Контакты</a>
       </nav>
-      <a class="button button-small header-cta" href="https://dikidi.net/1188196" target="_blank" rel="noopener">Записаться</a>
+      <a class="button button--sm header-cta" href="https://dikidi.net/1188196" target="_blank" rel="noopener">Записаться</a>
     </div>
   </header>
 
   <main id="main">
-    <!-- HERO -->
-    <section class="hero shell">
-      <div class="hero-copy reveal">
-        <p class="eyebrow">Студия массажа и эстетики · Раменское</p>
-        <h1>Пауза, в которой<br><em>слышно себя</em></h1>
-        <p class="hero-lead">Массаж лица и тела, SPA-программы, пилинги и эстетические уходы в камерном графитовом пространстве на Северном шоссе.</p>
+
+    <!-- 1. Первый экран — светлая -->
+    <section class="shell hero">
+      <div class="hero__copy reveal">
+        <p class="eyebrow">Раменское · Северное шоссе, 10</p>
+        <h1 class="hero__title">Студия массажа<br>и эстетики <em>«Прикосновение»</em></h1>
+        <p class="lead hero__lead">Массаж лица и тела, SPA-программы, пилинги и уходы. Тридцать семь процедур, восемь мастеров и запись без звонков.</p>
         <div class="button-row">
           <a class="button" href="https://dikidi.net/1188196" target="_blank" rel="noopener">Выбрать услугу и время</a>
-          <a class="text-link" href="services.html">Посмотреть цены <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="services.html">Смотреть цены</a>
         </div>
-        <dl class="hero-facts" aria-label="Основная информация">
+        <dl class="hero__facts">
           <div><dt>5,0</dt><dd>78 оценок на Яндекс Картах</dd></div>
-          <div><dt>09–21</dt><dd>ежедневно, по записи</dd></div>
-          <div><dt>37</dt><dd>процедур на выбор</dd></div>
+          <div><dt>09:00–21:00</dt><dd>ежедневно, по записи</dd></div>
+          <div><dt>37</dt><dd>процедур в каталоге</dd></div>
         </dl>
       </div>
-      <figure class="hero-visual reveal">
+      <figure class="hero__visual reveal">
         <img src="assets/images/hero-studio.webp" alt="Графитовый интерьер студии «Прикосновение» с креслами и тёплым светом" width="1500" height="2000" fetchpriority="high">
-        <figcaption><span>Графит</span><span>мягкий свет</span><span>тишина</span></figcaption>
-        <div class="rating-chip" aria-label="Рейтинг 5,0 на основании 78 оценок на Яндекс Картах"><strong>5,0</strong><span>★★★★★<br>78 оценок</span></div>
+        <figcaption class="hero__caption"><span>Графит</span><span>Мягкий свет</span><span>Тишина</span></figcaption>
+        <div class="rating-badge" aria-label="Рейтинг 5,0 на основании 78 оценок на Яндекс Картах">
+          <strong>5,0</strong>
+          <span><b>★★★★★</b>78 оценок · Яндекс Карты</span>
+        </div>
       </figure>
     </section>
 
-    <section class="marquee" aria-label="Направления студии">
-      <div>массаж тела <i>•</i> массаж лица <i>•</i> spa-программы <i>•</i> косметология <i>•</i> пилинги <i>•</i> уходы Casmara <i>•</i></div>
-    </section>
+    <div class="shell">
+      <div class="tag-strip">
+        <span>Массаж тела</span>
+        <span>Массаж лица</span>
+        <span>SPA-программы</span>
+        <span>Косметология</span>
+        <span>Пилинги</span>
+        <span>Уходы Casmara</span>
+      </div>
+    </div>
 
-    <!-- УСЛУГИ -->
-    <section class="section section-dark section-anchor" id="services">
+    <!-- 2. Направления — белая -->
+    <section class="section section--white" id="services">
       <div class="shell">
-        <div class="section-heading section-heading-row reveal">
-          <div><p class="eyebrow">Направления</p><h2>Выберите свой формат</h2></div>
-          <a class="text-link light" href="services.html">Все 37 процедур <span aria-hidden="true">↗</span></a>
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Направления</p>
+            <h2>Четыре формата, из которых собран каталог</h2>
+          </div>
+          <a class="text-link" href="services.html">Все 37 процедур</a>
         </div>
+
         <div class="direction-grid">
-          <a class="direction-card reveal" href="services.html?category=massage"><img class="direction-card-image" src="assets/images/process-massage-hands.webp" alt="Руки мастера во время массажа" width="1200" height="800" loading="lazy"><span>01</span><h3>Массаж тела</h3><p>Сеансы от 30 минут до 2 часов: спина и шейно-воротниковая зона, всё тело, вакуумная техника.</p><b>от 1 000 ₽</b></a>
-          <a class="direction-card reveal" href="services.html?category=face"><img class="direction-card-image" src="assets/images/process-face-massage.webp" alt="Мастер выполняет массаж лица" width="1200" height="800" loading="lazy"><span>02</span><h3>Массаж лица</h3><p>Четыре программы длительностью от 60 до 90 минут, включая скульптурно-буккальную технику.</p><b>от 2 300 ₽</b></a>
-          <a class="direction-card reveal" href="services.html?category=spa"><img class="direction-card-image" src="assets/images/process-body-care.webp" alt="Мастер проводит уход за телом" width="1200" height="800" loading="lazy"><span>03</span><h3>SPA-программы</h3><p>Комплексные ритуалы: массаж, обёртывание и уход — до двух с половиной часов в одном сеансе.</p><b>от 5 000 ₽</b></a>
-          <a class="direction-card reveal" href="services.html?category=cosmetology"><img class="direction-card-image" src="assets/images/process-cosmetology.webp" alt="Косметологическая процедура в студии" width="1200" height="800" loading="lazy"><span>04</span><h3>Эстетические уходы</h3><p>Косметология, восемь пилингов и линейка уходов Casmara — по предварительной записи.</p><b>от 2 000 ₽</b></a>
+          <a class="direction reveal" href="services.html?category=massage">
+            <div class="direction__media"><img src="assets/images/process-body-massage.webp" alt="Мастер выполняет массаж тела" width="1500" height="2000" loading="lazy"></div>
+            <div class="direction__body">
+              <h3>Массаж тела</h3>
+              <p>Сеансы от 30 минут до 2 часов: спина и шейно-воротниковая зона, всё тело, вакуумная техника.</p>
+              <div class="direction__price">от 1 000 ₽ <em>8 процедур</em></div>
+            </div>
+          </a>
+          <a class="direction reveal" href="services.html?category=face">
+            <div class="direction__media"><img src="assets/images/process-face-care.webp" alt="Мастер выполняет массаж лица" width="1500" height="2000" loading="lazy"></div>
+            <div class="direction__body">
+              <h3>Массаж лица</h3>
+              <p>Четыре программы длительностью от 60 до 90 минут, включая скульптурно-буккальную технику.</p>
+              <div class="direction__price">от 2 300 ₽ <em>4 процедуры</em></div>
+            </div>
+          </a>
+          <a class="direction reveal" href="services.html?category=spa">
+            <div class="direction__media"><img src="assets/images/process-body-care.webp" alt="Мастер проводит уход за телом" width="1500" height="2000" loading="lazy"></div>
+            <div class="direction__body">
+              <h3>SPA-программы</h3>
+              <p>Комплексные ритуалы: массаж, обёртывание и уход — до двух с половиной часов в одном сеансе.</p>
+              <div class="direction__price">от 5 000 ₽ <em>6 программ</em></div>
+            </div>
+          </a>
+          <a class="direction reveal" href="services.html?category=cosmetology">
+            <div class="direction__media"><img src="assets/images/process-cosmetology.webp" alt="Косметологическая процедура в студии" width="1500" height="2000" loading="lazy"></div>
+            <div class="direction__body">
+              <h3>Эстетические уходы</h3>
+              <p>Косметология, восемь пилингов и линейка уходов Casmara — по предварительной записи.</p>
+              <div class="direction__price">от 2 000 ₽ <em>19 процедур</em></div>
+            </div>
+          </a>
         </div>
-        <p class="fine-print light-copy">У процедур с пометкой «от» итоговая стоимость зависит от выбранного мастера.</p>
+
+        <p class="fine-print reveal">У процедур с пометкой «от» итоговая стоимость зависит от выбранного мастера.</p>
       </div>
     </section>
 
-    <!-- О СТУДИИ -->
-    <section class="section shell story-layout section-anchor" id="about">
-      <div class="story-copy reveal">
-        <p class="eyebrow">О студии</p>
-        <h2>Как устроено «Прикосновение»</h2>
-        <p class="large-copy">Студию основала Оксана — она и сейчас принимает как топ-мастер, совмещая массаж и косметологию.</p>
-        <p>Сегодня здесь работают восемь мастеров, у каждого своё направление: кто-то ведёт лицо, кто-то — тело, есть отдельная остеопрактика. Мастера можно выбрать заранее, а не получить «кто свободен».</p>
-        <p>Интерьер собран вокруг простой идеи: пространство должно само сбавлять темп. Графитовые стены, тёплый приглушённый свет, живая зелень и спокойные фактуры — ничего лишнего в поле зрения.</p>
-        <p>В записи открыты 37 процедур — от пятнадцатиминутного пилинга до SPA-программы на два с половиной часа.</p>
-      </div>
-      <div class="story-collage reveal">
-        <img src="assets/images/studio-wall.webp" alt="Настенный декор и растения в интерьере студии" loading="lazy" width="1500" height="2000">
-        <img src="assets/images/studio-mirror.webp" alt="Фигурное зеркало и зелёный декор в студии" loading="lazy" width="1500" height="2000">
+    <!-- 3. О студии — графитовая -->
+    <section class="section section--graphite" id="about">
+      <div class="shell about">
+        <div class="about__copy reveal">
+          <p class="eyebrow">О студии</p>
+          <h2>Пространство, которое само сбавляет темп</h2>
+          <p class="lead">Студию основала Оксана — она и сейчас принимает как топ-мастер, совмещая массаж и косметологию.</p>
+          <p>Сегодня здесь работают восемь мастеров, у каждого своё направление: кто-то ведёт лицо, кто-то — тело, есть отдельная остеопрактика. Мастера можно выбрать заранее, а не получить «кто свободен».</p>
+          <p>Интерьер собран вокруг простой идеи: ничего лишнего в поле зрения. Графитовые стены, тёплый приглушённый свет, живая зелень и спокойные фактуры.</p>
+          <p>В записи открыты 37 процедур — от пятнадцатиминутного пилинга до SPA-программы на два с половиной часа.</p>
+        </div>
+        <div class="about__figures reveal">
+          <img src="assets/images/studio-wall.webp" alt="Настенный декор и растения в интерьере студии" width="1500" height="2000" loading="lazy">
+          <img src="assets/images/studio-mirror.webp" alt="Фигурное зеркало и зелёный декор в студии" width="1500" height="2000" loading="lazy">
+        </div>
       </div>
     </section>
 
-    <!-- КОМАНДА -->
-    <section class="section section-dark section-anchor" id="team">
+    <!-- 4. Почему выбирают — светло-серая -->
+    <section class="section section--stone" id="why">
       <div class="shell">
-        <div class="section-heading section-heading-row reveal">
-          <div><p class="eyebrow">Команда</p><h2>Восемь мастеров студии</h2></div>
-          <p class="heading-note">Каждого мастера можно выбрать при записи — под свой запрос, а не по остаточному принципу.</p>
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Почему выбирают</p>
+            <h2>Шесть причин прийти</h2>
+          </div>
+          <p class="section-head__note">Всё, что заявлено, можно проверить в открытых карточках студии.</p>
         </div>
-        <div class="team-list">
-          <article class="team-row reveal"><span>01</span><div><h3>Оксана</h3><p>Основатель студии и топ-мастер: массаж и косметология.</p><p class="team-fit">Если хочется совместить массаж и уход за лицом у одного мастера</p></div><a href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/2606528" target="_blank" rel="noopener">Профиль ↗</a></article>
-          <article class="team-row reveal"><span>02</span><div><h3>Мария</h3><p>Ведущий мастер массажа лица, работает и с телом.</p><p class="team-fit">Если хочется поработать и с лицом, и с телом</p></div><a href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/2744722" target="_blank" rel="noopener">Профиль ↗</a></article>
-          <article class="team-row reveal"><span>03</span><div><h3>Светлана</h3><p>Ведущий мастер массажа лица.</p><p class="team-fit">Специализируется на эстетике лица</p></div><a href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/3513507" target="_blank" rel="noopener">Профиль ↗</a></article>
-          <article class="team-row reveal"><span>04</span><div><h3>Виктория</h3><p>Мастер массажа тела.</p><p class="team-fit">Для расслабляющего массажа и работы с напряжением в спине</p></div><a href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/3621175" target="_blank" rel="noopener">Профиль ↗</a></article>
-          <article class="team-row reveal"><span>05</span><div><h3>Ирина</h3><p>Остеопат.</p><p class="team-fit">Если нужен более глубокий телесный подход, чем классический массаж</p></div><a href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/3964168" target="_blank" rel="noopener">Профиль ↗</a></article>
-          <article class="team-row reveal"><span>06</span><div><h3>Юлия</h3><p>Массажист.</p><p class="team-fit">Для классического массажа тела</p></div><a href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/4128904" target="_blank" rel="noopener">Профиль ↗</a></article>
-          <article class="team-row reveal"><span>07</span><div><h3>Анастасия</h3><p>Мастер массажа.</p><p class="team-fit">Для расслабляющего массажа тела</p></div><a href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/4470767" target="_blank" rel="noopener">Профиль ↗</a></article>
-          <article class="team-row reveal"><span>08</span><div><h3>Настя</h3><p>Мастер массажа.</p><p class="team-fit">Для спокойного восстанавливающего массажа</p></div><a href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/4551597" target="_blank" rel="noopener">Профиль ↗</a></article>
+        <div class="reason-grid">
+          <div class="reason reveal"><h3>5,0 на Яндекс&nbsp;Картах</h3><p>78 оценок, 61 текстовый отзыв и награда «Хорошее место 2026».</p></div>
+          <div class="reason reveal"><h3>Восемь мастеров</h3><p>Под запрос — свой специалист: лицо, тело, остеопрактика, косметология.</p></div>
+          <div class="reason reveal"><h3>37 процедур</h3><p>От пятнадцатиминутного пилинга до SPA-ритуала на два с половиной часа.</p></div>
+          <div class="reason reveal"><h3>Запись без звонков</h3><p>Онлайн круглосуточно: свободные окна, мастер и цена видны сразу.</p></div>
+          <div class="reason reveal"><h3>Ежедневно 09:00–21:00</h3><p>Включая выходные — можно прийти до работы или поздним вечером.</p></div>
+          <div class="reason reveal"><h3>Оплата как удобно</h3><p>Наличные, карта, онлайн и СБП. Есть подарочные сертификаты.</p></div>
         </div>
       </div>
     </section>
 
-    <!-- ПОЧЕМУ ВЫБИРАЮТ -->
-    <section class="section shell section-anchor" id="why">
-      <div class="section-heading section-heading-row reveal">
-        <div><p class="eyebrow">Почему выбирают</p><h2>Шесть причин прийти</h2></div>
-      </div>
-      <div class="why-grid">
-        <div class="reveal"><span>01</span><h3>5,0 на Яндекс&nbsp;Картах</h3><p>78 оценок, 61 текстовый отзыв и награда «Хорошее место 2026».</p></div>
-        <div class="reveal"><span>02</span><h3>Восемь мастеров</h3><p>Под запрос — свой специалист: лицо, тело, остеопрактика, косметология.</p></div>
-        <div class="reveal"><span>03</span><h3>37 процедур</h3><p>От пятнадцатиминутного пилинга до SPA-ритуала на два с половиной часа.</p></div>
-        <div class="reveal"><span>04</span><h3>Запись без звонков</h3><p>Онлайн круглосуточно: свободные окна, мастер и цена видны сразу.</p></div>
-        <div class="reveal"><span>05</span><h3>Ежедневно 09:00–21:00</h3><p>Включая выходные — можно прийти до работы или поздним вечером.</p></div>
-        <div class="reveal"><span>06</span><h3>Оплата как удобно</h3><p>Наличные, карта, онлайн и СБП. Есть подарочные сертификаты.</p></div>
+    <!-- 5. Фото-полоса -->
+    <section class="photo-band" aria-label="Интерьер студии">
+      <img src="assets/images/studio-light.webp" alt="Декоративная зелень и тёплая подсветка в студии" width="1500" height="2000" loading="lazy">
+      <div class="photo-band__caption">
+        <div class="shell">
+          <p class="reveal">Тёплый свет, приглушённый графит и час, в котором никуда не нужно спешить.</p>
+        </div>
       </div>
     </section>
 
-    <!-- ПРОСТРАНСТВО / ФОТО -->
-    <section class="section shell gallery-block section-anchor" id="gallery">
-      <div class="section-heading section-heading-row reveal">
-        <div><p class="eyebrow">Пространство</p><h2>Как здесь на самом деле</h2></div>
-        <p class="heading-note dark-note">Интерьер, команда и процедуры — без стоковых кадров.</p>
-      </div>
-      <div class="filter-group gallery-filters reveal" role="group" aria-label="Фильтр галереи"><button class="filter-button active" type="button" data-gallery-filter="all">Все</button><button class="filter-button" type="button" data-gallery-filter="interior">Интерьер</button><button class="filter-button" type="button" data-gallery-filter="team">Мастера</button><button class="filter-button" type="button" data-gallery-filter="process">Процесс</button></div>
-      <div class="gallery-grid">
-        <button class="gallery-item gallery-item-wide reveal" type="button" data-gallery-category="interior" data-lightbox="assets/images/hero-studio.webp" data-caption="Графитовая зона отдыха студии"><img src="assets/images/hero-studio.webp" alt="Графитовая зона отдыха студии" loading="lazy" width="1500" height="2000"><span>Интерьер</span></button>
-        <button class="gallery-item gallery-item-tall reveal" type="button" data-gallery-category="team" data-lightbox="assets/images/master-01.webp" data-caption="Мастер студии"><img src="assets/images/master-01.webp" alt="Мастер студии на фоне графитовой стены" loading="lazy" width="1500" height="2000"><span>Команда</span></button>
-        <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-face-massage.webp" data-caption="Массаж лица"><img src="assets/images/process-face-massage.webp" alt="Мастер выполняет массаж лица" loading="lazy" width="1500" height="2000"><span>Массаж лица</span></button>
-        <button class="gallery-item reveal" type="button" data-gallery-category="interior" data-lightbox="assets/images/studio-mirror.webp" data-caption="Зеркало и зелёный декор"><img src="assets/images/studio-mirror.webp" alt="Фигурное зеркало и зелёный декор" loading="lazy" width="1500" height="2000"><span>Детали</span></button>
-        <button class="gallery-item gallery-item-tall reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-cosmetology.webp" data-caption="Косметологическая процедура"><img src="assets/images/process-cosmetology.webp" alt="Косметологическая процедура в студии" loading="lazy" width="1500" height="2000"><span>Косметология</span></button>
-        <button class="gallery-item reveal" type="button" data-gallery-category="team" data-lightbox="assets/images/master-02.webp" data-caption="Мастер студии"><img src="assets/images/master-02.webp" alt="Портрет мастера студии" loading="lazy" width="1500" height="2000"><span>Команда</span></button>
-        <button class="gallery-item reveal" type="button" data-gallery-category="interior" data-lightbox="assets/images/studio-light.webp" data-caption="Тёплый свет в деталях"><img src="assets/images/studio-light.webp" alt="Декор с зеленью и тёплой подсветкой" loading="lazy" width="1500" height="2000"><span>Атмосфера</span></button>
-        <button class="gallery-item gallery-item-wide reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-face-care.webp" data-caption="Работа мастера"><img src="assets/images/process-face-care.webp" alt="Мастер выполняет уход за лицом" loading="lazy" width="1500" height="2000"><span>Уход</span></button>
-        <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-wood-therapy.webp" data-caption="Процедура с деревянным массажным роллером"><img src="assets/images/process-wood-therapy.webp" alt="Процедура с деревянным массажным роллером" loading="lazy" width="1500" height="2000"><span>Процесс</span></button>
-        <button class="gallery-item gallery-item-tall reveal" type="button" data-gallery-category="team" data-lightbox="assets/images/master-03.webp" data-caption="Мастер студии"><img src="assets/images/master-03.webp" alt="Мастер студии в рабочей форме" loading="lazy" width="1500" height="2000"><span>Команда</span></button>
-        <button class="gallery-item reveal" type="button" data-gallery-category="interior" data-lightbox="assets/images/studio-care.webp" data-caption="Косметические средства в студии"><img src="assets/images/studio-care.webp" alt="Косметические средства на полке в студии" loading="lazy" width="1500" height="2000"><span>Уходы</span></button>
-        <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-face-glass.webp" data-caption="Эстетическая процедура для лица"><img src="assets/images/process-face-glass.webp" alt="Эстетическая процедура для лица" loading="lazy" width="1500" height="2000"><span>Эстетика</span></button>
-        <button class="gallery-item gallery-item-wide reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-body-care.webp" data-caption="Массаж тела"><img src="assets/images/process-body-care.webp" alt="Мастер выполняет массаж тела" loading="lazy" width="1500" height="2000"><span>Массаж тела</span></button>
-        <button class="gallery-item reveal" type="button" data-gallery-category="interior" data-lightbox="assets/images/studio-wall.webp" data-caption="Графика и растения в интерьере"><img src="assets/images/studio-wall.webp" alt="Настенный декор и растения в интерьере" loading="lazy" width="1500" height="2000"><span>Интерьер</span></button>
-        <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-neck-massage.webp" data-caption="Массаж шейно-воротниковой зоны"><img src="assets/images/process-neck-massage.webp" alt="Массаж шейно-воротниковой зоны" loading="lazy" width="1500" height="2000"><span>Массаж</span></button>
-        <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-body-massage.webp" data-caption="Ручная техника массажа"><img src="assets/images/process-body-massage.webp" alt="Ручная техника массажа тела" loading="lazy" width="1500" height="2000"><span>Процесс</span></button>
-        <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-massage-hands.webp" data-caption="Работа мастера"><img src="assets/images/process-massage-hands.webp" alt="Руки мастера во время массажа" loading="lazy" width="1125" height="2000"><span>Прикосновение</span></button>
+    <!-- 6. Команда — белая -->
+    <section class="section section--white" id="team">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Команда</p>
+            <h2>Восемь мастеров студии</h2>
+          </div>
+          <p class="section-head__note">Мастера выбирают при записи — под свой запрос, а не по остаточному принципу.</p>
+        </div>
+        <div class="team">
+          <article class="team__row reveal">
+            <div><h3>Оксана</h3><p class="team__role">Основатель студии, топ-мастер</p></div>
+            <p class="team__fit">Массаж и косметология у одного мастера</p>
+            <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/2606528" target="_blank" rel="noopener">Профиль ↗</a>
+          </article>
+          <article class="team__row reveal">
+            <div><h3>Мария</h3><p class="team__role">Ведущий мастер массажа лица</p></div>
+            <p class="team__fit">Работает и с лицом, и с телом</p>
+            <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/2744722" target="_blank" rel="noopener">Профиль ↗</a>
+          </article>
+          <article class="team__row reveal">
+            <div><h3>Светлана</h3><p class="team__role">Ведущий мастер массажа лица</p></div>
+            <p class="team__fit">Специализируется на эстетике лица</p>
+            <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/3513507" target="_blank" rel="noopener">Профиль ↗</a>
+          </article>
+          <article class="team__row reveal">
+            <div><h3>Виктория</h3><p class="team__role">Мастер массажа тела</p></div>
+            <p class="team__fit">Расслабляющий массаж и работа с напряжением в спине</p>
+            <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/3621175" target="_blank" rel="noopener">Профиль ↗</a>
+          </article>
+          <article class="team__row reveal">
+            <div><h3>Ирина</h3><p class="team__role">Остеопат</p></div>
+            <p class="team__fit">Более глубокий телесный подход, чем классический массаж</p>
+            <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/3964168" target="_blank" rel="noopener">Профиль ↗</a>
+          </article>
+          <article class="team__row reveal">
+            <div><h3>Юлия</h3><p class="team__role">Массажист</p></div>
+            <p class="team__fit">Классический массаж тела</p>
+            <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/4128904" target="_blank" rel="noopener">Профиль ↗</a>
+          </article>
+          <article class="team__row reveal">
+            <div><h3>Анастасия</h3><p class="team__role">Мастер массажа</p></div>
+            <p class="team__fit">Расслабляющий массаж тела</p>
+            <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/4470767" target="_blank" rel="noopener">Профиль ↗</a>
+          </article>
+          <article class="team__row reveal">
+            <div><h3>Настя</h3><p class="team__role">Мастер массажа</p></div>
+            <p class="team__fit">Спокойный восстанавливающий массаж</p>
+            <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/4551597" target="_blank" rel="noopener">Профиль ↗</a>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- ОТЗЫВЫ -->
-    <section class="section reviews-section section-anchor" id="reviews">
-      <div class="shell reviews-layout">
-        <div class="rating-panel reveal"><span class="stars" aria-hidden="true">★★★★★</span><strong>5,0</strong><p>78 оценок и 61 отзыв на Яндекс Картах</p></div>
-        <div class="review-themes reveal">
+    <!-- 7. Галерея — светлая -->
+    <section class="section" id="gallery">
+      <div class="shell">
+        <div class="wave-rule reveal" aria-hidden="true"></div>
+        <div class="section-head reveal" style="margin-top:26px">
+          <div>
+            <p class="eyebrow">Пространство</p>
+            <h2>Как здесь на самом деле</h2>
+          </div>
+          <p class="section-head__note">Интерьер, команда и процедуры — без стоковых кадров.</p>
+        </div>
+
+        <div class="filter-group gallery-filters reveal" role="group" aria-label="Фильтр галереи">
+          <button class="filter-button active" type="button" data-gallery-filter="all">Все</button>
+          <button class="filter-button" type="button" data-gallery-filter="interior">Интерьер</button>
+          <button class="filter-button" type="button" data-gallery-filter="team">Мастера</button>
+          <button class="filter-button" type="button" data-gallery-filter="process">Процесс</button>
+        </div>
+
+        <div class="gallery-grid">
+          <button class="gallery-item reveal" type="button" data-gallery-category="interior" data-lightbox="assets/images/hero-studio.webp" data-caption="Графитовая зона отдыха студии"><img src="assets/images/hero-studio.webp" alt="Графитовая зона отдыха студии" width="1500" height="2000" loading="lazy"><span>Интерьер</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="team" data-lightbox="assets/images/master-01.webp" data-caption="Мастер студии"><img src="assets/images/master-01.webp" alt="Мастер студии на фоне графитовой стены" width="1500" height="2000" loading="lazy"><span>Команда</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-face-massage.webp" data-caption="Массаж лица"><img src="assets/images/process-face-massage.webp" alt="Мастер выполняет массаж лица" width="1500" height="2000" loading="lazy"><span>Массаж лица</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="interior" data-lightbox="assets/images/studio-mirror.webp" data-caption="Зеркало и зелёный декор"><img src="assets/images/studio-mirror.webp" alt="Фигурное зеркало и зелёный декор" width="1500" height="2000" loading="lazy"><span>Детали</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-cosmetology.webp" data-caption="Косметологическая процедура"><img src="assets/images/process-cosmetology.webp" alt="Косметологическая процедура в студии" width="1500" height="2000" loading="lazy"><span>Косметология</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="team" data-lightbox="assets/images/master-02.webp" data-caption="Мастер студии"><img src="assets/images/master-02.webp" alt="Портрет мастера студии" width="1500" height="2000" loading="lazy"><span>Команда</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="interior" data-lightbox="assets/images/studio-light.webp" data-caption="Тёплый свет в деталях"><img src="assets/images/studio-light.webp" alt="Декор с зеленью и тёплой подсветкой" width="1500" height="2000" loading="lazy"><span>Атмосфера</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-face-care.webp" data-caption="Работа мастера"><img src="assets/images/process-face-care.webp" alt="Мастер выполняет уход за лицом" width="1500" height="2000" loading="lazy"><span>Уход</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-wood-therapy.webp" data-caption="Процедура с деревянным массажным роллером"><img src="assets/images/process-wood-therapy.webp" alt="Процедура с деревянным массажным роллером" width="1500" height="2000" loading="lazy"><span>Процесс</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="team" data-lightbox="assets/images/master-03.webp" data-caption="Мастер студии"><img src="assets/images/master-03.webp" alt="Мастер студии в рабочей форме" width="1500" height="2000" loading="lazy"><span>Команда</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="interior" data-lightbox="assets/images/studio-care.webp" data-caption="Косметические средства в студии"><img src="assets/images/studio-care.webp" alt="Косметические средства на полке в студии" width="1500" height="2000" loading="lazy"><span>Уходы</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-face-glass.webp" data-caption="Эстетическая процедура для лица"><img src="assets/images/process-face-glass.webp" alt="Эстетическая процедура для лица" width="1500" height="2000" loading="lazy"><span>Эстетика</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-body-care.webp" data-caption="Массаж тела"><img src="assets/images/process-body-care.webp" alt="Мастер выполняет массаж тела" width="1500" height="2000" loading="lazy"><span>Массаж тела</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="interior" data-lightbox="assets/images/studio-wall.webp" data-caption="Графика и растения в интерьере"><img src="assets/images/studio-wall.webp" alt="Настенный декор и растения в интерьере" width="1500" height="2000" loading="lazy"><span>Интерьер</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-neck-massage.webp" data-caption="Массаж шейно-воротниковой зоны"><img src="assets/images/process-neck-massage.webp" alt="Массаж шейно-воротниковой зоны" width="1500" height="2000" loading="lazy"><span>Массаж</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-body-massage.webp" data-caption="Ручная техника массажа"><img src="assets/images/process-body-massage.webp" alt="Ручная техника массажа тела" width="1500" height="2000" loading="lazy"><span>Процесс</span></button>
+          <button class="gallery-item reveal" type="button" data-gallery-category="process" data-lightbox="assets/images/process-massage-hands.webp" data-caption="Работа мастера"><img src="assets/images/process-massage-hands.webp" alt="Руки мастера во время массажа" width="1125" height="2000" loading="lazy"><span>Прикосновение</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Отзывы — графитовая -->
+    <section class="section section--graphite" id="reviews">
+      <div class="shell reviews">
+        <div class="rating-panel reveal">
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <strong>5,0</strong>
+          <p>78 оценок и 61 отзыв на Яндекс Картах</p>
+        </div>
+        <div class="reviews__copy reveal">
           <p class="eyebrow">Что отмечают гости</p>
           <h2>Массаж, внимание и интерьер</h2>
           <p>Чаще всего гости пишут о самом массаже, о внимательности мастеров и о том, как ощущается пространство студии. Отзывы можно прочитать целиком — с датами и ответами студии, без выборочных цитат.</p>
-          <a class="button button-outline" href="https://yandex.ru/maps/org/prikosnoveniye/35881076958/reviews/" target="_blank" rel="noopener">Читать отзывы</a>
+          <a class="button button--outline-light" href="https://yandex.ru/maps/org/prikosnoveniye/35881076958/reviews/" target="_blank" rel="noopener">Читать отзывы на Яндекс Картах</a>
         </div>
       </div>
     </section>
 
-    <!-- КАК НАЙТИ -->
-    <section class="section shell location-strip reveal section-anchor" id="location">
-      <div><p class="eyebrow">Как найти</p><h2>Северное шоссе, 10</h2><p>Московская область, Раменское. Третий этаж, офис 323 — из лифта налево, до конца коридора.</p></div>
-      <div class="location-meta"><span>Ежедневно</span><strong>09:00–21:00</strong><a class="button" href="https://yandex.ru/maps/org/prikosnoveniye/35881076958/" target="_blank" rel="noopener">Построить маршрут</a></div>
-    </section>
+    <!-- 9. Адрес и удобства — белая -->
+    <section class="section section--white" id="location">
+      <div class="shell">
+        <div class="location reveal">
+          <div>
+            <p class="eyebrow">Как найти</p>
+            <h2>Северное шоссе, 10</h2>
+            <p>Московская область, Раменское. Третий этаж, офис 323 — из лифта налево, до конца коридора.</p>
+          </div>
+          <dl class="location__meta">
+            <div><dt>График</dt><dd>Ежедневно 09:00–21:00</dd></div>
+            <div><dt>Телефон</dt><dd><a href="tel:+79164729423">+7 916 472-94-23</a></dd></div>
+            <div><a class="button button--ghost" href="https://yandex.ru/maps/org/prikosnoveniye/35881076958/" target="_blank" rel="noopener">Построить маршрут</a></div>
+          </dl>
+        </div>
 
-    <section class="section section-dark access-section">
-      <div class="shell access-grid">
-        <div class="reveal"><p class="eyebrow">Особенности места</p><h2>Удобства</h2></div>
-        <ul class="access-list reveal">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Особенности места</p>
+            <h2>Удобства</h2>
+          </div>
+        </div>
+        <ul class="access-grid reveal">
           <li><span>Лифт</span><b>есть</b></li>
           <li><span>Парковка</span><b>есть</b></li>
           <li><span>Wi‑Fi</span><b>есть</b></li>
@@ -184,41 +321,92 @@
       </div>
     </section>
 
-    <!-- КОНТАКТЫ -->
-    <section class="section shell section-anchor" id="contacts">
-      <div class="section-heading section-heading-row reveal">
-        <div><p class="eyebrow">Контакты</p><h2>Связаться со студией</h2></div>
-      </div>
-      <div class="contact-grid">
-        <article class="contact-card reveal"><span>01</span><p class="eyebrow">Адрес</p><h2>Северное шоссе, 10</h2><p>Московская область, Раменское<br>3 этаж, офис 323</p><p class="contact-hint">Из лифта налево, до конца коридора.</p><a class="button button-outline" href="https://yandex.ru/maps/org/prikosnoveniye/35881076958/" target="_blank" rel="noopener">Открыть в Яндекс Картах</a></article>
-        <article class="contact-card reveal"><span>02</span><p class="eyebrow">График</p><h2>Ежедневно</h2><p class="big-time">09:00–21:00</p><p class="contact-hint">Свободные окна смотрите в онлайн-записи.</p><a class="button" href="https://dikidi.net/1188196" target="_blank" rel="noopener">Выбрать время</a></article>
-        <article class="contact-card reveal"><span>03</span><p class="eyebrow">Связь</p><h2><a href="tel:+79164729423">+7 916 472-94-23</a></h2><p class="contact-hint">Не знаете, что выбрать? Напишите — подскажем процедуру под ваш запрос.</p><div class="contact-links"><a href="https://wa.me/79164729423" target="_blank" rel="noopener">WhatsApp <b>↗</b></a><a href="https://vk.ru/id532941121" target="_blank" rel="noopener">VK <b>↗</b></a><a href="https://dikidi.net/1188196" target="_blank" rel="noopener">Онлайн-запись <b>↗</b></a></div></article>
+    <!-- 10. Контакты — светло-серая -->
+    <section class="section section--stone" id="contacts">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Контакты</p>
+            <h2>Связаться со студией</h2>
+          </div>
+        </div>
+        <div class="contact-grid">
+          <article class="contact-card reveal">
+            <p class="eyebrow">Адрес</p>
+            <h3>Северное шоссе, 10</h3>
+            <p>Московская область, Раменское<br>3 этаж, офис 323</p>
+            <p>Из лифта налево, до конца коридора.</p>
+            <a class="button button--ghost" href="https://yandex.ru/maps/org/prikosnoveniye/35881076958/" target="_blank" rel="noopener">Открыть в Яндекс Картах</a>
+          </article>
+          <article class="contact-card reveal">
+            <p class="eyebrow">График</p>
+            <h3>Ежедневно 09:00–21:00</h3>
+            <p>Свободные окна смотрите в онлайн-записи — она открыта круглосуточно.</p>
+            <a class="button" href="https://dikidi.net/1188196" target="_blank" rel="noopener">Выбрать время</a>
+          </article>
+          <article class="contact-card reveal">
+            <p class="eyebrow">Связь</p>
+            <h3><a href="tel:+79164729423">+7 916 472-94-23</a></h3>
+            <p>Не знаете, что выбрать? Напишите — подскажем процедуру под ваш запрос.</p>
+            <div class="contact-links">
+              <a href="https://wa.me/79164729423" target="_blank" rel="noopener">WhatsApp <b>↗</b></a>
+              <a href="https://vk.ru/id532941121" target="_blank" rel="noopener">VK <b>↗</b></a>
+              <a href="https://dikidi.net/1188196" target="_blank" rel="noopener">Онлайн-запись <b>↗</b></a>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- ЗАПИСЬ -->
-    <section class="final-cta section-anchor" id="booking">
-      <div class="shell final-cta-inner reveal">
+    <!-- 11. Призыв — графитовая -->
+    <section class="section cta" id="booking">
+      <div class="shell reveal">
+        <div class="wave-rule cta__wave" aria-hidden="true"></div>
         <p class="eyebrow">Время для себя</p>
-        <h2>Выберите процедуру<br>и свободное окно</h2>
-        <p class="cta-lead">Запись открыта круглосуточно. Перед процедурами с противопоказаниями сообщите мастеру о хронических заболеваниях, беременности или повреждениях кожи.</p>
-        <div class="button-row centered"><a class="button button-light" href="https://dikidi.net/1188196" target="_blank" rel="noopener">Записаться онлайн</a><a class="text-link light" href="tel:+79164729423">+7 (916) 472-94-23</a></div>
+        <h2>Выберите процедуру и свободное окно</h2>
+        <p class="cta__lead">Запись открыта круглосуточно. Перед процедурами с противопоказаниями сообщите мастеру о хронических заболеваниях, беременности или повреждениях кожи.</p>
+        <div class="button-row button-row--center">
+          <a class="button button--light" href="https://dikidi.net/1188196" target="_blank" rel="noopener">Записаться онлайн</a>
+          <a class="text-link text-link--light" href="tel:+79164729423">+7 (916) 472-94-23</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фотографии" aria-hidden="true"><button class="lightbox-close" type="button" aria-label="Закрыть">×</button><button class="lightbox-prev" type="button" aria-label="Предыдущее фото">←</button><figure><img src="" alt=""><figcaption></figcaption></figure><button class="lightbox-next" type="button" aria-label="Следующее фото">→</button></div>
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фотографии" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Закрыть">×</button>
+    <button class="lightbox-prev" type="button" aria-label="Предыдущее фото">←</button>
+    <figure><img src="" alt=""><figcaption></figcaption></figure>
+    <button class="lightbox-next" type="button" aria-label="Следующее фото">→</button>
+  </div>
 
   <footer class="site-footer">
     <div class="shell footer-grid">
-      <div><a class="brand footer-brand" href="index.html"><span class="brand-mark">П</span><span><b>Прикосновение</b><small>студия массажа и эстетики</small></span></a></div>
+      <div>
+        <a class="brand footer-brand" href="index.html">
+          <span class="brand__mark" aria-hidden="true">П</span>
+          <span>
+            <span class="brand__name">Прикосновение</span>
+            <span class="brand__tag">студия массажа и эстетики</span>
+          </span>
+        </a>
+      </div>
       <div><b>Разделы</b><a href="services.html">Услуги и цены</a><a href="#about">О студии</a><a href="#team">Команда</a><a href="#gallery">Галерея</a></div>
-      <div><b>Связаться</b><a href="tel:+79164729423">+7 (916) 472-94-23</a><a href="https://wa.me/79164729423" target="_blank" rel="noopener">WhatsApp</a><a href="https://vk.ru/id532941121" target="_blank" rel="noopener">VK</a></div>
+      <div><b>Связаться</b><a href="tel:+79164729423">+7 (916) 472-94-23</a><a href="https://wa.me/79164729423" target="_blank" rel="noopener">WhatsApp</a><a href="https://vk.ru/id532941121" target="_blank" rel="noopener">VK</a><a href="https://dikidi.net/1188196" target="_blank" rel="noopener">Онлайн-запись</a></div>
       <div><b>Адрес</b><p>Раменское, Северное ш., 10<br>3 этаж, офис 323</p><p>Ежедневно 09:00–21:00</p></div>
     </div>
-    <div class="shell footer-bottom"><span>© 2026 «Прикосновение»</span><span>Раменское, Северное шоссе, 10</span></div>
+    <div class="shell footer-bottom">
+      <span>© 2026 «Прикосновение»</span>
+      <span>Раменское, Северное шоссе, 10</span>
+    </div>
   </footer>
-  <nav class="mobile-actions" aria-label="Быстрые действия"><a href="tel:+79164729423">Позвонить</a><a href="https://wa.me/79164729423" target="_blank" rel="noopener">WhatsApp</a><a href="https://dikidi.net/1188196" target="_blank" rel="noopener">Записаться</a></nav>
-  <script src="script.js?v=20260822"></script>
+
+  <nav class="mobile-actions" aria-label="Быстрые действия">
+    <a href="tel:+79164729423">Позвонить</a>
+    <a href="https://wa.me/79164729423" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://dikidi.net/1188196" target="_blank" rel="noopener">Записаться</a>
+  </nav>
+
+  <script src="script.js?v=20260823"></script>
 </body>
 </html>
