@@ -9,7 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="styles.css?v=20260824">
+  <link rel="preload" as="image" href="assets/images/hero-chair.webp" media="(min-width: 701px)">
+  <link rel="preload" as="image" href="assets/images/hero-chair-900.webp" media="(max-width: 700px)">
+  <link rel="stylesheet" href="styles.css?v=20260825">
 </head>
 <body data-page="services">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -39,25 +41,29 @@
 
   <main id="main">
 
-    <!-- 1. Первый экран — светлая -->
-    <section class="shell page-hero">
-      <div class="reveal">
-        <p class="eyebrow">Каталог студии</p>
-        <h1>Услуги<br><em>и цены</em></h1>
-        <p class="lead">Для каждой процедуры указаны цена и продолжительность. Записаться можно онлайн в любое время.</p>
-        <dl class="hero__facts page-hero__facts">
-          <div><dt>37</dt><dd>процедур в каталоге</dd></div>
-          <div><dt>6</dt><dd>направлений</dd></div>
-          <div><dt>15м–2,5ч</dt><dd>длительность сеанса</dd></div>
-        </dl>
+    <!-- 1. Первый экран — фото кабинета с переходом графита в фотографию -->
+    <section class="hero hero--chair section--graphite">
+      <div class="hero__bg" role="img" aria-label="Кабинет студии: массажное кресло, тёплая соляная лампа и полки с декором"></div>
+      <div class="shell hero__inner">
+        <div class="hero__copy reveal">
+          <p class="eyebrow">Каталог студии</p>
+          <h1 class="hero__title">Услуги<br><em>и цены</em></h1>
+          <p class="lead hero__lead">Для каждой процедуры указаны цена и продолжительность. Записаться можно онлайн в любое время.</p>
+          <div class="button-row">
+            <a class="button button--light" href="https://dikidi.net/1188196" target="_blank" rel="noopener">Записаться онлайн</a>
+            <a class="text-link text-link--light" href="#catalog">К каталогу</a>
+          </div>
+          <dl class="hero__facts">
+            <div><dt>37</dt><dd>процедур в каталоге</dd></div>
+            <div><dt>6</dt><dd>направлений</dd></div>
+            <div><dt>15м–2,5ч</dt><dd>длительность сеанса</dd></div>
+          </dl>
+        </div>
       </div>
-      <figure class="reveal">
-        <img src="assets/images/studio-wall.webp" alt="Настенный декор и растения в интерьере студии" width="1500" height="2000" fetchpriority="high">
-      </figure>
     </section>
 
     <!-- 2. Каталог — белая -->
-    <section class="section section--white">
+    <section class="section section--white" id="catalog">
       <div class="shell">
         <div class="first-visit reveal">
           <div>
@@ -183,6 +189,6 @@
     <a href="https://dikidi.net/1188196" target="_blank" rel="noopener">Записаться</a>
   </nav>
 
-  <script src="script.js?v=20260824"></script>
+  <script src="script.js?v=20260825"></script>
 </body>
 </html>

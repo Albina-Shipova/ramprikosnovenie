@@ -330,6 +330,13 @@ em { font-style: normal; color: var(--wood); }
     rgba(255, 255, 255, 0) 84%);
 }
 
+/* Тот же приём на странице услуг, другое фото */
+.hero--chair { min-height: clamp(460px, 42vw, 600px); }
+.hero--chair .hero__bg {
+  background-image: url('assets/images/hero-chair.webp');
+  background-position: 52% 64%;
+}
+
 .hero__inner { position: relative; z-index: 1; }
 .hero__copy { max-width: 31rem; }
 
@@ -622,6 +629,41 @@ em { font-style: normal; color: var(--wood); }
 .reviews__copy h2 { margin-bottom: 20px; }
 .reviews__copy p { color: var(--gray-light); opacity: .86; margin-bottom: 30px; }
 
+/* Фрагменты отзывов с Яндекс Карт */
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--col-gap);
+  margin-top: clamp(48px, 6vw, 84px);
+}
+.review {
+  display: flex; flex-direction: column;
+  padding: clamp(22px, 2.4vw, 32px);
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius-card);
+  transition: border-color var(--dur) var(--ease);
+}
+.review:hover { border-color: var(--line-dark-strong); }
+.review__stars {
+  margin-bottom: 18px;
+  color: var(--warm); font-size: .875rem; letter-spacing: .22em;
+}
+.review blockquote {
+  margin: 0 0 24px;
+  color: var(--gray-light);
+  font-size: .9375rem; line-height: 1.6;
+}
+.review__meta {
+  display: grid; gap: 4px;
+  margin: auto 0 0; padding-top: 18px;
+  border-top: 1px solid var(--line-dark);
+}
+.review__meta b {
+  color: var(--white);
+  font-family: var(--font-display); font-size: .9375rem; font-weight: 600;
+}
+.review__meta span { color: var(--gray-light); opacity: .6; font-size: .8125rem; }
+
 /* ------------------------------ Адрес и удобства ------------------------------ */
 
 .location {
@@ -746,31 +788,6 @@ em { font-style: normal; color: var(--wood); }
 /* ============================================================
    Страница услуг
    ============================================================ */
-
-.page-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
-  gap: clamp(36px, 5vw, 80px);
-  align-items: center;
-  padding-block: clamp(48px, 6vw, 96px) clamp(40px, 5vw, 64px);
-}
-.page-hero p { color: var(--gray); max-width: 32em; }
-.page-hero h1 { margin-bottom: 22px; }
-.page-hero figure { margin: 0; }
-.page-hero figure img {
-  width: 100%; height: clamp(320px, 40vw, 520px); object-fit: cover;
-  mask-image: var(--mirror-mask);
-  -webkit-mask-image: var(--mirror-mask);
-  mask-size: 100% 100%;
-  -webkit-mask-size: 100% 100%;
-  mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-}
-
-/* Те же цифры, что и на главной, но на светлом фоне */
-.page-hero__facts { border-top-color: var(--line); }
-.page-hero__facts dt { color: var(--graphite); }
-.page-hero__facts dd { color: var(--gray); opacity: 1; }
 
 .first-visit {
   display: grid;
@@ -913,12 +930,12 @@ em { font-style: normal; color: var(--wood); }
 }
 
 @media (max-width: 1024px) {
-  .page-hero, .about, .reviews, .location, .safety-note__inner {
+  .about, .reviews, .location, .safety-note__inner {
     grid-template-columns: minmax(0, 1fr);
   }
   .rating-panel { padding: 0 0 28px; border-right: 0; border-bottom: 1px solid var(--line-dark); }
   .section-head { grid-template-columns: minmax(0, 1fr); }
-  .reason-grid, .access-grid, .steps, .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .reason-grid, .access-grid, .steps, .service-grid, .review-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact-grid { grid-template-columns: minmax(0, 1fr); }
   .first-visit, .booking-band { grid-template-columns: minmax(0, 1fr); }
   .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -963,6 +980,10 @@ em { font-style: normal; color: var(--wood); }
     background-image: url('assets/images/hero-lobby-900.webp');
     background-position: 58% 22%;
   }
+  .hero--chair .hero__bg {
+    background-image: url('assets/images/hero-chair-900.webp');
+    background-position: 50% 58%;
+  }
   .hero__bg::after {
     background: linear-gradient(180deg,
       rgba(38, 38, 38, .30) 0%,
@@ -976,7 +997,7 @@ em { font-style: normal; color: var(--wood); }
 
 @media (max-width: 560px) {
   .hero__facts { grid-template-columns: minmax(0, 1fr); gap: 18px; }
-  .direction-grid, .reason-grid, .access-grid, .steps, .service-grid, .footer-grid {
+  .direction-grid, .reason-grid, .access-grid, .steps, .service-grid, .review-grid, .footer-grid {
     grid-template-columns: minmax(0, 1fr);
   }
   .gallery-grid { columns: 1; }
