@@ -176,6 +176,10 @@ function setupCarousels() {
     const progress = carousel.querySelector('.carousel__progress span');
     if (!track) return;
 
+    // Некоторые карусели (например, мастера) листаются на любом экране,
+    // а не только с планшета и ниже.
+    const always = carousel.hasAttribute('data-carousel-always');
+
     const step = () => {
       const item = [...track.children].find(child => !child.classList.contains('filtered-out'));
       if (!item) return track.clientWidth;
@@ -258,7 +262,10 @@ function setupCarousels() {
     let startScroll = 0;
 
     track.addEventListener('pointerdown', event => {
-      if (event.pointerType !== 'mouse' || event.button !== 0 || !query.matches) return;
+      if (event.pointerType !== 'mouse' || event.button !== 0 || !(always || query.matches)) return;
+      // Кнопки внутри карточки (например, пролистывание отзывов) не должны запускать драг —
+      // иначе setPointerCapture перехватывает их клик.
+      if (event.target.closest('button, a')) return;
       dragging = true;
       moved = 0;
       startX = event.clientX;
@@ -288,8 +295,9 @@ function setupCarousels() {
     }, true);
 
     const apply = () => {
-      carousel.classList.toggle('is-active', query.matches);
-      if (query.matches) {
+      const active = always || query.matches;
+      carousel.classList.toggle('is-active', active);
+      if (active) {
         // В ленте наблюдатель не увидит карточки, уехавшие вбок, — показываем сразу.
         track.querySelectorAll('.reveal').forEach(item => item.classList.add('visible'));
       } else {
@@ -305,6 +313,26 @@ function setupCarousels() {
       update();
     });
     apply();
+  });
+}
+
+// Отзывы мастера внутри карточки: если их несколько — листаются по одному.
+function setupReviewPagers() {
+  document.querySelectorAll('[data-review-pager]').forEach(pager => {
+    const items = [...pager.querySelectorAll('.master-review')];
+    const previous = pager.querySelector('[data-review-prev]');
+    const next = pager.querySelector('[data-review-next]');
+    const counter = pager.querySelector('[data-review-counter]');
+    if (items.length <= 1) return;
+
+    let index = 0;
+    const show = target => {
+      index = (target + items.length) % items.length;
+      items.forEach((item, i) => { item.hidden = i !== index; });
+      if (counter) counter.textContent = `${index + 1} / ${items.length}`;
+    };
+    if (previous) previous.addEventListener('click', () => show(index - 1));
+    if (next) next.addEventListener('click', () => show(index + 1));
   });
 }
 
@@ -380,4 +408,5 @@ setupNavigation();
 setupReveals();
 setupServices();
 setupCarousels();
+setupReviewPagers();
 setupGallery();
