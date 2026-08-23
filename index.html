@@ -42,6 +42,7 @@
   <main id="main">
 
     <!-- 1. Первый экран — фото студии с переходом графита в фотографию -->
+    <div class="hero-block">
     <section class="hero section--graphite">
       <div class="hero__bg" role="img" aria-label="Зона ожидания студии «Прикосновение»: чёрный диван, полки с зеленью и часы на стене"></div>
       <div class="shell hero__inner">
@@ -63,11 +64,40 @@
       </div>
     </section>
 
-    <div class="tag-strip reveal" aria-label="Ключевые особенности студии">
-      <div class="tag-strip__item"><b>Мастера-победители</b><span>профессиональных чемпионатов</span></div>
-      <div class="tag-strip__item"><b>Авторские техники</b><span>глубокая работа с мышцами</span></div>
-      <div class="tag-strip__item"><b>Обучаем специалистов</b><span>на базе студии</span></div>
-      <div class="tag-strip__item"><b>Врач-остеопат</b><span>приём взрослых и детей</span></div>
+    <!-- Полоса преимуществ: садится прямо под волну первого экрана -->
+    <div class="trust-strip" aria-label="Ключевые особенности студии">
+      <div class="shell trust-grid">
+        <div class="trust-item reveal">
+          <div class="trust-item__top"><span class="trust-number">01</span><span class="trust-dash" aria-hidden="true"></span></div>
+          <p class="trust-title">Мастера-победители</p>
+          <p class="trust-text">призёры чемпионатов по массажу</p>
+        </div>
+        <div class="trust-item reveal">
+          <div class="trust-item__top"><span class="trust-number">02</span><span class="trust-dash" aria-hidden="true"></span></div>
+          <p class="trust-title">Авторские техники</p>
+          <p class="trust-text">глубокая работа с мышцами</p>
+        </div>
+        <div class="trust-item reveal">
+          <div class="trust-item__top"><span class="trust-number">03</span><span class="trust-dash" aria-hidden="true"></span></div>
+          <p class="trust-title">Обучаем специалистов</p>
+          <p class="trust-text">на базе студии</p>
+        </div>
+        <div class="trust-item reveal">
+          <div class="trust-item__top"><span class="trust-number">04</span><span class="trust-dash" aria-hidden="true"></span></div>
+          <p class="trust-title">Врач-остеопат</p>
+          <p class="trust-text">приём взрослых и детей</p>
+        </div>
+      </div>
+      <svg class="trust-leaf" viewBox="0 0 240 200" aria-hidden="true" focusable="false">
+        <path d="M16 194 C 74 164 124 112 152 30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M0 0 C 11 -13 32 -15 44 -4 C 31 9 10 12 0 0 Z" fill="currentColor" transform="translate(140,54) rotate(-32)"/>
+        <path d="M0 0 C 11 -13 32 -15 44 -4 C 31 9 10 12 0 0 Z" fill="currentColor" transform="translate(126,92) rotate(-14)"/>
+        <path d="M0 0 C 11 -13 32 -15 44 -4 C 31 9 10 12 0 0 Z" fill="currentColor" transform="translate(100,132) rotate(6)"/>
+        <path d="M0 0 C -11 -13 -32 -15 -44 -4 C -31 9 -10 12 0 0 Z" fill="currentColor" transform="translate(138,72) rotate(24)"/>
+        <path d="M0 0 C -11 -13 -32 -15 -44 -4 C -31 9 -10 12 0 0 Z" fill="currentColor" transform="translate(114,112) rotate(40)"/>
+        <path d="M0 0 C -11 -13 -32 -15 -44 -4 C -31 9 -10 12 0 0 Z" fill="currentColor" transform="translate(80,154) rotate(56)"/>
+      </svg>
+    </div>
     </div>
 
     <!-- 2. Направления — белая -->
@@ -133,26 +163,6 @@
         <div class="about__figures reveal">
           <img src="assets/images/studio-wall.webp" alt="Настенный декор и растения в интерьере студии" width="1500" height="2000" loading="lazy">
           <img src="assets/images/studio-mirror.webp" alt="Фигурное зеркало и зелёный декор в студии" width="1500" height="2000" loading="lazy">
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. Почему выбирают — белая -->
-    <section class="section section--white" id="why">
-      <div class="shell">
-        <div class="section-head reveal">
-          <div>
-            <p class="eyebrow">Почему выбирают</p>
-            <h2>Шесть причин прийти</h2>
-          </div>
-        </div>
-        <div class="reason-grid reason-grid--cards">
-          <div class="reason reason--card reveal"><h3>1 место в Московской области</h3><p>«Битва салонов», 2024.</p></div>
-          <div class="reason reason--card reveal"><h3>5,0 на Яндекс&nbsp;Картах</h3><p>78 оценок и награда «Хорошее место 2026».</p></div>
-          <div class="reason reason--card reveal"><h3>Мастера-победители и призёры</h3><p>Команда ежегодно участвует в чемпионатах по массажу лица и тела с 2021 года.</p></div>
-          <div class="reason reason--card reveal"><h3>8 специалистов</h3><p>Массаж лица и тела, косметология, SPA и остеопатия.</p></div>
-          <div class="reason reason--card reveal"><h3>Авторские техники</h3><p>Глубокие программы работы с мышцами и постоянное повышение квалификации.</p></div>
-          <div class="reason reason--card reveal"><h3>37 процедур</h3><p>От коротких уходов до комплексных SPA-программ.</p></div>
         </div>
       </div>
     </section>
@@ -464,48 +474,6 @@
       </div>
     </section>
 
-    <!-- 8. Видео процесса — белая -->
-    <section class="section section--white" id="process-video">
-      <div class="shell">
-        <div class="section-head reveal">
-          <div>
-            <p class="eyebrow">Процесс</p>
-            <h2>Видео с процедур</h2>
-          </div>
-          <p class="section-head__note">Видео запускается по нажатию — ничего не грузится заранее.</p>
-        </div>
-        <div class="video-carousel" data-carousel data-carousel-always>
-          <div class="video-carousel__track carousel__track" role="group" aria-label="Видео процедур">
-            <div class="video-slide reveal">
-              <video class="video-slide__player" controls preload="none" poster="assets/video/process-1-poster.webp" playsinline>
-                <source src="assets/video/process-1.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="video-slide reveal">
-              <video class="video-slide__player" controls preload="none" poster="assets/video/process-2-poster.webp" playsinline>
-                <source src="assets/video/process-2.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="video-slide reveal">
-              <video class="video-slide__player" controls preload="none" poster="assets/video/process-3-poster.webp" playsinline>
-                <source src="assets/video/process-3.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="video-slide reveal">
-              <video class="video-slide__player" controls preload="none" poster="assets/video/process-4-poster.webp" playsinline>
-                <source src="assets/video/process-4.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-          <div class="carousel__controls">
-            <button class="carousel__btn" type="button" data-carousel-prev aria-label="Предыдущее видео">←</button>
-            <div class="carousel__progress" aria-hidden="true"><span></span></div>
-            <button class="carousel__btn" type="button" data-carousel-next aria-label="Следующее видео">→</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- 9. Отзывы — графитовая -->
     <section class="section section--graphite" id="reviews">
       <div class="shell reviews">
@@ -574,26 +542,39 @@
             <h2>Территория</h2>
           </div>
         </div>
-        <div class="location-intro reveal">
-          <p class="lead">Немного о месте, где мы работаем.</p>
-          <p>Бесплатная парковка и лифт — до студии удобно добираться. Территория большая: фонтаны, два озера, где живут рыбки, утки и лебеди.</p>
-          <p>На улице есть шезлонги — можно устроиться с чашкой кофе и полюбоваться видами до или после процедуры.</p>
+        <div class="location">
+          <div class="location-intro reveal">
+            <p class="lead">Немного о месте, где мы работаем.</p>
+            <p>Бесплатная парковка и лифт — до студии удобно добираться. Территория большая: фонтаны, два озера, где живут рыбки, утки и лебеди.</p>
+            <p>На улице есть шезлонги — можно устроиться с чашкой кофе и полюбоваться видами до или после процедуры.</p>
+            <dl class="place-facts">
+              <div><dt>Ежедневно</dt><dd>09:00–21:00</dd></div>
+              <div><dt>Wi-Fi</dt><dd>бесплатный</dd></div>
+              <div><dt>Парковка</dt><dd>бесплатная</dd></div>
+              <div><dt>Лифт</dt><dd>есть, 3 этаж</dd></div>
+              <div><dt>Оплата</dt><dd>карта, СБП, наличные</dd></div>
+              <div><dt>С собакой</dt><dd>до 35 см</dd></div>
+            </dl>
+          </div>
+
+          <!-- Пары фотографий сменяют друг друга -->
+          <div class="place-slider reveal" data-place-slider aria-roledescription="карусель" aria-label="Фотографии территории">
+            <div class="place-slider__viewport">
+              <div class="place-slide is-active" data-place-slide>
+                <img src="assets/images/place/fountain.webp" alt="Фонтан на территории рядом со студией" width="480" height="640" loading="lazy">
+                <img src="assets/images/place/entrance.webp" alt="Арка на входе на территорию" width="960" height="640" loading="lazy">
+              </div>
+              <div class="place-slide" data-place-slide>
+                <img src="assets/images/place/lake-evening.webp" alt="Озеро и беседки на территории вечером" width="354" height="472" loading="lazy">
+                <img src="assets/images/place/building.webp" alt="Здание Ram Plaza Stars, где расположена студия" width="1024" height="461" loading="lazy">
+              </div>
+            </div>
+            <div class="place-slider__dots" role="tablist" aria-label="Пары фотографий">
+              <button class="place-dot is-active" type="button" data-place-dot role="tab" aria-selected="true" aria-label="Фонтан и вход"></button>
+              <button class="place-dot" type="button" data-place-dot role="tab" aria-selected="false" aria-label="Озеро вечером и здание"></button>
+            </div>
+          </div>
         </div>
-        <div class="location-gallery reveal">
-          <img src="assets/images/place/building.webp" alt="Здание Ram Plaza Stars, где расположена студия" width="1024" height="461" loading="lazy">
-          <img src="assets/images/place/fountain.webp" alt="Фонтан на территории рядом со студией" width="480" height="640" loading="lazy">
-          <img src="assets/images/place/entrance.webp" alt="Арка на входе на территорию" width="960" height="640" loading="lazy">
-          <img src="assets/images/place/lake-evening.webp" alt="Озеро и беседки на территории вечером" width="354" height="472" loading="lazy">
-          <img src="assets/images/place/lobby.webp" alt="Холл здания с лифтом" width="1024" height="683" loading="lazy">
-        </div>
-        <ul class="access-grid reveal">
-          <li><span>Лифт</span><b>есть</b></li>
-          <li><span>Парковка</span><b>бесплатная</b></li>
-          <li><span>Wi‑Fi</span><b>есть</b></li>
-          <li><span>Доступность на коляске</span><b>частичная</b></li>
-          <li><span>Собаки до 35 см</span><b>разрешены</b></li>
-          <li><span>Оплата</span><b>наличные, перевод, онлайн, СБП</b></li>
-        </ul>
       </div>
     </section>
 

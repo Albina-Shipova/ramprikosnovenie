@@ -161,6 +161,85 @@ function serviceWord(number) {
   return 'услуг';
 }
 
+// Дорожка мастеров держит высоту открытой карточки, а не самой длинной из восьми.
+function setupMasterCarouselHeight() {
+  const track = document.querySelector('.master-carousel__track');
+  if (!track) return;
+  const slides = [...track.children];
+  if (!slides.length) return;
+
+  const apply = () => {
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    const step = slides[0].getBoundingClientRect().width + gap;
+    const index = step ? Math.round(track.scrollLeft / step) : 0;
+    const slide = slides[Math.min(Math.max(index, 0), slides.length - 1)];
+    track.style.height = `${slide.offsetHeight}px`;
+  };
+
+  let frame = null;
+  const schedule = () => {
+    if (frame) cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(apply);
+  };
+
+  track.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule, { passive: true });
+  if ('ResizeObserver' in window) {
+    const observer = new ResizeObserver(schedule);
+    slides.forEach(slide => observer.observe(slide));
+  }
+  track.querySelectorAll('img').forEach(image => image.addEventListener('load', schedule));
+  apply();
+}
+
+// Территория: пары фотографий сменяют друг друга сами, точки листают вручную.
+function setupPlaceSliders() {
+  const sliders = [...document.querySelectorAll('[data-place-slider]')];
+  if (!sliders.length) return;
+
+  const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  sliders.forEach(slider => {
+    const slides = [...slider.querySelectorAll('[data-place-slide]')];
+    const dots = [...slider.querySelectorAll('[data-place-dot]')];
+    if (slides.length < 2) return;
+
+    let current = 0;
+    let timer = null;
+
+    const show = index => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === current);
+        dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
+      });
+    };
+
+    const stop = () => { clearInterval(timer); timer = null; };
+    const start = () => {
+      if (timer || calm.matches) return;
+      timer = setInterval(() => show(current + 1), 5500);
+    };
+
+    dots.forEach((dot, index) => dot.addEventListener('click', () => {
+      show(index);
+      stop();
+      start();
+    }));
+
+    slider.addEventListener('pointerenter', stop);
+    slider.addEventListener('pointerleave', start);
+    slider.addEventListener('focusin', stop);
+    slider.addEventListener('focusout', start);
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+    calm.addEventListener('change', () => (calm.matches ? stop() : start()));
+
+    show(0);
+    start();
+  });
+}
+
 // Карусель: с планшета и ниже дорожка становится горизонтальной лентой.
 // Прокрутка — родная (палец, трекпад, колесо), плюс стрелки и перетаскивание мышью.
 function setupCarousels() {
@@ -408,5 +487,7 @@ setupNavigation();
 setupReveals();
 setupServices();
 setupCarousels();
+setupMasterCarouselHeight();
+setupPlaceSliders();
 setupReviewPagers();
 setupGallery();
