@@ -110,7 +110,6 @@ function setupReveals() {
 function setupServices() {
   const grid = document.querySelector('#service-grid');
   if (!grid) return;
-  const count = document.querySelector('#catalog-count');
   const empty = document.querySelector('#service-empty');
   const search = document.querySelector('#service-search');
   const buttons = [...document.querySelectorAll('[data-service-filter]')];
@@ -136,7 +135,6 @@ function setupServices() {
           <a class="service-card__book" href="${bookingUrl}" target="_blank" rel="noopener" aria-label="Записаться на ${service.name}">↗</a>
         </div>
       </article>`).join('');
-    count.textContent = `Показано ${filtered.length} ${serviceWord(filtered.length)}`;
     empty.hidden = filtered.length !== 0;
   };
 
@@ -152,16 +150,7 @@ function setupServices() {
   render();
 }
 
-function serviceWord(number) {
-  const lastTwo = number % 100;
-  const last = number % 10;
-  if (lastTwo >= 11 && lastTwo <= 14) return 'услуг';
-  if (last === 1) return 'услуга';
-  if (last >= 2 && last <= 4) return 'услуги';
-  return 'услуг';
-}
-
-// Дорожка мастеров держит высоту открытой карточки, а не самой длинной из восьми.
+// Дорожка мастеров держит высоту открытой карточки, а не самой длинной из всех.
 function setupMasterCarouselHeight() {
   const track = document.querySelector('.master-carousel__track');
   if (!track) return;
@@ -177,9 +166,14 @@ function setupMasterCarouselHeight() {
   };
 
   let frame = null;
+  let timer = null;
   const schedule = () => {
     if (frame) cancelAnimationFrame(frame);
     frame = requestAnimationFrame(apply);
+    // Страховка: если кадры не приходят (свёрнутая вкладка, программная прокрутка),
+    // высота всё равно обновится — иначе высокие карточки (с видео) обрезаются.
+    clearTimeout(timer);
+    timer = setTimeout(apply, 140);
   };
 
   track.addEventListener('scroll', schedule, { passive: true });
@@ -253,6 +247,9 @@ function setupCarousels() {
       track.scrollLeft = to;
       track.style.scrollSnapType = '';
       update();
+      // явно уведомляем слушателей прокрутки (высота карусели мастеров) —
+      // при программной доводке нативный scroll может не прийти
+      track.dispatchEvent(new Event('scroll'));
     };
 
     const animateTo = target => {
@@ -291,6 +288,9 @@ function setupCarousels() {
     let moved = 0;
     let startX = 0;
     let startScroll = 0;
+    let lastX = 0;
+    let lastT = 0;
+    let velocity = 0;
 
     track.addEventListener('pointerdown', event => {
       if (event.pointerType !== 'mouse' || event.button !== 0 || !(always || query.matches)) return;
@@ -300,6 +300,9 @@ function setupCarousels() {
       dragging = true;
       moved = 0;
       startX = event.clientX;
+      lastX = event.clientX;
+      lastT = performance.now();
+      velocity = 0;
       startScroll = track.scrollLeft;
       carousel.classList.add('is-dragging');
       track.setPointerCapture(event.pointerId);
@@ -309,12 +312,30 @@ function setupCarousels() {
       const shift = event.clientX - startX;
       moved = Math.max(moved, Math.abs(shift));
       track.scrollLeft = startScroll - shift;
+      const now = performance.now();
+      if (now > lastT) velocity = (event.clientX - lastX) / (now - lastT); // px/мс
+      lastX = event.clientX;
+      lastT = now;
     });
     const endDrag = event => {
       if (!dragging) return;
       dragging = false;
-      carousel.classList.remove('is-dragging');
       if (track.hasPointerCapture(event.pointerId)) track.releasePointerCapture(event.pointerId);
+
+      // Куда доводить: небольшого сдвига или быстрого флика достаточно, чтобы перелистнуть.
+      const span = step();
+      const dragged = track.scrollLeft - startScroll;        // > 0 — тянули к следующей карточке
+      const dir = dragged !== 0 ? Math.sign(dragged) : (velocity !== 0 ? -Math.sign(velocity) : 0);
+      const flick = Math.abs(velocity) > 0.35 && moved > 12; // быстрый рывок, ~350 px/с
+      const threshold = Math.max(28, Math.min(70, span * 0.1));
+
+      let target = startScroll;
+      if (dir !== 0 && (Math.abs(dragged) > threshold || flick)) {
+        target = startScroll + dir * span;
+      }
+
+      carousel.classList.remove('is-dragging');
+      animateTo(target);
     };
     track.addEventListener('pointerup', endDrag);
     track.addEventListener('pointercancel', endDrag);
@@ -370,12 +391,42 @@ function setupReviewPagers() {
 function setupGallery() {
   const items = [...document.querySelectorAll('.gallery-item')];
   if (!items.length) return;
+
+  // Кладка «пирамидкой»: на десктопе .gallery-grid — это CSS grid с grid-auto-rows: 1px,
+  // каждой плитке проставляем grid-row-end по её высоте. Так колонки всегда ровные,
+  // без капризов балансировки multicol.
+  const grid = document.querySelector('.gallery-grid');
+  const relayout = () => {
+    if (!grid) return;
+    const cs = getComputedStyle(grid);
+    if (cs.display !== 'grid') { items.forEach(i => i.style.removeProperty('grid-row-end')); return; }
+    const gap = parseFloat(cs.columnGap) || 0;
+    items.forEach(item => {
+      if (item.classList.contains('filtered-out')) { item.style.removeProperty('grid-row-end'); return; }
+      const h = item.getBoundingClientRect().height;
+      item.style.gridRowEnd = `span ${Math.max(1, Math.ceil(h + gap))}`;
+    });
+  };
+  let relayoutQueued = false;
+  const scheduleRelayout = () => {
+    if (relayoutQueued) return;
+    relayoutQueued = true;
+    requestAnimationFrame(() => { relayoutQueued = false; relayout(); });
+  };
+  window.addEventListener('resize', scheduleRelayout, { passive: true });
+  document.addEventListener('carousel:refresh', scheduleRelayout);
+  if (grid) grid.querySelectorAll('img').forEach(img => {
+    if (!img.complete) img.addEventListener('load', scheduleRelayout, { once: true });
+  });
+  relayout();
+
   const filters = [...document.querySelectorAll('[data-gallery-filter]')];
   filters.forEach(button => button.addEventListener('click', () => {
     const filter = button.dataset.galleryFilter;
     filters.forEach(item => item.classList.toggle('active', item === button));
     items.forEach(item => item.classList.toggle('filtered-out', filter !== 'all' && item.dataset.galleryCategory !== filter));
     document.dispatchEvent(new CustomEvent('carousel:refresh'));
+    scheduleRelayout();
   }));
 
   const lightbox = document.querySelector('.lightbox');
