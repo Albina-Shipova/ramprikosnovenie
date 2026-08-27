@@ -192,54 +192,6 @@ function setupMasterCarouselHeight() {
   apply();
 }
 
-// Территория: пары фотографий сменяют друг друга сами, точки листают вручную.
-function setupPlaceSliders() {
-  const sliders = [...document.querySelectorAll('[data-place-slider]')];
-  if (!sliders.length) return;
-
-  const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-  sliders.forEach(slider => {
-    const slides = [...slider.querySelectorAll('[data-place-slide]')];
-    const dots = [...slider.querySelectorAll('[data-place-dot]')];
-    if (slides.length < 2) return;
-
-    let current = 0;
-    let timer = null;
-
-    const show = index => {
-      current = (index + slides.length) % slides.length;
-      slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('is-active', i === current);
-        dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
-      });
-    };
-
-    const stop = () => { clearInterval(timer); timer = null; };
-    const start = () => {
-      if (timer || calm.matches) return;
-      timer = setInterval(() => show(current + 1), 5500);
-    };
-
-    dots.forEach((dot, index) => dot.addEventListener('click', () => {
-      show(index);
-      stop();
-      start();
-    }));
-
-    slider.addEventListener('pointerenter', stop);
-    slider.addEventListener('pointerleave', start);
-    slider.addEventListener('focusin', stop);
-    slider.addEventListener('focusout', start);
-    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
-    calm.addEventListener('change', () => (calm.matches ? stop() : start()));
-
-    show(0);
-    start();
-  });
-}
-
 // Карусель: с планшета и ниже дорожка становится горизонтальной лентой.
 // Прокрутка — родная (палец, трекпад, колесо), плюс стрелки и перетаскивание мышью.
 function setupCarousels() {
@@ -488,6 +440,5 @@ setupReveals();
 setupServices();
 setupCarousels();
 setupMasterCarouselHeight();
-setupPlaceSliders();
 setupReviewPagers();
 setupGallery();
