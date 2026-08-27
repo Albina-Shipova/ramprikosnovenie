@@ -819,21 +819,34 @@ em { font-style: normal; color: var(--wood); }
   text-align: right;
 }
 
-/* Пары фотографий территории: слайды лежат друг на друге и сменяются */
-.place-slider__viewport { position: relative; }
+/* Пары фотографий территории: карусель, листается стрелками и перетаскиванием */
+.place-slider { position: relative; }
+.place-slider .carousel__controls { display: flex; align-items: center; gap: 18px; margin-top: 22px; }
+
+.place-slider__track {
+  display: flex;
+  align-items: start;
+  gap: var(--col-gap);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 2px;
+  cursor: grab;
+}
+.place-slider__track::-webkit-scrollbar { display: none; }
+.place-slider.is-dragging .place-slider__track { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+.place-slider.is-dragging .place-slider__track * { pointer-events: none; }
+
 .place-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
   display: grid;
   grid-template-columns: minmax(0, 1.18fr) minmax(0, .82fr);
   align-items: start;
   gap: var(--col-gap);
 }
-.place-slide + .place-slide { position: absolute; inset: 0; }
-.place-slide {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--dur) var(--ease);
-}
-.place-slide.is-active { opacity: 1; visibility: visible; }
 /* Крупный кадр слева, узкий и сдвинутый вниз — справа */
 .place-slide img {
   display: block; width: 100%;
@@ -842,17 +855,6 @@ em { font-style: normal; color: var(--wood); }
 }
 .place-slide img:first-child { aspect-ratio: 4 / 5; }
 .place-slide img:last-child { aspect-ratio: 3 / 4; margin-top: clamp(28px, 5vw, 64px); }
-
-.place-slider__dots { display: flex; gap: 10px; margin-top: 22px; }
-.place-dot {
-  width: 34px; height: 3px; padding: 0;
-  border: 0; border-radius: 2px;
-  background: var(--line-strong);
-  cursor: pointer;
-  transition: background var(--dur) var(--ease);
-}
-.place-dot:hover { background: var(--wood); }
-.place-dot.is-active { background: var(--warm); }
 
 /* ------------------------------ Контакты ------------------------------ */
 
