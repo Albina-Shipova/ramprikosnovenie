@@ -5,13 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Услуги и цены студии «Прикосновение» в Раменском: массаж лица и тела, SPA-программы, косметология, пилинги и уходы Casmara. Онлайн-запись.">
   <meta name="theme-color" content="#f5f3ef">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
   <title>Услуги и цены — Прикосновение</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
   <link rel="preload" as="image" href="assets/images/hero-chair.webp" media="(min-width: 701px)">
   <link rel="preload" as="image" href="assets/images/hero-chair-900.webp" media="(max-width: 700px)">
-  <link rel="stylesheet" href="styles.css?v=20260901">
+  <link rel="stylesheet" href="styles.css?v=20260917">
 </head>
 <body data-page="services">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -19,7 +22,7 @@
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="index.html" aria-label="Прикосновение — главная">
-        <span class="brand__mark" aria-hidden="true">П</span>
+        <img class="brand__logo" src="assets/images/logo-transparent.png" alt="" width="619" height="630">
         <span>
           <span class="brand__name">Прикосновение</span>
           <span class="brand__tag">массаж · эстетика · spa</span>
@@ -32,7 +35,7 @@
         <a href="services.html" data-nav="services">Услуги и цены</a>
         <a href="index.html#about">О студии</a>
         <a href="index.html#team">Команда</a>
-        <a href="index.html#training">Обучение</a>
+        <a href="training.html" data-nav="training">Обучение</a>
         <a href="index.html#gallery">Галерея</a>
         <a href="index.html#contacts">Контакты</a>
       </nav>
@@ -77,6 +80,23 @@
             <a class="text-link" href="tel:+79164729423">+7 (916) 472-94-23</a>
           </div>
         </div>
+
+        <article class="spa-highlight reveal">
+          <img src="assets/images/fire-massage.webp" alt="Процедура огненного массажа в кабинете студии" width="900" height="1200" loading="lazy">
+          <div class="spa-highlight__copy">
+            <p class="eyebrow">SPA-процедура</p>
+            <h2>Огненный массаж</h2>
+            <p>В каталоге доступны два формата процедуры: работа с выбранными зонами и расширенная программа для тела, головы и лица. Перед записью мастер уточнит противопоказания и расскажет, как проходит сеанс.</p>
+            <div class="spa-highlight__facts" aria-label="Форматы огненного массажа">
+              <span>1+1 зона · 40 минут</span>
+              <span>Всё тело, голова и лицо · 2 часа 30 минут</span>
+            </div>
+            <div class="button-row">
+              <a class="button" href="services.html?category=spa#catalog">Смотреть SPA-программы</a>
+              <a class="text-link" href="https://dikidi.net/1188196" target="_blank" rel="noopener">Записаться ↗</a>
+            </div>
+          </div>
+        </article>
 
         <div class="catalog-toolbar reveal">
           <div class="filter-group" role="group" aria-label="Фильтр услуг">
@@ -167,16 +187,20 @@
     <div class="shell footer-grid">
       <div>
         <a class="brand footer-brand" href="index.html">
-          <span class="brand__mark" aria-hidden="true">П</span>
+          <img class="brand__logo" src="assets/images/logo-transparent.png" alt="" width="619" height="630" loading="lazy">
           <span>
             <span class="brand__name">Прикосновение</span>
             <span class="brand__tag">студия массажа и эстетики</span>
           </span>
         </a>
       </div>
-      <div class="footer-col footer-col--extra"><b>Разделы</b><a href="services.html">Услуги и цены</a><a href="index.html#about">О студии</a><a href="index.html#team">Команда</a><a href="index.html#training">Обучение</a><a href="index.html#gallery">Галерея</a></div>
+      <div class="footer-col footer-col--extra"><b>Разделы</b><a href="services.html">Услуги и цены</a><a href="index.html#about">О студии</a><a href="index.html#team">Команда</a><a href="training.html">Обучение</a><a href="index.html#gallery">Галерея</a></div>
       <div class="footer-col footer-col--extra"><b>Связаться</b><a href="tel:+79164729423">+7 (916) 472-94-23</a><a href="https://wa.me/79164729423" target="_blank" rel="noopener">WhatsApp</a><a href="https://vk.ru/id532941121" target="_blank" rel="noopener">VK</a><a href="https://t.me/prikosnoveniemassage" target="_blank" rel="noopener">Telegram</a><a href="https://dikidi.net/1188196" target="_blank" rel="noopener">Онлайн-запись</a></div>
       <div class="footer-col"><b>Адрес</b><p>Раменское, Северное ш., 10<br>3 этаж, офис 323</p><p>Ежедневно 09:00–21:00</p><a class="footer-vk" href="https://vk.ru/id532941121" target="_blank" rel="noopener">VK</a></div>
+    </div>
+    <div class="shell footer-legal">
+      <p><b>ИП Потоцкая Оксана</b><span>ОГРНИП 324508100110632 · ИНН 310602482229</span></p>
+      <p>Обучение: ООО «Учебный центр „РАЗВИТИЕ“». Лицензия на образовательную деятельность № 4513, серия А035-01271-78/00176837 от 04.08.2021.</p>
     </div>
     <div class="shell footer-bottom">
       <span>© 2026 «Прикосновение»</span>

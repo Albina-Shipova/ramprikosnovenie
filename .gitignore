@@ -1,0 +1,10 @@
+# Local working materials that must not be published with the site
+assets/new/*.mp4
+assets/new/*.docx
+
+# Temporary renders and visual checks
+tmp/
+
+# Operating-system files
+Thumbs.db
+.DS_Store
