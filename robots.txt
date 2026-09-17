@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /tmp/
+Disallow: /assets/new/
+
+Sitemap: https://touch3.asama.site/sitemap.xml
+Host: https://touch3.asama.site

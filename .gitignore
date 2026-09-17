@@ -8,3 +8,7 @@ tmp/
 # Operating-system files
 Thumbs.db
 .DS_Store
+
+# Рабочие материалы и исходники, на сайт не публикуются
+assets/new/
+hero.png

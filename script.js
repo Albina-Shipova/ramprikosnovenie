@@ -1,45 +1,3 @@
-const SERVICES = [
-  { name: 'Массаж спины+ШВЗ', category: 'massage', label: 'Классический массаж', price: 'от 1 000 ₽', duration: '40 мин' },
-  { name: 'Массаж (90 мин)', category: 'massage', label: 'Классический массаж', price: 'от 2 500 ₽', duration: '1 ч 30 мин' },
-  { name: 'Вакуумная терапия', category: 'massage', label: 'Классический массаж', price: '2 000 ₽', duration: '30 мин' },
-  { name: 'Детский массаж', category: 'massage', label: 'Классический массаж', price: 'от 1 000 ₽', duration: '40 мин' },
-  { name: 'Массаж (60 мин)', category: 'massage', label: 'Классический массаж', price: 'от 1 500 ₽', duration: '1 ч' },
-  { name: 'Массаж тела 120 мин', category: 'massage', label: 'Классический массаж', price: '6 000 ₽', duration: '2 ч' },
-  { name: 'Остеопрактика', category: 'massage', label: 'Классический массаж', price: '7 000 ₽', duration: '1 ч' },
-  { name: 'Скульптурно-буккальный массаж', category: 'massage', label: 'Классический массаж', price: '3 000 ₽', duration: '1 ч' },
-  { name: 'Путь воина (массаж лица + массаж стоп)', category: 'face', label: 'Массаж лица', price: 'от 2 900 ₽', duration: '1 ч 20 мин' },
-  { name: 'Лифтинг-эффект (массаж лица фейспластичный)', category: 'face', label: 'Массаж лица', price: 'от 2 500 ₽', duration: '1 ч 30 мин' },
-  { name: 'Преображение Венеры (массаж лица)', category: 'face', label: 'Массаж лица', price: 'от 4 000 ₽', duration: '1 ч 30 мин' },
-  { name: 'Фреш Фейс (массаж лица с вакуумной баночкой)', category: 'face', label: 'Массаж лица', price: 'от 2 300 ₽', duration: '1 ч' },
-  { name: 'FlaxSculpt (пептидное армирование)', category: 'cosmetology', label: 'Косметология', price: 'от 3 000 ₽', duration: '1 ч' },
-  { name: 'Карбокситерапия', category: 'cosmetology', label: 'Косметология', price: '3 500 ₽', duration: '40 мин' },
-  { name: 'Микронидлинг', category: 'cosmetology', label: 'Косметология', price: '4 500 ₽', duration: '40 мин' },
-  { name: 'УЗ-чистка без ухода', category: 'cosmetology', label: 'Косметология', price: '2 700 ₽', duration: '30 мин' },
-  { name: 'УЗ-чистка лица с уходом', category: 'cosmetology', label: 'Косметология', price: '3 300 ₽', duration: '1 ч' },
-  { name: 'Гликолевый пилинг', category: 'peeling', label: 'Пилинг', price: '3 000 ₽', duration: '15 мин' },
-  { name: 'Миндальный пилинг', category: 'peeling', label: 'Пилинг', price: '3 000 ₽', duration: '15 мин' },
-  { name: 'Молочный пилинг', category: 'peeling', label: 'Пилинг', price: '3 000 ₽', duration: '30 мин' },
-  { name: 'Пилинг для проблемной кожи (Израиль)', category: 'peeling', label: 'Пилинг', price: '3 500 ₽', duration: '35 мин' },
-  { name: 'Пилинг с лифтинг-эффектом', category: 'peeling', label: 'Пилинг', price: '3 000 ₽', duration: '30 мин' },
-  { name: 'Ревитализирующий пилинг без шелушения', category: 'peeling', label: 'Пилинг', price: '2 000 ₽', duration: '15 мин' },
-  { name: 'Салициловый пилинг', category: 'peeling', label: 'Пилинг', price: '2 500 ₽', duration: '15 мин' },
-  { name: 'Мультикислотный пилинг', category: 'peeling', label: 'Пилинг', price: '3 000 ₽', duration: '30 мин' },
-  { name: 'Огненный массаж: 1+1 зона', category: 'spa', label: 'SPA', price: '5 000 ₽', duration: '40 мин' },
-  { name: 'Огненный массаж: всё тело, голова и лицо', category: 'spa', label: 'SPA', price: '15 000 ₽', duration: '2 ч 30 мин' },
-  { name: '«Тотальная перезагрузка»: массаж тела + лёгкий массаж лица', category: 'spa', label: 'SPA', price: '5 500 ₽', duration: '2 ч' },
-  { name: 'Скульптор-SPA (авторский массаж лица)', category: 'spa', label: 'SPA', price: '6 000 ₽', duration: '1 ч 30 мин' },
-  { name: 'SPA «Лёгкий силуэт»: лимфодренажный массаж + бандажное обёртывание', category: 'spa', label: 'SPA', price: '7 000 ₽', duration: '2 ч' },
-  { name: 'SPA-лепка', category: 'spa', label: 'SPA', price: '7 000 ₽', duration: '2 ч' },
-  { name: 'Q10 Rescue — уход для возрастной кожи', category: 'casmara', label: 'Уход Casmara', price: '8 000 ₽', duration: '1 ч' },
-  { name: 'Антивозрастной уход против пигментации и тусклости', category: 'casmara', label: 'Уход Casmara', price: '12 000 ₽', duration: '1 ч' },
-  { name: 'Очищающий уход «Чистый кислород»', category: 'casmara', label: 'Уход Casmara', price: '8 000 ₽', duration: '1 ч' },
-  { name: 'Уход «Защита возраста»', category: 'casmara', label: 'Уход Casmara', price: '10 000 ₽', duration: '1 ч' },
-  { name: 'Уход «Регенерин»', category: 'casmara', label: 'Уход Casmara', price: '8 000 ₽', duration: '1 ч' },
-  { name: 'Уход «Сенсейшнс»: восстановление и сияние', category: 'casmara', label: 'Уход Casmara', price: '8 000 ₽', duration: '1 ч' }
-];
-
-const bookingUrl = 'https://dikidi.net/1188196';
-
 function setupNavigation() {
   const page = document.body.dataset.page;
   const activeLink = document.querySelector(`[data-nav="${page}"]`);
@@ -107,9 +65,11 @@ function setupReveals() {
   }, { passive: true });
 }
 
+// Карточки услуг лежат в HTML (нужно поиску), скрипт только фильтрует их.
 function setupServices() {
   const grid = document.querySelector('#service-grid');
   if (!grid) return;
+  const cards = [...grid.querySelectorAll('.service-card')];
   const empty = document.querySelector('#service-empty');
   const search = document.querySelector('#service-search');
   const buttons = [...document.querySelectorAll('[data-service-filter]')];
@@ -118,24 +78,14 @@ function setupServices() {
   let query = '';
 
   const render = () => {
-    const filtered = SERVICES.filter(service => {
-      const matchesFilter = filter === 'all' || service.category === filter;
-      const matchesQuery = service.name.toLocaleLowerCase('ru').includes(query);
-      return matchesFilter && matchesQuery;
+    let shown = 0;
+    cards.forEach(card => {
+      const match = (filter === 'all' || card.dataset.category === filter)
+        && card.dataset.name.includes(query);
+      card.hidden = !match;
+      if (match) shown += 1;
     });
-    grid.innerHTML = filtered.map(service => `
-      <article class="service-card reveal visible">
-        <p class="service-card__label">${service.label}</p>
-        <h3>${service.name}</h3>
-        <div class="service-card__bottom">
-          <div>
-            <div class="service-card__price">${service.price}</div>
-            <div class="service-card__duration">${service.duration}</div>
-          </div>
-          <a class="service-card__book" href="${bookingUrl}" target="_blank" rel="noopener" aria-label="Записаться на ${service.name}">↗</a>
-        </div>
-      </article>`).join('');
-    empty.hidden = filtered.length !== 0;
+    empty.hidden = shown !== 0;
   };
 
   buttons.forEach(button => {
