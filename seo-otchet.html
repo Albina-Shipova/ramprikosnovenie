@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SEO-отчёт — студия массажа и эстетики «Прикосновение»</title>
+  <meta name="description" content="Что сделано для поисковой оптимизации сайта студии «Прикосновение» и что рекомендуется дальше.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#f5f3ef">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+
+  <style>
+    :root {
+      --ground: #F5F3EF;
+      --surface: #FFFFFF;
+      --surface-sunk: #F3EFE9;
+      --ink: #262626;
+      --ink-soft: #6B6B68;
+      --ember: #8A6F52;
+      --gold: #9A8069;
+      --green: #4C7A5A;
+      --line: #E4DED4;
+      --line-strong: #D3CABD;
+
+      --font-display: "Manrope", "Segoe UI", system-ui, sans-serif;
+      --font-body: "Inter", "Manrope", "Segoe UI", system-ui, sans-serif;
+
+      --measure: 42rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ground: #262626;
+        --surface: #303030;
+        --surface-sunk: #1F1F1F;
+        --ink: #F2EFEA;
+        --ink-soft: #A9A49C;
+        --ember: #C9A97F;
+        --gold: #BE9E78;
+        --green: #86B193;
+        --line: #3C3C3A;
+        --line-strong: #4C4B48;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; }
+
+    .wrap {
+      max-width: var(--measure);
+      margin: 0 auto;
+      padding: clamp(2.5rem, 6vw, 5.5rem) clamp(1.25rem, 5vw, 2.5rem) 4rem;
+    }
+
+    .eyebrow {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ember);
+    }
+
+    /* ---------- masthead ---------- */
+
+    .masthead { border-bottom: 2px solid var(--line-strong); padding-bottom: 2rem; }
+
+    .masthead__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.9rem;
+      align-items: baseline;
+      margin-bottom: 1.4rem;
+    }
+    .masthead__meta time { color: var(--ink-soft); font-size: 0.82rem; letter-spacing: 0.04em; }
+
+    h1 {
+      margin: 0 0 1.1rem;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(2rem, 5.6vw, 2.9rem);
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      text-wrap: balance;
+    }
+
+    .lede {
+      margin: 0;
+      font-size: clamp(1.06rem, 2.4vw, 1.2rem);
+      color: var(--ink-soft);
+      max-width: 34rem;
+    }
+    .lede b { color: var(--ink); font-weight: 600; }
+
+    /* ---------- metrics ---------- */
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin: 2.75rem 0 0;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .metric {
+      background: var(--surface);
+      padding: 1.15rem 1rem 1.05rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .metric__num {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.72rem;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      font-variant-numeric: tabular-nums;
+    }
+    .metric__num .u { font-size: 0.82rem; color: var(--ink-soft); margin-left: 0.22em; letter-spacing: 0.04em; }
+    .metric__label { font-size: 0.8rem; color: var(--ink-soft); line-height: 1.35; }
+
+    @media (max-width: 620px) {
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ---------- blocks ---------- */
+
+    .block { margin-top: 3.75rem; }
+
+    h2 {
+      margin: 0 0 0.5rem;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.72rem;
+      letter-spacing: -0.015em;
+    }
+    .block__intro { margin: 0 0 1.75rem; color: var(--ink-soft); font-size: 0.95rem; }
+
+    .grp {
+      margin: 2.4rem 0 1rem;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .grp:first-of-type { margin-top: 1.5rem; }
+    .grp .rank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-right: 0.55rem;
+      border-radius: 50%;
+      background: var(--ember);
+      color: var(--surface);
+      font-size: 0.82rem;
+      letter-spacing: 0;
+      vertical-align: -0.35em;
+    }
+
+    .items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.15rem; }
+
+    .item {
+      padding: 1.15rem 1.25rem 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    .item--done { background: var(--surface-sunk); }
+
+    .item__head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.5rem 0.7rem;
+      margin-bottom: 0.4rem;
+    }
+    .item h4 {
+      margin: 0;
+      font-size: 1.06rem;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+    }
+    .item p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+    .item p + p { margin-top: 0.6rem; }
+    .item strong { color: var(--ink); font-weight: 600; }
+
+    .pill {
+      flex: none;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.22em 0.6em;
+      border-radius: 999px;
+      border: 1px solid currentColor;
+      white-space: nowrap;
+    }
+    .pill--done { color: var(--green); }
+    .pill--ext { color: var(--ember); }
+    .pill--content { color: var(--gold); }
+    .pill--dev { color: var(--ink-soft); }
+
+    /* ---------- footer ---------- */
+
+    footer {
+      margin-top: 3.75rem;
+      padding-top: 1.75rem;
+      border-top: 2px solid var(--line-strong);
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+    }
+    footer p { margin: 0 0 0.6rem; }
+    footer a { color: var(--ember); text-underline-offset: 0.15em; }
+
+    a:focus-visible, .item:focus-visible {
+      outline: 2px solid var(--ember);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="masthead__meta">
+      <p class="eyebrow">SEO&#8202;·&#8202;отчёт</p>
+      <time datetime="2026-09-17">17 сентября 2026</time>
+    </div>
+    <h1>Студия массажа и эстетики<br>«Прикосновение»</h1>
+    <p class="lede">Поисковая оптимизация сайта студии в&nbsp;Раменском. Техническая настройка выполнена по&nbsp;всем трём страницам — ниже что именно сделано и&nbsp;что даст наибольший эффект дальше.</p>
+  </header>
+
+  <section class="metrics" aria-label="Ключевые результаты">
+    <div class="metric">
+      <span class="metric__num">&minus;83<span class="u">%</span></span>
+      <span class="metric__label">вес главной: 7,3 → 1,26&nbsp;МБ</span>
+    </div>
+    <div class="metric">
+      <span class="metric__num">37</span>
+      <span class="metric__label">услуг прайса стали видимы поисковику</span>
+    </div>
+    <div class="metric">
+      <span class="metric__num">&minus;60<span class="u">%</span></span>
+      <span class="metric__label">вес всех файлов: 30,7 → 12,4&nbsp;МБ</span>
+    </div>
+    <div class="metric">
+      <span class="metric__num">17</span>
+      <span class="metric__label">пунктов оптимизации</span>
+    </div>
+  </section>
+
+  <section class="block">
+    <p class="eyebrow">Выполнено</p>
+    <h2>Что сделано</h2>
+
+    <h3 class="grp">Как сайт видят поисковики</h3>
+    <ul class="items">
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Прайс из 37 услуг попал в код страницы</h4></div>
+        <p>Главная правка этих работ. Раньше каталог услуг подставлялся на страницу скриптом уже в браузере посетителя — <strong>в исходном коде, который получает поисковый робот, вместо прайса был пустой блок</strong>. Яндекс такие страницы индексирует плохо: по запросам вида «скульптурно-буккальный массаж Раменское цена» страница просто не имела шансов.</p>
+        <p>Теперь все услуги, цены и длительности лежат прямо в разметке. Фильтры по категориям и поиск по названию работают ровно как раньше.</p>
+      </li>
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Карточка студии для поисковиков (Schema.org)</h4></div>
+        <p>Яндекс и Google теперь «читают» структурированные данные: тип — <strong>салон красоты</strong>, адрес на Северном шоссе, 10, телефон, часы работы 09:00–21:00, способы оплаты, признаки «бесплатная парковка», «Wi-Fi», «лифт», ссылки на ВКонтакте, Telegram, DIKIDI и карточку в Яндекс Картах. Это заявка на расширенный сниппет в выдаче и участие в локальном поиске по запросу «массаж Раменское».</p>
+      </li>
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Каталог из 37 позиций и четыре направления в разметке</h4></div>
+        <p>Каждая услуга размечена с ценой, длительностью и категорией — массаж тела, массаж лица, SPA, косметология, пилинги, уходы Casmara. На главной четыре направления помечены ценой «от» и ведут в свой раздел прайса.</p>
+      </li>
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Учебные программы размечены отдельно</h4></div>
+        <p>Страница обучения описана как учебная организация с тремя программами: переподготовка «Косметик-эстетист по работе с лицом», семинары «Логопедический массаж» и «Огненный массаж». Такая разметка даёт шанс попасть в подборки обучающих курсов.</p>
+      </li>
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Хлебные крошки и канонические адреса</h4></div>
+        <p>«Хлебные крошки» (Главная → Услуги и цены) — навигационная цепочка, которую Google показывает в выдаче. Канонические ссылки защищают страницы от того, чтобы поисковик счёл их дублями: страница прайса с фильтром в адресе и без него — это одна и та же страница.</p>
+      </li>
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>robots.txt и карта сайта</h4></div>
+        <p>Файл <strong>robots.txt</strong> и <strong>sitemap.xml</strong> — инструкция для поисковых роботов: какие страницы обходить, какие служебные файлы не индексировать. Карту сайта останется загрузить в панели вебмастера (см. рекомендации).</p>
+      </li>
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Уточнены заголовки страниц</h4></div>
+        <p>В заголовки страниц услуг и обучения добавлен город: «Услуги и цены на массаж и косметологию в Раменском», «Обучение массажу и косметологии в Раменском». Заголовок — первое, что видит человек в выдаче, и один из сильнейших сигналов для поисковика.</p>
+      </li>
+    </ul>
+
+    <h3 class="grp">Ссылка на сайт в мессенджерах и соцсетях</h3>
+    <ul class="items">
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Фирменное превью при отправке ссылки</h4></div>
+        <p>Раньше при отправке ссылки в WhatsApp, Telegram или ВКонтакте показывался голый адрес без картинки. Теперь на всех трёх страницах прописаны заголовок, описание и превью-картинка <strong>1200×630</strong>: фото холла студии, логотип, название и строка «Северное шоссе, 10 · ежедневно 09:00–21:00». Ссылка разворачивается в аккуратную карточку.</p>
+      </li>
+    </ul>
+
+    <h3 class="grp">Скорость загрузки</h3>
+    <ul class="items">
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Фото мастеров: 5,2&nbsp;МБ → 150&nbsp;КБ</h4></div>
+        <p>Три фотографии в карусели мастеров весили по <strong>1,8 МБ каждая</strong>: это были обычные JPEG-файлы, просто переименованные в современный формат. Пересохранены в настоящий WebP — стали легче примерно <strong>в 35 раз</strong> без видимой потери качества.</p>
+      </li>
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Дубль видео в карточке мастера: &minus;8,7&nbsp;МБ</h4></div>
+        <p>В карточке Светланы стояли два плеера, и оба показывали <strong>один и тот же ролик</strong> — файл был загружен на сайт дважды. Второй убран.</p>
+      </li>
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Остальные фотографии пережаты: 3,4 → 2&nbsp;МБ</h4></div>
+        <p>Каждый снимок приведён к тому размеру, в котором он реально показывается на экране. Пропорции, ориентация и кадрирование всех фотографий сверены с оригиналами — ничего не «поехало».</p>
+      </li>
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Удалены неиспользуемые файлы (около 3&nbsp;МБ)</h4></div>
+        <p>В проекте лежали фотографии и исходники, которые нигде на сайте не показывались, но занимали место на сервере и замедляли обновление сайта.</p>
+      </li>
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Главная стала легче почти в 6 раз</h4></div>
+        <p>С <strong>7,3 МБ до 1,26 МБ</strong>. Страница услуг — 295 КБ, страница обучения — 604 КБ. Общий вес файлов сайта — с 30,7 до 12,4 МБ. Скорость загрузки Яндекс и Google учитывают при ранжировании напрямую, особенно для мобильных.</p>
+      </li>
+    </ul>
+
+    <h3 class="grp">Ошибки в коде</h3>
+    <ul class="items">
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Галерея повторно скачивала страницу</h4></div>
+        <p>В окне просмотра фотографий стоял пустой адрес картинки. Из-за этого браузер при каждом открытии галереи заново скачивал саму страницу и пытался показать её как изображение. Исправлено.</p>
+      </li>
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Скрипт сайта почищен</h4></div>
+        <p>После переноса прайса в разметку часть кода стала лишней — файл похудел с 26 до 19 КБ.</p>
+      </li>
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Проверка вёрстки всех трёх страниц</h4></div>
+        <p>Проверено: нет повторяющихся идентификаторов, вложенных ссылок, ссылок на несуществующие разделы, внешних ссылок без защитного атрибута, изображений без альтернативного текста и без заданных размеров, кнопок и полей без подписи для программ чтения с экрана. Ошибок в консоли браузера нет.</p>
+      </li>
+    </ul>
+
+    <h3 class="grp">Мобильная версия</h3>
+    <ul class="items">
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Первый экран на телефоне</h4></div>
+        <p>Блок с фактами — оценка 5,0, «с 2021 года», «парковка и онлайн-запись» — на узком экране слипался в плотную кашу с рваным левым краем. Переведён в аккуратную колонку с разделителями.</p>
+      </li>
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Размеры кнопок под палец</h4></div>
+        <p>Стрелки листания отзывов были 30×30 пикселей — попасть в них пальцем тяжело, и поисковики отмечают это как недочёт мобильной версии. Увеличены до 40×40. Текстовым ссылкам добавлена область нажатия, внешний вид при этом не изменился. Подпись под логотипом увеличена с 11 до 12 пикселей.</p>
+      </li>
+      <li class="item item--done">
+        <div class="item__head"><span class="pill pill--done">Готово</span><h4>Проверка на пяти размерах экрана</h4></div>
+        <p>Страницы просмотрены на ширинах 360, 390, 768, 1024 и 1440 пикселей — от небольшого телефона до широкого монитора. Горизонтальной прокрутки, когда вёрстка «уезжает» вбок, нет ни на одной ширине.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <p class="eyebrow">Рекомендации</p>
+    <h2>Что ещё стоит сделать</h2>
+    <p class="block__intro">По убыванию отдачи для поиска.</p>
+
+    <h3 class="grp"><span class="rank">1</span>Вне сайта — влияет сильнее всего</h3>
+    <ul class="items">
+      <li class="item">
+        <div class="item__head"><span class="pill pill--ext">Без программиста</span><h4>Панели вебмастера</h4></div>
+        <p>Подключить <strong>Яндекс Вебмастер</strong> и <strong>Google Search Console</strong>, загрузить карту сайта, задать регион «Раменское» и подтвердить права. Без этого поисковики индексируют сайт медленно и «вслепую» — на это уйдут недели вместо дней.</p>
+      </li>
+      <li class="item">
+        <div class="item__head"><span class="pill pill--ext">Без программиста</span><h4>Карточки в справочниках</h4></div>
+        <p>Яндекс Бизнес, 2ГИС, Google Бизнес — название, адрес, телефон и часы работы <strong>строго один в один</strong> с сайтом. Расхождения в написании адреса поисковик воспринимает как разные организации. Для студии в городе это даёт больше обращений, чем сам сайт на старте.</p>
+      </li>
+      <li class="item">
+        <div class="item__head"><span class="pill pill--ext">Без программиста</span><h4>Отзывы в Яндекс Картах</h4></div>
+        <p>На сайте выведены отзывы гостей со ссылкой на карточку в Картах. Разметку рейтинга <strong>на самом сайте мы намеренно не ставили</strong>: разметка собственных отзывов на странице организации у Google под запретом и грозит санкциями. Правильный путь — наращивать отзывы в самих Яндекс Картах: они и в выдаче видны, и на сайт подтягиваются.</p>
+      </li>
+      <li class="item">
+        <div class="item__head"><span class="pill pill--ext">Без программиста</span><h4>Ссылки на сайт из профилей</h4></div>
+        <p>Добавить адрес сайта в описания ВКонтакте, Telegram-канала, в профиль на DIKIDI и в карточку на Яндекс Картах.</p>
+      </li>
+    </ul>
+
+    <h3 class="grp"><span class="rank">2</span>На сайте — нужен текст от вас</h3>
+    <ul class="items">
+      <li class="item">
+        <div class="item__head"><span class="pill pill--content">Нужен контент</span><h4>Блок «Вопрос-ответ»</h4></div>
+        <p>Как проходит первый визит, есть ли противопоказания, нужна ли предоплата, сколько держится результат после курса. Такой блок Google показывает прямо в выдаче отдельным раскрывающимся списком. От вас — 5–7 вопросов с ответами, разметку и вёрстку сделаем.</p>
+      </li>
+      <li class="item">
+        <div class="item__head"><span class="pill pill--content">Нужен контент</span><h4>Живые описания направлений</h4></div>
+        <p>Сейчас у четырёх направлений на главной короткие подписи. 1–2 абзаца по каждому — кому подходит, как проходит сеанс, какой эффект — заметно расширят набор запросов, по которым сайт можно найти.</p>
+      </li>
+    </ul>
+
+    <h3 class="grp"><span class="rank">3</span>Доработки на сайте — можем сделать сами</h3>
+    <ul class="items">
+      <li class="item">
+        <div class="item__head"><span class="pill pill--dev">Разработка</span><h4>Счётчики посещаемости</h4></div>
+        <p>Яндекс Метрика и Google Analytics на сайте не установлены. Без них не видно, по каким запросам приходят люди, на каких страницах уходят и откуда берутся записи. Нужен ваш аккаунт — установка занимает несколько минут.</p>
+      </li>
+      <li class="item">
+        <div class="item__head"><span class="pill pill--dev">Разработка</span><h4>Отдельные страницы направлений</h4></div>
+        <p>По странице на каждое крупное направление — массаж лица, массаж тела, SPA, косметология — с текстом, ценами и фото. <strong>Самый большой потенциал роста трафика</strong> и самый объёмный этап: сейчас все услуги живут на одной странице прайса и конкурируют между собой за один и тот же запрос.</p>
+      </li>
+      <li class="item">
+        <div class="item__head"><span class="pill pill--dev">Разработка</span><h4>Мелкие технические улучшения</h4></div>
+        <p>Ускорить загрузку шрифтов, добавить перелинковку между прайсом и разделами главной, разметить отдельные отзывы мастеров. Эффект точечный, но в сумме заметный.</p>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Все правки внесены в исходный код сайта. После публикации на сервере разметку стоит проверить через Яндекс Вебмастер и Google Rich Results Test.</p>
+    <p>Адреса в канонических ссылках, карте сайта и разметке прописаны для текущего адреса сайта. При переезде на постоянный домен их нужно заменить — это правка в пяти файлах.</p>
+    <p>Страница служебная — не проиндексирована поисковиками и не связана ссылками с остальным сайтом.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
