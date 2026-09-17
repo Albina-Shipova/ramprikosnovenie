@@ -1848,17 +1848,6 @@ body[data-page="training"] .training-page-documents {
   background: var(--training-paper);
   overflow: hidden;
 }
-body[data-page="training"] .training-page-documents::after {
-  content: "ЗНАНИЯ СЕГОДНЯ — БОЛЬШЕ ВОЗМОЖНОСТЕЙ ЗАВТРА";
-  position: absolute;
-  top: 100px;
-  right: 3vw;
-  width: 18ch;
-  color: var(--training-bronze);
-  font: 600 .7rem/2.05 var(--font-display);
-  letter-spacing: .28em;
-  opacity: .8;
-}
 body[data-page="training"] .training-page-documents .training-documents {
   grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr);
   gap: clamp(38px, 5vw, 78px);
@@ -1929,7 +1918,6 @@ body[data-page="training"] .training-page-contact .text-link { justify-self: sta
   body[data-page="training"] .training-programs .training-seminars,
   body[data-page="training"] .training-page-documents .training-documents,
   body[data-page="training"] .training-page-contact__inner { grid-template-columns: minmax(0, 1fr); }
-  body[data-page="training"] .training-page-documents::after { display: none; }
   body[data-page="training"] .training-championship img { max-width: none; max-height: 620px; aspect-ratio: 16 / 10; object-position: center 28%; }
 }
 
