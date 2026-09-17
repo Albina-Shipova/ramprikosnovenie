@@ -1,0 +1,149 @@
+/* Desktop composition matched to the supplied 1448px reference boards. */
+body[data-page="training"] { --edu-gold:#b99a74; --edu-paper:#f6f3ee; --edu-dark:#232220; background:var(--edu-paper); }
+body[data-page="training"] .site-header { background:#f7f5f1; backdrop-filter:none; border:0; }
+body[data-page="training"] .header-inner { width:calc(100% - 166px); max-width:1282px; min-height:85px; gap:28px; }
+body[data-page="training"] .brand__name { font-size:20px; font-weight:600; }
+body[data-page="training"] .brand__tag { font-size:11px; letter-spacing:2px; }
+body[data-page="training"] .site-nav { gap:30px; }
+body[data-page="training"] .site-nav a { font-size:15px; white-space:nowrap; }
+body[data-page="training"] .header-cta { min-width:160px; height:51px; font-size:17px; }
+.edu { color:#f8f7f5; font-family:"Inter",Arial,sans-serif; font-weight:400; }
+.edu *, .edu *::before, .edu *::after { box-sizing:border-box; }
+.edu-shell { width:calc(100% - 166px); max-width:1282px; margin:0 auto; position:relative; z-index:1; }
+.edu h1,.edu h2,.edu h3 { font-family:"Inter",Arial,sans-serif; font-weight:500; letter-spacing:-.045em; text-wrap:initial; color:inherit; }
+.edu h1 { font-size:66px; line-height:1.04; }
+.edu h2 { font-size:62px; line-height:1.04; }
+.edu h3 { font-size:30px; line-height:1.08; }
+.edu em { color:var(--edu-gold); font-style:normal; }
+.edu p { margin:0; }
+.edu-eyebrow { display:flex; align-items:center; gap:20px; font-size:13px; line-height:1.7; text-transform:uppercase; letter-spacing:2.7px; font-weight:400; }
+.edu-eyebrow::before { content:""; height:1px; width:27px; flex:none; background:var(--edu-gold); }
+.edu-lead { font-size:21px; line-height:1.48; color:#d5d3cf; }
+.edu-actions { display:flex; align-items:center; gap:38px; }
+.edu-button { display:inline-flex; align-items:center; justify-content:center; gap:14px; min-height:60px; padding:15px 31px; background:#fff; color:#232220; border:1px solid #e4e2df; border-radius:4px; font-size:18px; font-weight:500; line-height:1.3; transition:background .2s; }
+.edu-button:hover { background:#e8ded0; }
+.edu-button-outline { background:transparent; color:#fff; border-color:#c6c1b8; }
+.edu-button-outline:hover { background:#ffffff15; }
+.edu-link { display:inline-flex; align-items:center; gap:10px; border-bottom:1px solid #bdb7ae; padding-bottom:4px; font-size:17px; line-height:1.3; }
+.edu-link:hover { color:var(--edu-gold); }
+.edu-icon { width:46px; height:46px; flex:none; fill:none; stroke:var(--edu-gold); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+.edu-wave { position:absolute; bottom:-1px; left:0; width:100%; height:63px; fill:var(--edu-paper); pointer-events:none; }
+.edu-hero { position:relative; min-height:925px; padding:126px 0 100px; background:linear-gradient(90deg,#222221b8,transparent 63%),url('assets/images/training/hero.png') center center/cover; }
+.edu-hero h1 { margin:45px 0 36px; }
+.edu-hero .edu-actions { margin-top:43px; }
+.edu-facts { display:grid; grid-template-columns:165px 256px 210px; margin-top:70px; }
+.edu-facts>div { padding-left:44px; border-left:1px solid #ffffff40; display:flex; flex-direction:column; align-items:flex-start; }
+.edu-facts>div:first-child { border:0; padding:0; }
+.edu-facts b,.edu-contact-facts b { display:block; font-size:19px; line-height:1.35; font-weight:400; margin:9px 0 3px; }
+.edu-facts span,.edu-contact-facts span { font-size:16px; line-height:1.4; color:#bdbab5; }
+.edu-motto { position:absolute; top:113px; right:6.5%; text-align:center; color:var(--edu-gold); font-size:17px; line-height:1.8; letter-spacing:6px; text-transform:uppercase; }
+.edu-motto>span,.edu-programs-motto>span,.edu-doc-motto>span,.edu-teacher-motto>span { display:block; width:46px; height:1px; background:var(--edu-gold); margin:36px auto 0; }
+.edu-programs { position:relative; padding:72px 0 105px; background:linear-gradient(90deg,#222221ee,#222221c4),url('assets/images/training/interior.png') center/cover; margin-top:0; }
+.edu-programs-intro { display:grid; grid-template-columns:690px 1fr; margin-bottom:26px; }
+.edu-programs h2 { margin:22px 0 22px; }
+.edu-programs .edu-lead { font-size:20px; line-height:1.35; }
+.edu-programs-motto { border-left:1px solid #ffffff35; align-self:start; padding:34px 0 58px; text-align:center; color:var(--edu-gold); font-size:15px; text-transform:uppercase; line-height:1.8; letter-spacing:6px; }
+.edu-course-grid { display:grid; grid-template-columns:1fr .475fr .525fr; grid-template-rows:320px 264px; gap:13px; margin-inline:-33px; }
+.edu-course { position:relative; overflow:hidden; border:1px solid #b99a74b3; border-radius:5px; padding:28px; background-color:#232220; background-size:cover; background-position:center; }
+.edu-kicker { color:#d1b188; font-size:10px; letter-spacing:2.3px; line-height:1.5; text-transform:uppercase; }
+.edu-course h3 { margin-top:8px; }
+.edu-course p:not(.edu-kicker) { font-size:15px; color:#d8d5d0; line-height:1.4; margin-top:16px; }
+.edu-course-main { grid-row:span 2; padding:42px; background-image:linear-gradient(90deg,#22222050,transparent 80%),url('assets/images/training/course.png'); background-position:center 46%; }
+.edu-course-main h3 { font-size:34px; margin-top:18px; }
+.edu-course-main .edu-course-description { margin-top:23px; font-size:17px; line-height:1.5; }
+.edu-marks { display:grid; gap:12px; margin-top:28px; }
+.edu-marks li { display:flex; align-items:center; gap:22px; font-size:13px; line-height:1.35; color:#e0ddd8; }
+.edu-marks .edu-icon { width:34px; height:34px; }
+.edu-course-main .edu-button { position:absolute; bottom:42px; left:42px; min-height:53px; font-size:15px; padding:13px 33px; }
+.edu-card-motto { position:absolute; right:22px; bottom:35px; font-size:9px; line-height:1.65; letter-spacing:2.5px; text-transform:uppercase; color:#c6a47c; }
+.edu-course-advanced { grid-column:2/4; padding:26px 29px; background-image:linear-gradient(90deg,#242321d9 0%,#2423219c 45%,transparent),url('assets/images/training/interior.png'); }
+.edu-course-advanced h3 { font-size:29px; }
+.edu-course-advanced .edu-card-motto { top:50px; right:24px; bottom:auto; }
+.edu-checks { display:grid; grid-template-columns:1fr 1fr; gap:9px 18px; margin-top:16px; padding-top:18px; border-top:1px solid #ffffff40; max-width:490px; }
+.edu-checks li { position:relative; padding-left:32px; font-size:12px; color:#cfccc7; line-height:1.5; }
+.edu-checks li::before { content:"✓"; position:absolute; left:3px; top:0; width:19px; height:19px; border:1px solid var(--edu-gold); border-radius:50%; color:var(--edu-gold); text-align:center; }
+.edu-course-speech { background-image:url('assets/images/training/speech.png'); }
+.edu-course-fire { background-image:url('assets/images/training/fire.png'); }
+.edu-course-speech h3,.edu-course-fire h3 { font-size:25px; }
+.edu-course-speech .edu-kicker,.edu-course-fire .edu-kicker { font-size:9px; letter-spacing:1.9px; white-space:nowrap; }
+.edu-course-speech .edu-marks,.edu-course-fire .edu-marks { margin-top:24px; gap:9px; }
+.edu-course-speech .edu-marks li,.edu-course-fire .edu-marks li { font-size:12px; gap:14px; }
+.edu-course-speech .edu-icon,.edu-course-fire .edu-icon { width:27px; height:27px; }
+.edu-course .edu-link { position:absolute; bottom:23px; font-size:13px; }
+.edu-documents { position:relative; background:radial-gradient(ellipse at 90% 48%,#d8d0c375,transparent 48%),var(--edu-paper); color:#141414; padding:53px 0 20px; }
+.edu-documents h2 { margin:24px 0 18px; font-size:58px; }
+.edu-documents em { color:#aa8965; }
+.edu-documents .edu-lead { font-size:20px; color:#777571; line-height:1.35; }
+.edu-doc-motto { position:absolute; top:57px; right:175px; font-size:14px; line-height:1.85; letter-spacing:4px; text-transform:uppercase; color:#b99a74; }
+.edu-doc-motto>span { margin:24px 0 0; }
+.edu-doc-grid { display:grid; grid-template-columns:1.1fr 1.1fr 1fr; gap:14px; margin-top:29px; }
+.edu-document { background:#252523; color:#fff; border-radius:5px; overflow:hidden; }
+.edu-document img { width:100%; height:431px; object-fit:cover; }
+.edu-document>div { position:relative; padding:20px 30px 22px; min-height:112px; }
+.edu-document h3 { font-size:20px; letter-spacing:-.02em; }
+.edu-document p { color:#afaeaa; font-size:14px; line-height:1.4; margin-top:8px; }
+.edu-arrow { position:absolute; top:27px; right:30px; border:1px solid var(--edu-gold); border-radius:50%; color:var(--edu-gold); width:40px; height:40px; display:grid; place-items:center; font-size:25px; font-weight:300; }
+.edu-doc-info { background:#252523; color:#fff; padding:9px 29px; border-radius:5px; }
+.edu-doc-info>div { display:flex; gap:37px; padding:22px 0; border-bottom:1px solid #ffffff40; }
+.edu-doc-info>div:last-child { border:0; }
+.edu-doc-info .edu-icon { width:64px; height:64px; border:1px solid var(--edu-gold); border-radius:50%; padding:15px; }
+.edu-doc-info h3 { font-size:16px; line-height:1.3; letter-spacing:-.015em; margin:3px 0 5px; }
+.edu-doc-info p { color:#afaeaa; font-size:14px; line-height:1.35; }
+.edu-doc-bottom { display:flex; justify-content:space-between; align-items:center; padding:48px 0 20px; border-bottom:1px solid #c6ae904f; color:#85817b; }
+.edu-doc-bottom .edu-eyebrow { font-size:11px; letter-spacing:2.4px; }
+.edu-doc-bottom .edu-link { font-size:13px; }
+.edu-teacher { position:relative; min-height:1086px; background:url('assets/images/training/teacher.png') center/cover; padding:73px 0; }
+.edu-teacher-copy { width:640px; }
+.edu-teacher h2 { font-size:60px; margin:36px 0 28px; line-height:.98; }
+.edu-teacher .edu-lead { font-size:19px; line-height:1.45; }
+.edu-credentials { display:grid; grid-template-columns:1fr 1fr; gap:18px 15px; margin-top:29px; }
+.edu-credentials article { display:flex; align-items:flex-start; gap:31px; padding:25px 23px; border:1px solid #ffffff30; border-radius:5px; min-height:168px; background:#25242224; }
+.edu-credentials .edu-icon { width:44px; height:44px; }
+.edu-credentials h3 { font-size:16px; line-height:1.4; letter-spacing:-.02em; margin:4px 0 9px; }
+.edu-credentials p { font-size:14px; color:#bdbab6; line-height:1.5; }
+.edu-quote { display:flex; gap:24px; margin-top:36px; }
+.edu-quote>span { color:#d2b48d; font-family:Georgia,serif; font-size:92px; line-height:1; }
+.edu-quote>div>p:first-child { font-family:Georgia,serif; font-size:24px; font-style:italic; line-height:1.28; padding-top:10px; }
+.edu-signature { position:relative; margin-top:25px!important; padding-left:42px; font-size:15px; color:#ccc8c1; }
+.edu-signature::before { content:""; position:absolute; left:0; top:12px; width:25px; height:1px; background:var(--edu-gold); }
+.edu-signature small { display:block; font-size:10px; text-transform:uppercase; letter-spacing:1.5px; margin-top:8px; }
+.edu-teacher-motto { position:absolute; right:5%; top:55px; text-align:center; color:#b99a7480; text-transform:uppercase; letter-spacing:4px; line-height:1.7; }
+.edu-teacher-motto .edu-icon { width:102px; height:102px; stroke:#b99a7480; }
+.edu-teacher-motto p { font-size:18px; margin-top:24px; }
+.edu-teacher-motto small { display:block; margin-top:52px; font-size:12px; }
+.edu-contact { position:relative; min-height:944px; padding:125px 0 95px; background:url('assets/images/training/interior.png') center/cover; }
+.edu-contact h2 { font-size:64px; margin:43px 0 26px; }
+.edu-contact-grid { display:grid; grid-template-columns:650px 220px; gap:50px; }
+.edu-contact .edu-lead { font-size:21px; }
+.edu-contact-card { border:1px solid #a9977c66; background:#ffffff04; border-radius:12px; padding:31px 38px 35px; margin-top:35px; }
+.edu-phone { display:flex; gap:29px; align-items:flex-start; }
+.edu-phone>.edu-icon { border:1px solid #b99a7490; padding:11px; width:56px; height:56px; border-radius:50%; }
+.edu-phone span { color:var(--edu-gold); font-size:16px; display:block; }
+.edu-phone a { display:block; font-size:41px; letter-spacing:-1px; line-height:1.3; margin-top:8px; white-space:nowrap; font-weight:500; }
+.edu-contact-card .edu-actions { margin-top:30px; gap:23px; }
+.edu-contact-card .edu-button { min-height:70px; padding:15px 20px; font-size:17px; white-space:nowrap; }
+.edu-contact-card .edu-button:first-child { flex:1; }
+.edu-contact-card .edu-button:last-child { width:225px; }
+.edu-contact-card .edu-button .edu-icon { width:26px; height:26px; }
+.edu-contact-card .edu-button:first-child .edu-icon { stroke:#252523; }
+.edu-contact-note { display:flex; align-items:flex-start; gap:26px; border-top:1px solid #ffffff38; margin-top:26px!important; padding-top:25px; color:#aaa8a3; font-size:16px; line-height:1.5; }
+.edu-contact-note .edu-icon { width:35px; height:35px; }
+.edu-contact-facts { display:flex; flex-direction:column; justify-content:space-between; }
+.edu-contact-facts>div { border-left:1px solid #ffffff40; padding-left:32px; min-height:109px; }
+.edu-contact-facts>div:last-child { min-height:150px; }
+.edu-contact-facts span { display:block; max-width:150px; }
+.edu-contact .edu-motto { top:88px; right:4.5%; font-size:16px; letter-spacing:4px; }
+.edu-ending { display:flex; justify-content:center; align-items:center; gap:20px; color:#77716b; height:142px; text-transform:uppercase; font-size:13px; letter-spacing:2.4px; }
+.edu-ending::before,.edu-ending::after { content:""; width:26px; height:1px; background:var(--edu-gold); }
+/* The requested work targets desktop only; no new mobile layout is introduced. */
+@media (min-width:1100px) and (max-width:1350px) {
+ .edu-shell { width:calc(100% - 120px); }
+ .edu h1 { font-size:60px; } .edu h2 { font-size:56px; }
+ .edu-programs-intro { grid-template-columns:58% 42%; }
+ .edu-course-grid { margin-inline:0; } .edu-course-main { padding:30px; }
+ .edu-course-main h3 { font-size:29px; } .edu-course-speech,.edu-course-fire { padding:22px 18px; }
+ .edu-course-speech h3,.edu-course-fire h3 { font-size:23px; }
+ .edu-doc-info { padding-inline:20px; } .edu-doc-info>div { gap:20px; }
+ .edu-document>div { padding-inline:20px; } .edu-document p { font-size:12px; }
+ .edu-doc-motto { right:90px; }
+}
