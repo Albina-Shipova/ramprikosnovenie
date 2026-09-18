@@ -25,6 +25,7 @@
   /* Шрифты */
   --font-display: "Manrope", "Onest", "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
   --font-body: "Inter", "Manrope", "Segoe UI", system-ui, sans-serif;
+  --font-serif: Georgia, "Noto Serif", "Times New Roman", serif;
 
   /* Сетка и ритм */
   --shell: 1280px;
@@ -157,6 +158,11 @@ em { font-style: normal; color: var(--wood); }
   font-size: .95rem;
 }
 .section--graphite .section-head__note { color: var(--gray-light); opacity: .8; }
+
+body[data-page="training"] #programs .section-head h2,
+body[data-page="training"] #programs .training__card h3 {
+  font-family: var(--font-serif); font-weight: 400; letter-spacing: 0; line-height: 1.08;
+}
 
 .lead {
   font-size: clamp(1.05rem, 1rem + .35vw, 1.2rem);
@@ -701,11 +707,18 @@ em { font-style: normal; color: var(--wood); }
   padding: clamp(24px, 2.8vw, 40px);
   background: var(--white);
   border: 1px solid var(--line);
-  border-radius: var(--radius-card);
+  border-radius: 12px;
 }
-.training__card--main { background: var(--graphite); border-color: var(--graphite); }
+.training__card--main { position: relative; overflow: hidden; background: var(--graphite); border-color: var(--graphite); }
 .training__card--main h3 { color: var(--white); }
 .training__card--main > p { color: var(--gray-light); opacity: .82; }
+.training__card--main::before,
+.training__card--main::after {
+  content: ""; position: absolute; right: -70px; bottom: -90px;
+  width: 260px; height: 260px; border-radius: 50%;
+  border: 1px solid rgba(185, 154, 116, .3); pointer-events: none;
+}
+.training__card--main::before { right: -40px; bottom: -60px; width: 170px; height: 170px; border-color: rgba(185, 154, 116, .2); }
 
 .training__kicker {
   margin: 0 0 14px;
@@ -727,6 +740,19 @@ em { font-style: normal; color: var(--wood); }
   width: 14px; height: 1px; background: var(--warm);
 }
 
+.training__more {
+  display: inline-flex; align-items: center; justify-content: space-between; gap: 18px;
+  margin-top: clamp(20px, 2.6vw, 28px); padding: 14px 22px;
+  border: 1px solid rgba(185, 154, 116, .4); border-radius: var(--radius-button);
+  color: var(--warm);
+  font-family: var(--font-display); font-size: .75rem; font-weight: 600;
+  letter-spacing: .13em; text-transform: uppercase;
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+  position: relative; z-index: 1;
+}
+.training__more:hover { border-color: var(--warm); background: rgba(185, 154, 116, .1); }
+.training__more svg { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
 .training__list { border-top: 1px solid var(--line); }
 .training__list li {
   display: flex; flex-direction: column; gap: 3px;
@@ -738,6 +764,10 @@ em { font-style: normal; color: var(--wood); }
   letter-spacing: -.01em; color: var(--graphite);
 }
 .training__list span { color: var(--gray); font-size: .875rem; line-height: 1.4; }
+
+.training__list--chevron li { flex-direction: row; align-items: center; justify-content: space-between; gap: 16px; }
+.training__list-copy { display: flex; flex-direction: column; gap: 3px; }
+.training__chevron { flex: none; width: 18px; height: 18px; fill: none; stroke: var(--wood); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .55; }
 
 .training-seminars {
   display: grid;
@@ -859,14 +889,13 @@ em { font-style: normal; color: var(--wood); }
 .footer-legal {
   display: grid;
   grid-template-columns: minmax(220px, .75fr) minmax(0, 1.5fr);
-  gap: 18px clamp(28px, 4vw, 64px);
-  margin-top: clamp(26px, 3vw, 40px);
-  padding-top: 22px;
+  gap: 8px clamp(28px, 4vw, 64px);
+  padding-top: 16px;
   border-top: 1px solid var(--line-dark);
   color: var(--gray-light);
   opacity: .72;
   font-size: .75rem;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 .footer-legal p { margin: 0; }
 .footer-legal b { display: block; color: var(--white); font-weight: 600; }
@@ -894,9 +923,32 @@ em { font-style: normal; color: var(--wood); }
 .gift-certificate__visual img { display: block; width: 100%; border-radius: calc(var(--radius-card) * .55); }
 .gift-certificate__copy { max-width: 35em; }
 .gift-certificate__copy h2 { margin-bottom: 20px; }
+.gift-certificate__copy h2 .accent { display: block; color: var(--warm); }
 .gift-certificate__copy p { margin: 0 0 16px; color: var(--gray); }
 .gift-certificate__copy .lead { color: var(--graphite); }
-.gift-certificate__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-top: 30px; }
+.gift-certificate__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+  margin-top: 30px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+.gift-certificate__perks { display: flex; flex-wrap: wrap; gap: 20px 32px; margin-top: 28px; }
+.gift-certificate__perk { display: flex; align-items: center; gap: 14px; max-width: 240px; }
+.gift-certificate__perk b { color: var(--graphite); }
+.gift-certificate__perk-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--gray-light);
+  color: var(--wood);
+}
 
 /* ------------------------------ Галерея ------------------------------ */
 
@@ -1198,6 +1250,14 @@ em { font-style: normal; color: var(--wood); }
 .faq-item[open] summary::after { content: "–"; background: var(--graphite); border-color: var(--graphite); color: var(--white); }
 .faq-item p { margin: 0 0 22px; color: var(--gray); }
 
+.section--graphite .faq__visual { padding: 0; background: none; border-color: var(--line-dark); box-shadow: none; }
+.section--graphite .faq__visual img { border-radius: var(--radius-card); }
+.section--graphite .faq-item { border-bottom-color: var(--line-dark); }
+.section--graphite .faq-item:first-child { border-top-color: var(--line-dark); }
+.section--graphite .faq-item summary::after { border-color: var(--line-dark-strong); color: var(--gray-light); }
+.section--graphite .faq-item[open] summary::after { background: var(--white); border-color: var(--white); color: var(--graphite); }
+.section--graphite .faq-item p { color: var(--gray-light); opacity: .82; }
+
 /* ------------------------------ Контакты ------------------------------ */
 
 .contact-grid {
@@ -1240,19 +1300,19 @@ em { font-style: normal; color: var(--wood); }
 
 /* ------------------------------ Подвал ------------------------------ */
 
-.site-footer { background: var(--graphite-2); color: var(--gray-light); padding-top: clamp(52px, 6vw, 80px); }
+.site-footer { background: var(--graphite-2); color: var(--gray-light); padding-top: clamp(32px, 4vw, 48px); }
 .footer-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 4fr) repeat(3, minmax(0, 2.5fr));
-  gap: clamp(28px, 3vw, 48px);
-  padding-bottom: clamp(36px, 4vw, 56px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(48px, 8vw, 140px);
+  padding-bottom: clamp(20px, 2.5vw, 32px);
 }
+.footer-grid > * { flex: 0 0 auto; }
 .footer-grid b { display: block; margin-bottom: 16px; font-family: var(--font-display); font-weight: 600; color: var(--white); }
 .footer-grid a, .footer-grid p { display: block; margin: 0 0 10px; color: var(--gray-light); opacity: .8; font-size: .9375rem; }
 .footer-grid a { transition: color var(--dur) var(--ease), opacity var(--dur) var(--ease); }
 .footer-grid a:hover { color: var(--warm); opacity: 1; }
-/* VK в колонке адреса нужен только на мобильном, где колонку «Связаться» прячем */
-.footer-vk { display: none; }
+.footer-grid .footer-brand { display: inline-flex; }
 
 .footer-brand { opacity: 1; }
 .footer-brand .brand__logo { filter: invert(1); opacity: .88; }
@@ -1260,11 +1320,27 @@ em { font-style: normal; color: var(--wood); }
 .footer-brand .brand__tag { color: var(--gray-light); opacity: .7; }
 
 .footer-bottom {
-  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 28px;
-  padding-block: 22px;
-  border-top: 1px solid var(--line-dark);
+  padding-bottom: 20px;
   color: var(--gray-light); opacity: .7; font-size: .8125rem;
 }
+
+.footer-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: clamp(24px, 3vw, 32px);
+  color: var(--gray-light);
+  opacity: .8;
+  font-size: .8125rem;
+}
+.footer-bar__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px clamp(24px, 4vw, 48px);
+}
+.footer-bar .footer-brand { flex: 0 0 auto; opacity: 1; }
+
 
 /* ------------------------------ Мобильная панель ------------------------------ */
 
@@ -1551,8 +1627,6 @@ em { font-style: normal; color: var(--wood); }
   .steps, .service-grid, .review-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact-grid { grid-template-columns: minmax(0, 1fr); }
   .first-visit, .booking-band { grid-template-columns: minmax(0, 1fr); }
-  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
   .trust-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 26px; }
   .trust-item:nth-child(2n+1) { padding-left: 0; }
   .trust-item:nth-child(2n) { padding-right: 0; border-right: 0; }
@@ -1571,6 +1645,7 @@ em { font-style: normal; color: var(--wood); }
   .header-cta { display: none; }
   .header-inner { grid-template-columns: minmax(0, 1fr) auto; min-height: 72px; }
   .brand { min-width: 0; }
+  .brand > span { min-width: 0; }
   .brand__name, .brand__tag { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
   .site-nav {
@@ -1593,14 +1668,10 @@ em { font-style: normal; color: var(--wood); }
   .about__figures img:last-child { margin-top: 0; }
   .mobile-actions { display: flex; }
 
-  /* Короткий футер: «Разделы» дублируют бургер, «Связаться» — нижнюю панель */
-  .footer-col--extra { display: none; }
-  .footer-vk { display: block; }
   .footer-grid {
-    grid-template-columns: minmax(0, 1fr);
+    flex-direction: column;
     gap: clamp(22px, 4vw, 32px);
   }
-  .footer-bottom { flex-direction: column; gap: 6px; }
 
   /* На узком экране графит уходит вниз, фото открывается сверху */
   .hero { min-height: auto; padding-block: clamp(52px, 12vw, 88px) clamp(72px, 14vw, 104px); }
@@ -1988,7 +2059,6 @@ body[data-page="training"] .training-page-contact .text-link { justify-self: sta
 /* На тач-экранах мелкие кнопки и ссылки получают площадь, в которую можно попасть пальцем */
 @media (max-width: 820px) {
   .master-reviews__nav button { width: 40px; height: 40px; }
-  .footer-vk { display: inline-block; padding: 8px 0; }
   /* добавляем площадь сверху — подчёркивание остаётся на прежнем расстоянии от текста */
   .text-link { padding-top: 10px; }
   .brand__tag { font-size: .75rem; }
