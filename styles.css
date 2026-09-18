@@ -1632,14 +1632,11 @@ body[data-page="training"] #programs .training__card h3 {
   .trust-item:nth-child(2n) { padding-right: 0; border-right: 0; }
 }
 
-@media (max-width: 820px) {
-  html { scroll-padding-top: 80px; }
+/* Полной строке навигации (6 пунктов + лого + кнопка) не хватает места раньше, чем
+   остальной вёрстке — переключаем на бургер уже с 1180px, чтобы пункты меню не
+   наезжали на кнопку «Записаться». */
+@media (max-width: 1180px) {
   body { padding-bottom: 56px; }
-
-  .location { grid-template-columns: minmax(0, 1fr); gap: clamp(24px, 4vw, 36px); }
-  .gift-certificate, .spa-highlight, .faq { grid-template-columns: minmax(0, 1fr); }
-  .faq__visual { max-width: 320px; }
-  .spa-highlight img { min-height: 0; max-height: 520px; aspect-ratio: 4 / 5; }
 
   .menu-toggle { display: block; order: 3; }
   .header-cta { display: none; }
@@ -1664,9 +1661,18 @@ body[data-page="training"] #programs .training__card h3 {
   }
   .site-nav a::after { display: none; }
 
+  .mobile-actions { display: flex; }
+}
+
+@media (max-width: 820px) {
+  html { scroll-padding-top: 80px; }
+
+  .location { grid-template-columns: minmax(0, 1fr); gap: clamp(24px, 4vw, 36px); }
+  .gift-certificate, .spa-highlight, .faq { grid-template-columns: minmax(0, 1fr); }
+  .faq__visual { max-width: 320px; }
+  .spa-highlight img { min-height: 0; max-height: 520px; aspect-ratio: 4 / 5; }
 
   .about__figures img:last-child { margin-top: 0; }
-  .mobile-actions { display: flex; }
 
   .footer-grid {
     flex-direction: column;
