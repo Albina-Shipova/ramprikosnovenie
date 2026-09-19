@@ -352,14 +352,60 @@ body[data-page="training"] #seminars .training-fire__copy .training__list span {
  .edu-button { width:100%; }
  .edu-facts { grid-template-columns:1fr; gap:0; }
  .edu-facts>div,
- .edu-facts>div:first-child { display:grid; grid-template-columns:40px 108px minmax(0,1fr); align-items:center; min-height:76px; padding:12px 0; border-left:0; border-top:1px solid #ffffff35; }
+ .edu-facts>div:first-child {
+  display:grid;
+  grid-template-columns:34px minmax(0,1fr);
+  grid-template-rows:auto auto;
+  column-gap:14px;
+  row-gap:3px;
+  align-items:start;
+  min-height:76px;
+  padding:15px 0;
+  border-left:0;
+  border-top:1px solid #ffffff35;
+ }
  .edu-facts>div:first-child { border-top:0; }
- .edu-facts .edu-icon { width:32px; height:32px; }
- .edu-facts b { margin:0; }
- .edu-facts span { line-height:1.35; }
+ .edu-facts .edu-icon { grid-column:1; grid-row:1 / span 2; width:32px; height:32px; margin-top:2px; }
+ .edu-facts b { grid-column:2; grid-row:1; margin:0; }
+ .edu-facts span { grid-column:2; grid-row:2; line-height:1.35; }
  .edu-facts br { display:none; }
- .edu-teacher h2 { font-size:clamp(39px,12vw,50px); }
+ /* На телефоне портрет и текст работают как два последовательных плана:
+    лицо остаётся открытым, а весь контент получает ровный тёмный фон. */
+ .edu-teacher {
+  padding:0 0 64px;
+  background:#232220;
+ }
+ .edu-teacher::before {
+  content:"";
+  display:block;
+  width:100%;
+  height:clamp(360px,112vw,500px);
+  background:
+   linear-gradient(180deg,transparent 68%,#232220 100%),
+   url('assets/images/training/teacher.png') 67% center/cover no-repeat;
+ }
+ .edu-teacher .edu-shell {
+  position:relative;
+  z-index:1;
+  margin-top:-32px;
+ }
+ .edu-teacher h2 {
+  max-width:100%;
+  font-size:clamp(36px,10.5vw,43px);
+  line-height:1.02;
+  overflow-wrap:normal;
+  word-break:normal;
+ }
+ .edu-teacher h2 br { display:none; }
  .edu-teacher .edu-lead br { display:none; }
  .edu-credentials { grid-template-columns:1fr; }
- .edu-credentials article { min-height:0; }
+ .edu-credentials article {
+  min-height:0;
+  padding:18px 0;
+  border:0;
+  border-top:1px solid #ffffff35;
+  border-radius:0;
+  background:transparent;
+ }
+ .edu-credentials article:first-child { border-top:0; }
 }
