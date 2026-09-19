@@ -15,6 +15,7 @@
   --white: #ffffff;
   --wood: #9a8069;
   --warm: #b99a74;
+  --heading-accent: #9a8069;
 
   /* Линии */
   --line: rgba(38, 38, 38, .14);
@@ -24,11 +25,17 @@
 
   /* Шрифты */
   --font-display: "Manrope", "Onest", "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
-  --font-body: "Inter", "Manrope", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Manrope", "Onest", "Segoe UI", system-ui, sans-serif;
   --font-serif: Georgia, "Noto Serif", "Times New Roman", serif;
+  --type-h1: clamp(2.7rem, 1.45rem + 3.4vw, 4.5rem);
+  --type-h2: clamp(2rem, 1.35rem + 2.15vw, 3.35rem);
+  --type-h3: clamp(1.15rem, 1.06rem + .42vw, 1.45rem);
+  --type-heading-line: 1.08;
+  --type-heading-track: -.032em;
 
   /* Сетка и ритм */
-  --shell: 1280px;
+  /* Единая направляющая сайта: соответствует ширине контента hero на десктопе */
+  --shell: 1416px;
   --gutter: clamp(20px, 4vw, 48px);
   --col-gap: clamp(20px, 2.2vw, 32px);
   --section-space: clamp(52px, 6vw, 96px);
@@ -50,7 +57,23 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--graphite) var(--strip);
+}
+
+html::-webkit-scrollbar { width: 11px; }
+html::-webkit-scrollbar-track { background: var(--strip); }
+html::-webkit-scrollbar-thumb {
+  min-height: 56px;
+  border: 3px solid var(--strip);
+  border-radius: 999px;
+  background: var(--graphite);
+}
+html::-webkit-scrollbar-thumb:hover { background: var(--wood); }
+html::-webkit-scrollbar-thumb:active { background: #806852; }
 
 body {
   margin: 0;
@@ -77,16 +100,22 @@ h1, h2, h3, h4 {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 600;
-  line-height: 1.08;
-  letter-spacing: -.022em;
+  line-height: var(--type-heading-line);
+  letter-spacing: var(--type-heading-track);
   text-wrap: balance;
 }
 
-h1 { font-size: clamp(2.35rem, 1.1rem + 4.4vw, 4.5rem); line-height: 1.04; }
-h2 { font-size: clamp(1.75rem, 1rem + 2.5vw, 3.25rem); }
-h3 { font-size: clamp(1.15rem, 1.05rem + .4vw, 1.4rem); line-height: 1.25; }
+h1 { font-size: var(--type-h1); line-height: 1.04; }
+h2 { font-size: var(--type-h2); }
+h3 { font-size: var(--type-h3); line-height: 1.22; letter-spacing: -.022em; }
 
-em { font-style: normal; color: var(--wood); }
+em { font-style: normal; }
+h1 em, h2 em, h3 em, h4 em,
+h1 .accent, h2 .accent, h3 .accent, h4 .accent {
+  color: var(--heading-accent);
+  font-style: normal;
+  font-weight: inherit;
+}
 
 :focus-visible {
   outline: 2px solid var(--wood);
@@ -123,7 +152,7 @@ em { font-style: normal; color: var(--wood); }
 .section--graphite h1,
 .section--graphite h2,
 .section--graphite h3 { color: var(--white); }
-.section--graphite em { color: var(--warm); }
+.section--graphite em { color: var(--heading-accent); }
 
 .eyebrow {
   display: flex; align-items: center; gap: 10px;
@@ -161,7 +190,7 @@ em { font-style: normal; color: var(--wood); }
 
 body[data-page="training"] #programs .section-head h2,
 body[data-page="training"] #programs .training__card h3 {
-  font-family: var(--font-serif); font-weight: 400; letter-spacing: 0; line-height: 1.08;
+  font-family: var(--font-display); font-weight: 600; letter-spacing: var(--type-heading-track); line-height: var(--type-heading-line);
 }
 
 .lead {
@@ -247,7 +276,7 @@ body[data-page="training"] #programs .training__card h3 {
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: clamp(20px, 3vw, 44px);
-  min-height: 84px;
+  min-height: 68px;
   transition: min-height var(--dur) var(--ease);
 }
 
@@ -260,6 +289,7 @@ body[data-page="training"] #programs .training__card h3 {
 .brand__logo {
   width: 54px; height: 54px; flex: none;
   object-fit: contain;
+  filter: brightness(.38) saturate(.85);
 }
 .brand__name { display: block; font-family: var(--font-display); font-size: 1.0625rem; font-weight: 600; letter-spacing: -.01em; }
 .brand__tag { display: block; margin-top: 3px; color: var(--gray); font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; }
@@ -301,9 +331,9 @@ body[data-page="training"] #programs .training__card h3 {
   position: relative;
   isolation: isolate;
   display: grid;
-  align-items: center;
-  min-height: clamp(560px, 54vw, 748px);
-  padding-block: clamp(64px, 6.5vw, 100px) clamp(84px, 9vw, 124px);
+  align-items: start;
+  min-height: clamp(680px, calc(100svh - 84px), 860px);
+  padding-block: 74px clamp(92px, 9vw, 126px);
   background: var(--graphite);
   overflow: hidden;
   mask-image: var(--mirror-mask-bottom);
@@ -314,28 +344,32 @@ body[data-page="training"] #programs .training__card h3 {
   -webkit-mask-repeat: no-repeat;
 }
 
+/* На главной волна подходит ближе к строке преимуществ под первым экраном. */
+.hero-block .hero {
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,95 C84,100 66,89 50,95 C34,100 16,88 0,95 Z" fill="black"/></svg>');
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,95 C84,100 66,89 50,95 C34,100 16,88 0,95 Z" fill="black"/></svg>');
+}
+
 /* Фото-фон и мягкий переход графита в фотографию слева направо */
 .hero__bg {
-  position: absolute; inset: 0 0 0 37%; z-index: 0;
-  background-image: url('assets/images/hero-lobby.webp');
+  position: absolute; inset: 0; z-index: 0;
+  background-image: url('assets/images/hero-interior-client.png');
   background-size: cover;
-  background-position: 50% 72%;
-  transform: scale(1.08);
+  background-position: calc(50% + 105px) center;
+  transform: scale(1.035);
   animation: heroZoom 7s var(--ease) forwards;
 }
+.hero:not(.hero--chair) .hero__bg { filter: saturate(.94); }
 @keyframes heroZoom { to { transform: scale(1); } }
 .hero__bg::after {
   content: "";
   position: absolute; inset: 0;
   background: linear-gradient(90deg,
-    rgba(38, 38, 38, 1) 0%,
-    rgba(40, 40, 40, .96) 8%,
-    rgba(46, 46, 45, .86) 18%,
-    rgba(56, 55, 53, .62) 30%,
-    rgba(84, 82, 78, .38) 43%,
-    rgba(120, 116, 111, .18) 57%,
-    rgba(165, 160, 152, .06) 72%,
-    rgba(255, 255, 255, 0) 84%);
+    rgba(22, 23, 23, .98) 0%,
+    rgba(22, 23, 23, .94) 28%,
+    rgba(22, 23, 23, .78) 40%,
+    rgba(22, 23, 23, .28) 52%,
+    rgba(22, 23, 23, 0) 68%);
 }
 
 /* Тот же приём на странице услуг, другое фото */
@@ -346,47 +380,79 @@ body[data-page="training"] #programs .training__card h3 {
 }
 
 .hero__inner { position: relative; z-index: 1; }
-.hero__copy { max-width: 35rem; }
+.hero__copy { max-width: 44rem; }
 
 .hero__title {
-  margin-bottom: 30px;
-  font-size: clamp(2.1rem, 1.2rem + 3vw, 3.5rem);
+  margin-bottom: 24px;
+  font-size: var(--type-h1);
+  line-height: 1.02;
 }
-.hero__lead { max-width: 28em; margin-bottom: 42px; }
+.hero__lead { max-width: 34em; margin-bottom: 32px; font-size: clamp(1rem, .9rem + .4vw, 1.3rem); line-height: 1.5; }
 
 .hero__award {
   display: inline-flex; align-items: center; gap: 10px;
-  margin: 18px 0 30px;
-  padding: 9px 18px;
+  margin: 12px 0 38px;
+  padding: 9px 20px;
   border: 1px solid var(--warm);
   border-radius: 999px;
   background: rgba(185, 154, 116, .16);
   color: var(--warm);
-  font-size: .8125rem;
+  font-size: .875rem;
   font-weight: 600;
   letter-spacing: .01em;
 }
-.hero__award::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--warm); }
+.hero__award svg { width: 17px; height: 17px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+.hero .button-row { gap: 18px 36px; }
+.hero .button--light {
+  min-width: 270px;
+  min-height: 56px;
+  padding-block: 11px;
+  background: #dfb77d;
+  border-color: #dfb77d;
+  font-size: 1rem;
+}
+.hero .button--light:hover { background: #edc991; border-color: #edc991; }
+.hero .button--light span,
+.hero .text-link span { margin-left: 12px; font-size: 1.35em; font-weight: 400; }
+.hero .text-link { min-height: 56px; padding-top: 0; font-size: 1rem; }
+
+@media (min-width: 821px) {
+  .hero:not(.hero--chair) .hero__bg {
+    background-size: 84% 100%;
+    background-repeat: no-repeat;
+    background-position: calc(100% + 28px) center;
+  }
+}
 
 .hero__facts {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  margin: 36px 0 0;
-  padding-top: 20px;
-  border-top: 1px solid var(--line-dark);
+  margin: 74px 0 0;
+  padding-top: 0;
+  border-top: 0;
 }
 .hero__facts > div {
-  max-width: 11.5em;
-  padding: 0 16px;
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: none;
+  padding: 0 24px 0 48px;
   border-left: 1px solid var(--line-dark);
 }
-.hero__facts > div:first-child { padding-left: 0; border-left: 0; }
+.hero__facts > div:first-child { padding-left: 38px; border-left: 0; }
+.hero__facts > div > svg {
+  position: absolute; left: 18px; top: 2px;
+  width: 24px; height: 24px;
+  fill: none; stroke: var(--white); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
+}
+.hero__facts > div:first-child > svg { left: 0; }
 .hero__facts dt {
   white-space: nowrap;
   color: var(--white);
   font-family: var(--font-display);
-  font-size: 1.0625rem;
+  font-size: 1.1rem;
   font-weight: 600; line-height: 1.25;
   letter-spacing: -.01em;
 }
@@ -412,7 +478,7 @@ body[data-page="training"] #programs .training__card h3 {
 .trust-strip {
   position: relative;
   overflow: hidden;
-  padding: 38px 0 40px;
+  padding: 20px 0 40px;
   background: var(--strip);
 }
 
@@ -484,14 +550,23 @@ body[data-page="training"] #programs .training__card h3 {
 .direction__media { position: absolute; inset: 0; }
 .direction__media img {
   width: 100%; height: 100%; object-fit: cover;
-  transition: transform 500ms var(--ease);
+  filter: saturate(.82) contrast(1.04) brightness(.98);
+  transition: transform 500ms var(--ease), filter 500ms var(--ease);
 }
 .direction:hover .direction__media img { transform: scale(1.04); }
+
+.direction__media::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: rgba(35, 61, 70, .08);
+  mix-blend-mode: color;
+  pointer-events: none;
+}
 
 .direction::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(30, 28, 26, .92) 0%, rgba(30, 28, 26, .5) 38%, rgba(30, 28, 26, 0) 68%);
+  background: linear-gradient(to top, rgba(22, 22, 21, .96) 0%, rgba(22, 22, 21, .72) 35%, rgba(22, 22, 21, .22) 62%, rgba(22, 22, 21, 0) 78%);
   pointer-events: none;
 }
 
@@ -503,15 +578,24 @@ body[data-page="training"] #programs .training__card h3 {
   padding: clamp(20px, 2vw, 28px);
   color: var(--white);
 }
-.direction__body h3 { margin-bottom: 8px; color: var(--white); }
+.direction__body h3 {
+  margin-bottom: 8px;
+  color: var(--white);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, .32);
+}
 .direction__body p {
   overflow: hidden;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-  color: var(--gray-light); opacity: .82; font-size: .9375rem; margin-bottom: 18px;
+  color: #f1f0ed; opacity: 1; font-size: .9375rem; line-height: 1.5; margin-bottom: 18px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, .42);
 }
 
 .direction__foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.direction__price { font-family: var(--font-display); font-weight: 600; }
+.direction__price {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, .35);
+}
 
 .direction__arrow {
   display: grid; place-items: center; flex: none;
@@ -574,7 +658,7 @@ body[data-page="training"] #programs .training__card h3 {
 
 /* ------------------------------ Команда ------------------------------ */
 
-.master-slide__head h3 { font-size: clamp(1.4rem, 1.2rem + 1vw, 2rem); }
+.master-slide__head h3 { font-size: var(--type-h3); }
 .team__role { margin: 6px 0 0; color: var(--gray); font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 .team__fit { margin: 0; color: var(--gray); font-size: 1.0625rem; line-height: 1.55; }
 .team__link { display: inline-block; align-self: flex-start; margin-top: auto; color: var(--gray); font-size: .9375rem; border-bottom: 1px solid var(--line-strong); padding-bottom: 3px; transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
@@ -936,7 +1020,7 @@ body[data-page="training"] #programs .training__card h3 {
 .gift-certificate__visual img { display: block; width: 100%; border-radius: calc(var(--radius-card) * .55); }
 .gift-certificate__copy { max-width: 35em; }
 .gift-certificate__copy h2 { margin-bottom: 20px; }
-.gift-certificate__copy h2 .accent { display: block; color: var(--warm); }
+.gift-certificate__copy h2 .accent { display: block; color: var(--heading-accent); }
 .gift-certificate__copy p { margin: 0 0 16px; color: var(--gray); }
 .gift-certificate__copy .lead { color: var(--graphite); }
 .gift-certificate__actions {
@@ -1078,8 +1162,8 @@ body[data-page="training"] #programs .training__card h3 {
 .rating-panel .stars { display: block; margin-bottom: 12px; color: var(--warm); letter-spacing: .28em; font-size: 1rem; }
 .rating-panel p { margin: 16px 0 0; color: var(--gray-light); opacity: .82; font-size: .9375rem; }
 
-.reviews__copy h2 { margin-bottom: 12px; font-size: clamp(2.7rem, 4.7vw, 5rem); line-height: .98; }
-.reviews__copy h2 em { color: var(--warm); font-style: normal; font-weight: 400; }
+.reviews__copy h2 { margin-bottom: 12px; font-size: var(--type-h2); }
+.reviews__copy h2 em { color: var(--heading-accent); font-style: normal; font-weight: inherit; }
 .reviews__lead { color: var(--white) !important; opacity: 1 !important; font-size: clamp(1.15rem, 1.5vw, 1.45rem); margin-bottom: 18px !important; }
 .reviews__copy p { color: var(--gray-light); opacity: .86; margin-bottom: 30px; }
 
@@ -1285,7 +1369,7 @@ body[data-page="training"] #programs .training__card h3 {
   border: 1px solid var(--line);
   border-radius: var(--radius-card);
 }
-.contact-card h3 { margin-bottom: 14px; font-size: clamp(1.35rem, 1.1rem + 1vw, 1.9rem); }
+.contact-card h3 { margin-bottom: 14px; font-size: var(--type-h3); }
 .contact-card h3 a { transition: color var(--dur) var(--ease); }
 .contact-card h3 a:hover { color: var(--wood); }
 .contact-card p { color: var(--gray); font-size: .9375rem; }
@@ -1328,7 +1412,7 @@ body[data-page="training"] #programs .training__card h3 {
 .footer-grid .footer-brand { display: inline-flex; }
 
 .footer-brand { opacity: 1; }
-.footer-brand .brand__logo { filter: invert(1); opacity: .88; }
+.footer-brand .brand__logo { filter: none; opacity: .94; }
 .footer-brand .brand__name { color: var(--white); }
 .footer-brand .brand__tag { color: var(--gray-light); opacity: .7; }
 
@@ -1388,7 +1472,7 @@ body[data-page="training"] #programs .training__card h3 {
   border: 1px solid var(--line);
   border-radius: var(--radius-card);
 }
-.first-visit h2 { margin-bottom: 12px; font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2rem); }
+.first-visit h2 { margin-bottom: 12px; font-size: var(--type-h2); }
 .first-visit p { margin: 0; color: var(--gray); font-size: .9375rem; }
 
 .spa-highlight {
@@ -1407,7 +1491,7 @@ body[data-page="training"] #programs .training__card h3 {
   border-radius: calc(var(--radius-card) * .7);
 }
 .spa-highlight__copy { align-self: center; max-width: 38rem; padding-block: clamp(12px, 2vw, 28px); }
-.spa-highlight__copy h2 { margin-bottom: 18px; font-size: clamp(1.8rem, 1.4rem + 2vw, 3rem); }
+.spa-highlight__copy h2 { margin-bottom: 18px; font-size: var(--type-h2); }
 .spa-highlight__copy > p:not(.eyebrow) { color: var(--gray); line-height: 1.7; }
 .spa-highlight__facts {
   display: grid;
@@ -1465,7 +1549,7 @@ body[data-page="training"] #programs .training__card h3 {
   font-family: var(--font-display); font-size: .75rem; font-weight: 600;
   letter-spacing: .13em; text-transform: uppercase;
 }
-.service-card h3 { margin-bottom: 22px; font-size: 1.125rem; line-height: 1.35; }
+.service-card h3 { margin-bottom: 22px; font-size: var(--type-h3); }
 .service-card__bottom {
   display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
   margin-top: auto; padding-top: 18px;
@@ -1522,7 +1606,7 @@ body[data-page="training"] #programs .training__card h3 {
   border-radius: var(--radius-card);
   color: var(--gray-light);
 }
-.booking-band h2 { margin-bottom: 12px; color: var(--white); font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2rem); }
+.booking-band h2 { margin-bottom: 12px; color: var(--white); font-size: var(--type-h2); }
 .booking-band p { margin: 0; opacity: .82; font-size: .9375rem; }
 .booking-band .eyebrow { color: var(--gray-light); }
 .booking-band .eyebrow::before { background: var(--warm); }
@@ -1653,7 +1737,7 @@ body[data-page="training"] #programs .training__card h3 {
 
   .menu-toggle { display: block; order: 3; }
   .header-cta { display: none; }
-  .header-inner { grid-template-columns: minmax(0, 1fr) auto; min-height: 72px; }
+  .header-inner { grid-template-columns: minmax(0, 1fr) auto; min-height: 62px; }
   .brand { min-width: 0; }
   .brand > span { min-width: 0; }
   .brand__name, .brand__tag { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -1695,11 +1779,11 @@ body[data-page="training"] #programs .training__card h3 {
   /* На узком экране графит уходит вниз, фото открывается сверху */
   /* Нижняя волна маски занимает около 13% высоты hero. Оставляем под контентом
      отдельную безопасную зону, чтобы последний факт не попадал в изгиб. */
-  .hero { min-height: auto; padding-block: clamp(52px, 12vw, 88px) clamp(120px, 26vw, 152px); }
+  .hero { min-height: calc(100svh - 72px); padding-block: clamp(46px, 10vw, 72px) clamp(104px, 23vw, 136px); }
   .hero__bg {
     inset: 0;
-    background-image: url('assets/images/hero-lobby-900.webp');
-    background-position: 58% 22%;
+    background-image: url('assets/images/hero-interior-client.png');
+    background-position: 58% center;
   }
   .hero--chair .hero__bg {
     background-image: url('assets/images/hero-chair-900.webp');
@@ -1707,20 +1791,28 @@ body[data-page="training"] #programs .training__card h3 {
   }
   .hero__bg::after {
     background: linear-gradient(180deg,
-      rgba(38, 38, 38, .30) 0%,
-      rgba(38, 38, 38, .52) 14%,
-      rgba(40, 40, 40, .76) 30%,
-      rgba(44, 44, 44, .90) 48%,
-      rgba(38, 38, 38, .97) 72%,
-      rgba(38, 38, 38, 1) 100%);
+      rgba(23, 24, 24, .52) 0%,
+      rgba(23, 24, 24, .76) 28%,
+      rgba(23, 24, 24, .94) 58%,
+      rgba(23, 24, 24, 1) 100%);
   }
+  .hero__title { font-size: var(--type-h1); }
+  .hero__lead br { display: none; }
+  .hero__facts { margin-top: 42px; }
 }
 
 @media (max-width: 560px) {
   /* На узком экране факты встают в колонку: ровный левый край, разделители между строками */
   .hero__facts { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 20px; padding-top: 14px; }
-  .hero__facts > div { max-width: none; padding: 0; border-left: 0; }
+  .hero__award { margin-bottom: 28px; font-size: .72rem; }
+  .hero .button-row { align-items: stretch; }
+  .hero .button--light { width: 100%; min-width: 0; min-height: 54px; }
+  .hero__facts > div,
+  .hero__facts > div:first-child { max-width: none; min-width: 0; padding: 0 0 0 38px; border-left: 0; }
   .hero__facts > div + div { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line-dark); }
+  .hero__facts > div > svg,
+  .hero__facts > div:first-child > svg { left: 0; top: 2px; }
+  .hero__facts > div + div > svg { top: 16px; }
   .hero__facts dt { white-space: normal; }
   .hero__facts dd { font-size: .75rem; }
   .place-slide { gap: 12px; }
@@ -1748,7 +1840,7 @@ body[data-page="training"] #programs .training__card h3 {
     border-radius: 0;
   }
 
-  .trust-strip { padding: 30px 0 32px; }
+  .trust-strip { padding: 18px 0 32px; }
   .trust-grid { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
   .trust-item {
     padding: 18px 0;
@@ -1867,7 +1959,7 @@ body[data-page="training"] .training-page-hero h1 {
   letter-spacing: -.05em;
 }
 
-body[data-page="training"] .training-page-hero h1 em { color: var(--training-bronze); }
+body[data-page="training"] .training-page-hero h1 em { color: var(--heading-accent); }
 body[data-page="training"] .training-page-hero .lead { max-width: 35em; color: rgba(241,238,232,.79); font-size: clamp(1rem, 1.25vw, 1.22rem); }
 
 body[data-page="training"] .training-page-hero__visual {
