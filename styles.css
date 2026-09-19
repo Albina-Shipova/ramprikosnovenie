@@ -652,6 +652,19 @@ body[data-page="training"] #programs .training__card h3 {
   .master-slide { grid-template-columns: minmax(0, 1fr); }
   .master-slide__photo { aspect-ratio: 1 / 1; }
 
+  /* В отличие от остальных мобильных каруселей команда листается строго
+     по одному мастеру: карточка занимает всю доступную ширину экрана. */
+  .master-carousel__track > .master-slide {
+    flex: 0 0 100%;
+    scroll-snap-stop: always;
+  }
+
+  /* Один отзыв на один экран без фрагмента следующей карточки. */
+  .review-grid.carousel__track > .review {
+    flex: 0 0 100%;
+    scroll-snap-stop: always;
+  }
+
   /* На узком экране стрелки по бокам легли бы на текст — возвращаем их под карусель */
   .master-carousel .carousel__controls {
     display: flex; align-items: center; gap: 18px;
@@ -1680,7 +1693,9 @@ body[data-page="training"] #programs .training__card h3 {
   }
 
   /* На узком экране графит уходит вниз, фото открывается сверху */
-  .hero { min-height: auto; padding-block: clamp(52px, 12vw, 88px) clamp(72px, 14vw, 104px); }
+  /* Нижняя волна маски занимает около 13% высоты hero. Оставляем под контентом
+     отдельную безопасную зону, чтобы последний факт не попадал в изгиб. */
+  .hero { min-height: auto; padding-block: clamp(52px, 12vw, 88px) clamp(120px, 26vw, 152px); }
   .hero__bg {
     inset: 0;
     background-image: url('assets/images/hero-lobby-900.webp');
@@ -1713,6 +1728,24 @@ body[data-page="training"] #programs .training__card h3 {
   .place-facts { grid-template-columns: minmax(0, 1fr); }
   .direction-grid, .steps, .service-grid, .review-grid, .footer-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Предметные фотографии на телефоне становятся полноэкранными: без рамки,
+     подложки, тени и скруглений декоративного контейнера. */
+  .gift-certificate__visual,
+  .faq__visual {
+    width: calc(100% + var(--gutter) + var(--gutter));
+    max-width: none;
+    margin-inline: calc(var(--gutter) * -1);
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .gift-certificate__visual img,
+  .section--graphite .faq__visual img {
+    width: 100%;
+    border-radius: 0;
   }
 
   .trust-strip { padding: 30px 0 32px; }
