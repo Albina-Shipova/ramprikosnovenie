@@ -113,6 +113,13 @@ function setupProcedureMenu() {
   const handwriting = menu.querySelector('.procedure-menu__handwriting');
   const tabs = [...menu.querySelectorAll('[data-menu-filter]')];
   const cards = [...document.querySelectorAll('#service-grid .service-card')];
+  const catalogData = {
+    face: [['Путь воина (массаж лица + массаж стоп)', '1 ч 20 мин', 'от 2 900 ₽'], ['Лифтинг-эффект', '1 ч 30 мин', 'от 2 500 ₽'], ['Преображение Венеры', '1 ч 30 мин', 'от 4 000 ₽']],
+    cosmetology: [['FlaxSculpt (пептидное армирование)', '1 ч', 'от 3 000 ₽'], ['Карбокситерапия', '40 мин', '3 500 ₽'], ['Микронидлинг', '40 мин', '4 500 ₽'], ['УЗ-чистка лица с уходом', '1 ч', '3 300 ₽']],
+    peeling: [['Гликолевый пилинг', '15 мин', '3 000 ₽'], ['Миндальный пилинг', '15 мин', '3 000 ₽'], ['Молочный пилинг', '30 мин', '3 000 ₽'], ['Мультикислотный пилинг', '30 мин', '3 000 ₽']],
+    spa: [['Огненный массаж: 1+1 зона', '40 мин', '5 000 ₽'], ['Огненный массаж: всё тело, голова и лицо', '2 ч 30 мин', '15 000 ₽'], ['«Тотальная перезагрузка»', '2 ч', '5 500 ₽'], ['Скульптор-SPA', '1 ч 30 мин', '6 000 ₽']],
+    casmara: [['Q10 Rescue — уход для возрастной кожи', '1 ч', '8 000 ₽'], ['Антивозрастной уход против пигментации', '1 ч', '12 000 ₽'], ['Очищающий уход «Чистый кислород»', '1 ч', '8 000 ₽']]
+  };
   const massageMarkup = rowsHost.innerHTML;
   const labels = {
     all: 'Все услуги', massage: 'Массаж тела', face: 'Массаж лица',
@@ -161,22 +168,23 @@ function setupProcedureMenu() {
       rowsHost.innerHTML = massageMarkup;
     } else {
       const visible = filter === 'all' ? cards : cards.filter(card => card.dataset.category === filter);
-      rowsHost.replaceChildren(...visible.map(card => {
+      const items = visible.length ? visible.map(card => [card.querySelector('h3').textContent, card.querySelector('.service-card__duration').textContent, card.querySelector('.service-card__price').textContent]) : (catalogData[filter] || Object.values(catalogData).flat());
+      rowsHost.replaceChildren(...items.map(item => {
         const details = document.createElement('details');
         const summary = document.createElement('summary');
         const name = document.createElement('span');
         const duration = document.createElement('small');
         const price = document.createElement('strong');
         const plus = document.createElement('i');
-        name.textContent = card.querySelector('h3').textContent;
-        duration.textContent = card.querySelector('.service-card__duration').textContent;
-        price.textContent = card.querySelector('.service-card__price').textContent;
+        name.textContent = item[0];
+        duration.textContent = item[1];
+        price.textContent = item[2];
         summary.append(name, duration, price, plus);
         const body = document.createElement('div');
         const description = document.createElement('p');
-        description.textContent = `${card.querySelector('.service-card__label').textContent}. Подробности процедуры и индивидуальные рекомендации специалист уточнит перед записью.`;
+        description.textContent = 'Подробности процедуры и индивидуальные рекомендации специалист уточнит перед записью.';
         const book = document.createElement('a');
-        book.href = card.querySelector('.service-card__book').href;
+        book.href = 'https://dikidi.net/1188196';
         book.target = '_blank'; book.rel = 'noopener'; book.textContent = 'Записаться →';
         body.append(description, book);
         details.append(summary, body);

@@ -146,6 +146,7 @@ h1 .accent, h2 .accent, h3 .accent, h4 .accent {
 .section { padding-block: var(--section-space); }
 
 .section--white { background: var(--white); }
+#catalog.section--white { background: #202122; }
 .section--graphite { background: var(--graphite); color: var(--gray-light); }
 .section--stone { background: var(--gray-light); }
 
@@ -492,6 +493,7 @@ body[data-page="training"] #programs .training__card h3 {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+.service-steps-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
 .trust-item {
   padding: 0 clamp(20px, 2.6vw, 36px);
@@ -2423,16 +2425,12 @@ body[data-page="training"] .training-page-contact .text-link { justify-self: sta
 body[data-page="services"] .site-header { background: #f5f3ef; }
 
 .procedure-menu { padding: 50px 0 clamp(72px, 7vw, 112px); background: #f5f3ef; color: #1d1d1c; }
-.procedure-menu__head { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(250px, .65fr) minmax(260px, .72fr); gap: clamp(28px, 4vw, 72px); align-items: center; }
+.procedure-menu__head { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(250px, .72fr); gap: clamp(28px, 4vw, 72px); align-items: center; }
 .procedure-menu__eyebrow { display: flex; align-items: center; gap: 16px; margin: 0 0 14px; font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
 .procedure-menu__eyebrow::before { content: ""; width: 23px; height: 1px; background: #a88c72; }
 .procedure-menu h2 { margin: 0 0 12px; font-size: clamp(42px, 4.2vw, 66px); font-weight: 400; line-height: 1; letter-spacing: -.045em; }
 .procedure-menu h2 span { color: #ad927c; }
 .procedure-menu__head > div > p:last-child, .procedure-menu__note { margin: 0; color: #827e79; font-size: 14px; line-height: 1.45; }
-.procedure-menu__search { display: flex; align-items: center; gap: 16px; min-height: 58px; padding: 0 22px; border: 1px solid #d6d0c9; border-radius: 6px; background: rgba(255,255,255,.25); }
-.procedure-menu__search svg { width: 22px; height: 22px; flex: none; fill: none; stroke: #20201f; stroke-width: 1.5; stroke-linecap: round; }
-.procedure-menu__search input { width: 100%; padding: 0; border: 0; outline: 0; background: transparent; color: #222; font: inherit; }
-.procedure-menu__search input::placeholder { color: #96918c; }
 .procedure-menu__tabs { display: flex; gap: 10px; margin: 32px 0 26px; overflow-x: auto; scrollbar-width: none; }
 .procedure-menu__tabs::-webkit-scrollbar { display: none; }
 .procedure-menu__tabs a { display: grid; place-items: center; min-height: 48px; padding: 0 26px; border: 1px solid #d6d0c9; border-radius: 5px; color: #282725; font-size: 13px; white-space: nowrap; }
@@ -2499,7 +2497,7 @@ body[data-page="services"] .site-header { background: #f5f3ef; }
   position: relative;
   min-height: min(830px, calc(100svh - 80px));
   overflow: hidden;
-  background: #f5f3ef;
+  background: #f3efe9;
   color: #f7f6f3;
 }
 .services-showcase__backdrop {
@@ -2555,8 +2553,6 @@ body[data-page="services"] .site-header { background: #f5f3ef; }
 .services-showcase__wave {
   display: none;
 }
-.services-showcase__motto { position: absolute; z-index: 5; right: 5.5%; bottom: 7px; margin: 0; color: #77716b; font-size: 9px; line-height: 1; letter-spacing: .28em; text-transform: uppercase; white-space: nowrap; }
-.services-showcase__motto i { display: inline-block; width: 3px; height: 3px; margin: 0 12px; border-radius: 50%; background: #bda88f; vertical-align: middle; }
 
 @media (max-width: 1100px) {
   .services-showcase__copy { width: 58vw; }
