@@ -110,7 +110,6 @@ function setupProcedureMenu() {
   const visualImage = menu.querySelector('.procedure-menu__visual > img');
   const visualIntro = menu.querySelector('.procedure-menu__visual-copy > p:last-child');
   const visualNumber = menu.querySelector('.procedure-menu__number');
-  const handwriting = menu.querySelector('.procedure-menu__handwriting');
   const tabs = [...menu.querySelectorAll('[data-menu-filter]')];
   const cards = [...document.querySelectorAll('#service-grid .service-card')];
   const catalogData = {
@@ -128,31 +127,31 @@ function setupProcedureMenu() {
   const categoryVisuals = {
     all: {
       image: 'assets/images/process-body-care.webp', alt: 'Уходовая процедура для тела', number: '01',
-      intro: 'Выберите направление и найдите процедуру, которая подходит вашему запросу.', handwriting: 'Забота\nв каждом\nдвижении'
+      intro: 'Выберите направление и найдите процедуру, которая подходит вашему запросу.'
     },
     massage: {
       image: 'assets/images/process-back-massage.webp', alt: 'Массаж спины в студии «Прикосновение»', number: '01',
-      intro: 'Восстановление, лёгкость и внутренняя энергия. Подберём технику массажа под ваши цели и состояние.', handwriting: 'Забота\nв каждом\nдвижении'
+      intro: 'Восстановление, лёгкость и внутренняя энергия. Подберём технику массажа под ваши цели и состояние.'
     },
     face: {
       image: 'assets/images/process-face-care.webp', alt: 'Массаж и уход за лицом', number: '02',
-      intro: 'Деликатные техники для расслабления, свежего вида и комплексного ухода за лицом.', handwriting: 'Красота\nв мягком\nприкосновении'
+      intro: 'Деликатные техники для расслабления, свежего вида и комплексного ухода за лицом.'
     },
     cosmetology: {
       image: 'assets/images/process-cosmetology.webp', alt: 'Косметологическая процедура в студии', number: '03',
-      intro: 'Современные процедуры с индивидуальным подбором средств и параметров воздействия.', handwriting: 'Точность\nи бережный\nуход'
+      intro: 'Современные процедуры с индивидуальным подбором средств и параметров воздействия.'
     },
     peeling: {
       image: 'assets/images/process-face-glass.webp', alt: 'Профессиональный уход за кожей лица', number: '04',
-      intro: 'Мягкое обновление кожи, работа с текстурой и тоном под контролем специалиста.', handwriting: 'Обновление\nи естественное\nсияние'
+      intro: 'Мягкое обновление кожи, работа с текстурой и тоном под контролем специалиста.'
     },
     spa: {
       image: 'assets/images/fire-massage.webp', alt: 'Авторская SPA-процедура в студии', number: '05',
-      intro: 'Продуманные программы для глубокого отдыха, ухода за телом и ощущения лёгкости.', handwriting: 'Время\nтолько\nдля себя'
+      intro: 'Продуманные программы для глубокого отдыха, ухода за телом и ощущения лёгкости.'
     },
     casmara: {
       image: 'assets/images/ksanti-oils.webp', alt: 'Профессиональные средства для ухода за кожей', number: '06',
-      intro: 'Профессиональные программы Casmara для питания, восстановления и сияния кожи.', handwriting: 'Уход\nкак тихий\nритуал'
+      intro: 'Профессиональные программы Casmara для питания, восстановления и сияния кожи.'
     }
   };
 
@@ -199,7 +198,6 @@ function setupProcedureMenu() {
     visualImage.alt = visual.alt;
     visualNumber.firstChild.textContent = `${visual.number} `;
     visualIntro.textContent = visual.intro;
-    handwriting.textContent = visual.handwriting;
     tabs.forEach(tab => tab.classList.toggle('active', tab.dataset.menuFilter === filter));
     bindRows();
     if (search) search.dispatchEvent(new Event('input'));
