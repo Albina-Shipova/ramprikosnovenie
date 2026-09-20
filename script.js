@@ -100,6 +100,119 @@ function setupServices() {
   render();
 }
 
+function setupProcedureMenu() {
+  const menu = document.querySelector('.procedure-menu');
+  if (!menu) return;
+  const search = menu.querySelector('[data-menu-search]');
+  const rowsHost = menu.querySelector('.procedure-menu__rows');
+  const count = menu.querySelector('.procedure-menu__count');
+  const title = menu.querySelector('.procedure-menu__visual h3');
+  const visualImage = menu.querySelector('.procedure-menu__visual > img');
+  const visualIntro = menu.querySelector('.procedure-menu__visual-copy > p:last-child');
+  const visualNumber = menu.querySelector('.procedure-menu__number');
+  const handwriting = menu.querySelector('.procedure-menu__handwriting');
+  const tabs = [...menu.querySelectorAll('[data-menu-filter]')];
+  const cards = [...document.querySelectorAll('#service-grid .service-card')];
+  const massageMarkup = rowsHost.innerHTML;
+  const labels = {
+    all: 'Все услуги', massage: 'Массаж тела', face: 'Массаж лица',
+    cosmetology: 'Косметология', peeling: 'Пилинги', spa: 'SPA-программы', casmara: 'Уходы Casmara'
+  };
+  const categoryVisuals = {
+    all: {
+      image: 'assets/images/process-body-care.webp', alt: 'Уходовая процедура для тела', number: '01',
+      intro: 'Выберите направление и найдите процедуру, которая подходит вашему запросу.', handwriting: 'Забота\nв каждом\nдвижении'
+    },
+    massage: {
+      image: 'assets/images/process-back-massage.webp', alt: 'Массаж спины в студии «Прикосновение»', number: '01',
+      intro: 'Восстановление, лёгкость и внутренняя энергия. Подберём технику массажа под ваши цели и состояние.', handwriting: 'Забота\nв каждом\nдвижении'
+    },
+    face: {
+      image: 'assets/images/process-face-care.webp', alt: 'Массаж и уход за лицом', number: '02',
+      intro: 'Деликатные техники для расслабления, свежего вида и комплексного ухода за лицом.', handwriting: 'Красота\nв мягком\nприкосновении'
+    },
+    cosmetology: {
+      image: 'assets/images/process-cosmetology.webp', alt: 'Косметологическая процедура в студии', number: '03',
+      intro: 'Современные процедуры с индивидуальным подбором средств и параметров воздействия.', handwriting: 'Точность\nи бережный\nуход'
+    },
+    peeling: {
+      image: 'assets/images/process-face-glass.webp', alt: 'Профессиональный уход за кожей лица', number: '04',
+      intro: 'Мягкое обновление кожи, работа с текстурой и тоном под контролем специалиста.', handwriting: 'Обновление\nи естественное\nсияние'
+    },
+    spa: {
+      image: 'assets/images/fire-massage.webp', alt: 'Авторская SPA-процедура в студии', number: '05',
+      intro: 'Продуманные программы для глубокого отдыха, ухода за телом и ощущения лёгкости.', handwriting: 'Время\nтолько\nдля себя'
+    },
+    casmara: {
+      image: 'assets/images/ksanti-oils.webp', alt: 'Профессиональные средства для ухода за кожей', number: '06',
+      intro: 'Профессиональные программы Casmara для питания, восстановления и сияния кожи.', handwriting: 'Уход\nкак тихий\nритуал'
+    }
+  };
+
+  const bindRows = () => {
+    [...rowsHost.querySelectorAll('details')].forEach(row => row.addEventListener('toggle', () => {
+      if (!row.open) return;
+      rowsHost.querySelectorAll('details').forEach(other => { if (other !== row) other.open = false; });
+    }));
+  };
+
+  const render = filter => {
+    if (filter === 'massage') {
+      rowsHost.innerHTML = massageMarkup;
+    } else {
+      const visible = filter === 'all' ? cards : cards.filter(card => card.dataset.category === filter);
+      rowsHost.replaceChildren(...visible.map(card => {
+        const details = document.createElement('details');
+        const summary = document.createElement('summary');
+        const name = document.createElement('span');
+        const duration = document.createElement('small');
+        const price = document.createElement('strong');
+        const plus = document.createElement('i');
+        name.textContent = card.querySelector('h3').textContent;
+        duration.textContent = card.querySelector('.service-card__duration').textContent;
+        price.textContent = card.querySelector('.service-card__price').textContent;
+        summary.append(name, duration, price, plus);
+        const body = document.createElement('div');
+        const description = document.createElement('p');
+        description.textContent = `${card.querySelector('.service-card__label').textContent}. Подробности процедуры и индивидуальные рекомендации специалист уточнит перед записью.`;
+        const book = document.createElement('a');
+        book.href = card.querySelector('.service-card__book').href;
+        book.target = '_blank'; book.rel = 'noopener'; book.textContent = 'Записаться →';
+        body.append(description, book);
+        details.append(summary, body);
+        return details;
+      }));
+    }
+    const total = rowsHost.querySelectorAll('details').length;
+    count.firstChild.textContent = `${total} ${total === 1 ? 'процедура' : total < 5 ? 'процедуры' : 'процедур'} `;
+    title.textContent = labels[filter];
+    const visual = categoryVisuals[filter];
+    visualImage.src = visual.image;
+    visualImage.alt = visual.alt;
+    visualNumber.firstChild.textContent = `${visual.number} `;
+    visualIntro.textContent = visual.intro;
+    handwriting.textContent = visual.handwriting;
+    tabs.forEach(tab => tab.classList.toggle('active', tab.dataset.menuFilter === filter));
+    bindRows();
+    if (search) search.dispatchEvent(new Event('input'));
+  };
+
+  tabs.forEach(tab => tab.addEventListener('click', event => {
+    event.preventDefault();
+    render(tab.dataset.menuFilter);
+  }));
+
+  if (search) {
+    search.addEventListener('input', () => {
+      const query = search.value.trim().toLocaleLowerCase('ru');
+      rowsHost.querySelectorAll('details').forEach(row => {
+        row.hidden = Boolean(query) && !row.textContent.toLocaleLowerCase('ru').includes(query);
+      });
+    });
+  }
+  bindRows();
+}
+
 // Дорожка мастеров держит высоту открытой карточки, а не самой длинной из всех.
 function setupMasterCarouselHeight() {
   const track = document.querySelector('.master-carousel__track');
@@ -149,7 +262,63 @@ function setupCarousels() {
     const previous = carousel.querySelector('[data-carousel-prev]');
     const next = carousel.querySelector('[data-carousel-next]');
     const progress = carousel.querySelector('.carousel__progress span');
+    const nameRail = carousel.querySelector('.master-carousel__names');
+    const masterCounter = carousel.querySelector('.master-carousel__counter');
     if (!track) return;
+
+    const items = [...track.children].filter(child => !child.classList.contains('filtered-out'));
+    let nameButtons = [];
+    if (nameRail) {
+      nameButtons = items.map((item, index) => {
+        const nameItem = document.createElement('span');
+        nameItem.className = 'master-carousel__name-item';
+        const button = document.createElement('button');
+        button.className = 'master-carousel__name';
+        button.type = 'button';
+        const fullName = item.querySelector('h3')?.textContent?.trim() || `${index + 1}`;
+        button.textContent = fullName.split(/\s+/)[0];
+        button.setAttribute('aria-label', `Показать: ${button.textContent}`);
+        nameItem.append(button);
+        if (item.querySelector('[data-master-video]')) {
+          const videoMark = document.createElement('span');
+          videoMark.className = 'master-carousel__video-mark';
+          videoMark.setAttribute('aria-hidden', 'true');
+          videoMark.textContent = '▶';
+          nameItem.append(videoMark);
+        }
+        nameRail.append(nameItem);
+        return button;
+      });
+    }
+
+    if (nameRail) {
+      const bookingSource = document.querySelector('.header-cta');
+      items.forEach(item => {
+        const photo = item.querySelector('.master-slide__photo');
+        const video = item.querySelector('.master-videos');
+        if (photo && !photo.parentElement.classList.contains('master-slide__visual')) {
+          const visual = document.createElement('div');
+          visual.className = 'master-slide__visual';
+          photo.before(visual);
+          visual.append(photo);
+          if (video) visual.append(video);
+        }
+
+        const body = item.querySelector('.master-slide__body');
+        const profile = item.querySelector('.team__link');
+        if (body && profile && !profile.parentElement.classList.contains('master-slide__actions')) {
+          const actions = document.createElement('div');
+          actions.className = 'master-slide__actions';
+          profile.before(actions);
+          actions.append(profile);
+          if (bookingSource) {
+            const booking = bookingSource.cloneNode(true);
+            booking.className = 'button master-slide__booking';
+            actions.append(booking);
+          }
+        }
+      });
+    }
 
     // Некоторые карусели (например, мастера) листаются на любом экране,
     // а не только с планшета и ниже.
@@ -173,6 +342,20 @@ function setupCarousels() {
       }
       if (previous) previous.disabled = track.scrollLeft <= 2;
       if (next) next.disabled = track.scrollLeft >= max - 2;
+      if (nameButtons.length) {
+        const current = Math.max(0, Math.min(nameButtons.length - 1, Math.round(track.scrollLeft / step())));
+        if (masterCounter) {
+          masterCounter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(nameButtons.length).padStart(2, '0')}`;
+        }
+        nameButtons.forEach((button, index) => {
+          const active = index === current;
+          button.classList.toggle('is-active', active);
+          button.setAttribute('aria-current', active ? 'true' : 'false');
+        });
+        const activeName = nameButtons[current].parentElement;
+        const left = activeName.offsetLeft - (nameRail.clientWidth - activeName.offsetWidth) / 2;
+        nameRail.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+      }
     };
 
     let scheduled = false;
@@ -232,6 +415,19 @@ function setupCarousels() {
     const scrollBy = delta => animateTo(track.scrollLeft + delta * step());
     if (previous) previous.addEventListener('click', () => scrollBy(-1));
     if (next) next.addEventListener('click', () => scrollBy(1));
+    nameButtons.forEach((button, index) => button.addEventListener('click', () => animateTo(index * step())));
+    const openMasterVideo = videoData => {
+      document.dispatchEvent(new CustomEvent('master-video:open', {
+        detail: {
+          src: videoData.dataset.masterVideo,
+          poster: videoData.dataset.masterVideoPoster || ''
+        }
+      }));
+    };
+    items.forEach(item => {
+      const videoData = item.querySelector('[data-master-video]');
+      videoData?.querySelector('.master-video-trigger')?.addEventListener('click', () => openMasterVideo(videoData));
+    });
 
     // Перетаскивание мышью. Палец обрабатывает сам браузер — так плавнее.
     let dragging = false;
@@ -436,10 +632,55 @@ function setupGallery() {
   });
 }
 
+function setupMasterVideoModal() {
+  const modal = document.querySelector('.video-modal');
+  if (!modal) return;
+  const video = modal.querySelector('video');
+  const close = modal.querySelector('.video-modal__close');
+  let previousFocus = null;
+
+  const closeModal = () => {
+    video.pause();
+    video.removeAttribute('src');
+    video.removeAttribute('poster');
+    video.load();
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    previousFocus?.focus();
+  };
+
+  document.addEventListener('master-video:open', event => {
+    if (!event.detail?.src) return;
+    previousFocus = document.activeElement;
+    video.src = event.detail.src;
+    if (event.detail.poster) video.poster = event.detail.poster;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    close.focus();
+  });
+
+  close.addEventListener('click', closeModal);
+  modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
+  document.addEventListener('keydown', event => {
+    if (!modal.classList.contains('open')) return;
+    if (event.key === 'Escape') closeModal();
+    if (event.key === 'Tab') {
+      const controls = [close, video];
+      const index = controls.indexOf(document.activeElement);
+      if (event.shiftKey && index <= 0) { event.preventDefault(); video.focus(); }
+      if (!event.shiftKey && index === controls.length - 1) { event.preventDefault(); close.focus(); }
+    }
+  });
+}
+
 setupNavigation();
 setupReveals();
 setupServices();
+setupProcedureMenu();
 setupCarousels();
 setupMasterCarouselHeight();
 setupReviewPagers();
 setupGallery();
+setupMasterVideoModal();

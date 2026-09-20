@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap">
   <link rel="preload" as="image" href="assets/images/hero-interior-client.png">
-  <link rel="stylesheet" href="styles.css?v=20260919-4">
+  <link rel="stylesheet" href="styles.css?v=20260920-2">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -278,9 +278,16 @@
           <p class="section-head__note"> Наша команда тщательно сформирована: каждый специалист работает в своём направлении, постоянно повышает квалификацию и помогает подобрать оптимальный уход или процедуру.</p>
         </div>
         <div class="master-carousel" data-carousel data-carousel-always>
+          <div class="carousel__controls">
+            <button class="carousel__btn" type="button" data-carousel-prev aria-label="Предыдущий мастер">←</button>
+            <div class="master-carousel__names" aria-label="Выбрать мастера"></div>
+            <div class="carousel__progress" aria-hidden="true"><span></span></div>
+            <span class="master-carousel__counter" aria-live="polite"></span>
+            <button class="carousel__btn" type="button" data-carousel-next aria-label="Следующий мастер">→</button>
+          </div>
           <div class="master-carousel__track carousel__track" role="group" aria-label="Мастера студии">
             <article class="master-slide reveal">
-              <img class="master-slide__photo" src="assets/images/team/master-oksana.webp" alt="Оксана Потоцкая, фото с DIKIDI" width="900" height="900" loading="lazy">
+              <img class="master-slide__photo" src="assets/images/team/master-oksana-2026.webp" alt="Оксана Потоцкая" width="1122" height="1402" loading="lazy">
               <div class="master-slide__body">
                 <div class="master-slide__head">
                   <h3>Оксана Потоцкая</h3>
@@ -316,7 +323,7 @@
               </div>
             </article>
             <article class="master-slide reveal">
-              <img class="master-slide__photo" src="assets/images/team/master-maria.webp" alt="Мария, фото с DIKIDI" width="900" height="900" loading="lazy">
+              <img class="master-slide__photo" src="assets/images/team/master-maria-2026.webp" alt="Мария" width="1122" height="1402" loading="lazy">
               <div class="master-slide__body">
                 <div class="master-slide__head">
                   <h3>Мария</h3>
@@ -348,11 +355,14 @@
                     <button type="button" data-review-next aria-label="Следующий отзыв">→</button>
                   </div>
                 </div>
+                <div class="master-videos" data-master-video="assets/video/maria-web.mp4">
+                  <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство с Марией"><span class="master-video-trigger__icon" aria-hidden="true">▶</span><span>Видео-знакомство · 3:49</span></button>
+                </div>
                 <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/2744722" target="_blank" rel="noopener">Профиль ↗</a>
               </div>
             </article>
             <article class="master-slide reveal">
-              <img class="master-slide__photo" src="assets/images/team/master-svetlana.webp" alt="Светлана, фото с DIKIDI" width="900" height="900" loading="lazy">
+              <img class="master-slide__photo" src="assets/images/team/master-svetlana-2026.webp" alt="Светлана" width="1122" height="1402" loading="lazy">
               <div class="master-slide__body">
                 <div class="master-slide__head">
                   <h3>Светлана</h3>
@@ -384,16 +394,17 @@
                     <button type="button" data-review-next aria-label="Следующий отзыв">→</button>
                   </div>
                 </div>
-                <div class="master-videos">
-                  <video class="master-videos__player" controls preload="none" poster="assets/video/svetlana-1-poster.webp" playsinline>
-                    <source src="assets/video/svetlana-1.mp4" type="video/mp4">
-                  </video>
+                <div class="master-videos" data-master-video="assets/video/svetlana-1.mp4" data-master-video-poster="assets/video/svetlana-1-poster.webp">
+                  <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство со Светланой">
+                    <span class="master-video-trigger__icon" aria-hidden="true">▶</span>
+                    <span>Видео-знакомство · 2:04</span>
+                  </button>
                 </div>
                 <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/3513507" target="_blank" rel="noopener">Профиль ↗</a>
               </div>
             </article>
             <article class="master-slide reveal">
-              <img class="master-slide__photo" src="assets/images/team/master-viktoria.webp" alt="Виктория, фото с DIKIDI" width="900" height="900" loading="lazy">
+              <img class="master-slide__photo" src="assets/images/team/master-viktoria-2026.webp" alt="Виктория" width="1122" height="1402" loading="lazy">
               <div class="master-slide__body">
                 <div class="master-slide__head">
                   <h3>Виктория</h3>
@@ -425,14 +436,17 @@
                     <button type="button" data-review-next aria-label="Следующий отзыв">→</button>
                   </div>
                 </div>
+                <div class="master-videos" data-master-video="assets/video/viktoria-web.mp4">
+                  <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство с Викторией"><span class="master-video-trigger__icon" aria-hidden="true">▶</span><span>Видео-знакомство · 4:09</span></button>
+                </div>
                 <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/3621175" target="_blank" rel="noopener">Профиль ↗</a>
               </div>
             </article>
             <article class="master-slide reveal">
-              <img class="master-slide__photo" src="assets/images/team/master-irina.webp" alt="Ирина Владимировна Анурина, фото с DIKIDI" width="900" height="900" loading="lazy">
+              <img class="master-slide__photo" src="assets/images/team/master-irina-2026.webp" alt="Ирина" width="1122" height="1402" loading="lazy">
               <div class="master-slide__body">
                 <div class="master-slide__head">
-                  <h3>Ирина Владимировна Анурина</h3>
+                  <h3>Ирина</h3>
                   <p class="team__role">Остеопат</p>
                 </div>
                 <p class="team__fit">Опыт работы более 10 лет. Работает в госпитале и готова помочь как взрослым, так и детям — мягкие техники и деликатный подход, ежегодно повышает квалификацию и применяет новые методики. Помогает справиться с тканевыми повреждениями, смещением костей, ограничением в суставах и сопутствующими нарушениями работы внутренних органов, мышечными спазмами, повреждениями коленного и тазобедренного суставов и нижних конечностей, головными болями и шумом в ушах, нормализует работу желёз, снимает боль в шее и затруднённое дыхание, оказывает послеоперационную помощь в восстановлении.</p>
@@ -446,7 +460,7 @@
               </div>
             </article>
             <article class="master-slide reveal">
-              <img class="master-slide__photo" src="assets/images/team/master-yulia.webp" alt="Юлия, фото с DIKIDI" width="900" height="900" loading="lazy">
+              <img class="master-slide__photo" src="assets/images/team/master-yulia-2026.webp" alt="Юлия" width="1122" height="1402" loading="lazy">
               <div class="master-slide__body">
                 <div class="master-slide__head">
                   <h3>Юлия</h3>
@@ -478,36 +492,46 @@
                     <button type="button" data-review-next aria-label="Следующий отзыв">→</button>
                   </div>
                 </div>
+                <div class="master-videos" data-master-video="assets/video/yulia-web.mp4">
+                  <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство с Юлией"><span class="master-video-trigger__icon" aria-hidden="true">▶</span><span>Видео-знакомство · 2:07</span></button>
+                </div>
                 <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/4128904" target="_blank" rel="noopener">Профиль ↗</a>
               </div>
             </article>
             <article class="master-slide reveal">
-              <img class="master-slide__photo" src="assets/images/team/master-anastasia-client.webp" alt="Анастасия, мастер массажа лица" width="562" height="702" loading="lazy">
+              <img class="master-slide__photo" src="assets/images/team/master-anastasia-2026.webp" alt="Анастасия, мастер массажа лица" width="1122" height="1402" loading="lazy">
               <div class="master-slide__body">
                 <div class="master-slide__head">
                   <h3>Анастасия</h3>
                   <p class="team__role">Мастер массажа лица</p>
                 </div>
                 <p class="team__fit">Позитивный мастер массажа лица с уверенной техникой и сильными руками. Легко поддерживает разговор, внимательно относится к вопросам клиента и помогает разобраться в уходе. Хорошо находит общий язык с клиентами старшего возраста — её работу особенно ценят гости 50+.</p>
+                <div class="master-videos" data-master-video="assets/video/anastasia-web.mp4">
+                  <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство с Анастасией">
+                    <span class="master-video-trigger__icon" aria-hidden="true">▶</span>
+                    <span>Видео-знакомство · 2:48</span>
+                  </button>
+                </div>
                 <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/4470767" target="_blank" rel="noopener">Профиль ↗</a>
               </div>
             </article>
             <article class="master-slide reveal">
-              <img class="master-slide__photo" src="assets/images/team/master-nastya-client.webp" alt="Настя, мастер массажа тела" width="562" height="702" loading="lazy">
+              <img class="master-slide__photo" src="assets/images/team/master-nastya-2026.webp" alt="Настя, мастер массажа тела" width="1122" height="1402" loading="lazy">
               <div class="master-slide__body">
                 <div class="master-slide__head">
                   <h3>Настя</h3>
                   <p class="team__role">Мастер массажа тела</p>
                 </div>
                 <p class="team__fit">Специалист с медицинской подготовкой и хорошим знанием анатомии. Точно работает с напряжёнными зонами, подбирает интенсивность под состояние и запрос клиента. Подходит тем, кто ценит бережную, вдумчивую работу и ощутимый результат без лишней жёсткости.</p>
+                <div class="master-videos" data-master-video="assets/video/nastya-web.mp4">
+                  <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство с Настей">
+                    <span class="master-video-trigger__icon" aria-hidden="true">▶</span>
+                    <span>Видео-знакомство · 1:52</span>
+                  </button>
+                </div>
                 <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/4551597" target="_blank" rel="noopener">Профиль ↗</a>
               </div>
             </article>
-          </div>
-          <div class="carousel__controls">
-            <button class="carousel__btn" type="button" data-carousel-prev aria-label="Предыдущий мастер">←</button>
-            <div class="carousel__progress" aria-hidden="true"><span></span></div>
-            <button class="carousel__btn" type="button" data-carousel-next aria-label="Следующий мастер">→</button>
           </div>
         </div>
       </div>
@@ -794,6 +818,13 @@
     <button class="lightbox-prev" type="button" aria-label="Предыдущее фото">←</button>
     <figure><img alt=""><figcaption></figcaption></figure>
     <button class="lightbox-next" type="button" aria-label="Следующее фото">→</button>
+  </div>
+
+  <div class="video-modal" role="dialog" aria-modal="true" aria-label="Видео-знакомство с мастером" aria-hidden="true">
+    <button class="video-modal__close" type="button" aria-label="Закрыть видео">×</button>
+    <div class="video-modal__frame">
+      <video controls playsinline preload="metadata"></video>
+    </div>
   </div>
 
   <footer class="site-footer">
