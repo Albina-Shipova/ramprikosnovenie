@@ -1,12 +1,14 @@
 /* Desktop composition matched to the supplied 1448px reference boards. */
-body[data-page="training"] { --edu-gold:#b99a74; --edu-paper:#f6f3ee; --edu-dark:#232220; background:var(--edu-paper); }
-body[data-page="training"] .site-header { background:var(--bg); backdrop-filter:none; border-bottom:1px solid var(--line); }
-body[data-page="training"] .header-inner { width:min(var(--shell),100% - var(--gutter) * 2); max-width:none; min-height:68px; gap:clamp(20px,3vw,44px); }
-body[data-page="training"] .brand__name { font-size:1.0625rem; font-weight:600; }
-body[data-page="training"] .brand__tag { font-size:.6875rem; letter-spacing:.14em; }
+body[data-page="training"] { --edu-gold:#c5a98a; --edu-paper:#f6f3ee; --edu-dark:#1e1e1c; background:var(--edu-paper); }
+body[data-page="training"] .site-header { background:#f5f2ee; backdrop-filter:none; border-bottom:0; }
+body[data-page="training"] .header-inner { width:min(1536px,calc(100% - 96px)); max-width:none; min-height:82px; grid-template-columns:360px 1fr auto; gap:36px; }
+body[data-page="training"] .brand__logo { display:none; }
+body[data-page="training"] .brand__name { font-family:"Cormorant Garamond",Georgia,serif; font-size:31px; line-height:.95; font-weight:500; letter-spacing:.025em; text-transform:uppercase; }
+body[data-page="training"] .brand__tag { margin-top:7px; padding-left:31px; font-size:9px; line-height:1; letter-spacing:.29em; color:#292825; }
 body[data-page="training"] .site-nav { gap:clamp(18px,2.4vw,34px); }
-body[data-page="training"] .site-nav a { font-size:.9375rem; white-space:nowrap; }
-body[data-page="training"] .header-cta { min-width:0; height:auto; font-size:.875rem; }
+body[data-page="training"] .site-nav a { padding:30px 0 25px; font-size:14px; font-weight:400; white-space:nowrap; }
+body[data-page="training"] .site-nav a::after { bottom:14px; height:1px; background:#9c8065; }
+body[data-page="training"] .header-cta { min-width:200px; min-height:52px; height:auto; padding-inline:38px; border-radius:7px; font-size:15px; font-weight:400; }
 body[data-page="training"] .site-footer { padding:0; }
 body[data-page="training"] .training-footer-row { display:grid; grid-template-columns:auto minmax(160px,.8fr) minmax(190px,.9fr) minmax(300px,1.65fr) auto; align-items:center; gap:clamp(22px,3vw,48px); min-height:126px; padding-block:24px; }
 body[data-page="training"] .training-footer-row p { margin:0; color:var(--gray-light); opacity:.8; font-size:clamp(.72rem,.8vw,.875rem); line-height:1.5; }
@@ -18,14 +20,14 @@ body[data-page="training"] .training-footer-copy { color:var(--gray-light); opac
 .edu *, .edu *::before, .edu *::after { box-sizing:border-box; }
 .edu-shell { width:min(var(--shell), calc(100% - var(--gutter) * 2)); margin:0 auto; position:relative; z-index:1; }
 .edu h1,.edu h2,.edu h3 { font-family:var(--font-display); font-weight:600; letter-spacing:var(--type-heading-track); text-wrap:balance; color:inherit; overflow-wrap:break-word; }
-.edu h1 { font-size:66px; line-height:1.04; }
+.edu h1 { font-family:"Cormorant Garamond",Georgia,serif; font-size:86px; line-height:.94; font-weight:400; letter-spacing:-.035em; }
 .edu h2 { font-size:62px; line-height:1.04; }
 .edu h3 { font-size:30px; line-height:1.08; }
 .edu em { color:var(--heading-accent); font-style:normal; }
 .edu p { margin:0; }
-.edu-eyebrow { display:flex; align-items:center; gap:20px; font-size:13px; line-height:1.7; text-transform:uppercase; letter-spacing:2.7px; font-weight:400; }
-.edu-eyebrow::before { content:""; height:1px; width:27px; flex:none; background:var(--edu-gold); }
-.edu-lead { font-size:21px; line-height:1.48; color:#d5d3cf; }
+.edu-eyebrow { display:flex; align-items:center; gap:20px; font-size:13px; line-height:1.7; text-transform:uppercase; letter-spacing:3.4px; font-weight:400; }
+.edu-eyebrow::before { display:none; }
+.edu-lead { font-size:18px; line-height:1.55; letter-spacing:.025em; color:#f1efeb; }
 .edu-actions { display:flex; align-items:center; gap:38px; }
 .edu-button { display:inline-flex; align-items:center; justify-content:center; gap:14px; min-height:60px; padding:15px 31px; background:#fff; color:#232220; border:1px solid #e4e2df; border-radius:4px; font-size:18px; font-weight:500; line-height:1.3; transition:background .2s; }
 .edu-button:hover { background:#e8ded0; }
@@ -34,19 +36,25 @@ body[data-page="training"] .training-footer-copy { color:var(--gray-light); opac
 .edu-link { display:inline-flex; align-items:center; gap:10px; border-bottom:1px solid #bdb7ae; padding-bottom:4px; font-size:17px; line-height:1.3; }
 .edu-link:hover { color:var(--edu-gold); }
 .edu-icon { width:46px; height:46px; flex:none; fill:none; stroke:var(--edu-gold); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
-.edu-wave { position:absolute; z-index:2; bottom:-1px; left:0; width:100%; height:63px; fill:var(--white); pointer-events:none; }
-.edu-hero { position:relative; isolation:isolate; overflow:hidden; min-height:740px; padding:62px 0 80px; background:#232220; }
-.edu-hero::before { content:""; position:absolute; z-index:-2; inset:0 0 0 36%; background:url('assets/images/training/hero-reference.png') center center/cover no-repeat; }
-.edu-hero::after { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(90deg,#232220 0%,#232220 30%,rgba(35,34,32,.94) 40%,rgba(35,34,32,.62) 52%,rgba(35,34,32,.18) 68%,transparent 82%); pointer-events:none; }
-.edu-hero h1 { margin:28px 0 22px; }
-.edu-hero .edu-actions { margin-top:26px; }
-.edu-facts { display:grid; grid-template-columns:165px 256px 210px; margin-top:34px; }
+.edu-wave { position:absolute; z-index:2; bottom:-1px; left:0; width:100%; height:60px; fill:#faf8f5; pointer-events:none; }
+.edu-hero { position:relative; isolation:isolate; overflow:hidden; min-height:calc(100vh - 82px); padding:104px 0 92px; background:#1e1e1c; }
+.edu-hero::before { content:""; position:absolute; z-index:-2; inset:-3px; background:url('assets/images/training/hero-training-session.png') center center/cover no-repeat; filter:blur(.9px); transform:scale(1.004); }
+.edu-hero::after { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(90deg,rgba(21,21,20,.94) 0%,rgba(24,24,22,.84) 25%,rgba(25,25,23,.52) 43%,rgba(20,20,19,.05) 64%,rgba(16,16,15,.1) 100%); pointer-events:none; }
+.edu-hero .edu-shell { width:min(1512px,calc(100% - 160px)); }
+.edu-hero h1 { max-width:760px; margin:18px 0 22px; }
+.edu-hero h1 em { color:#d0af8d; }
+.edu-hero .edu-actions { margin-top:30px; }
+.edu-hero .edu-button { min-width:290px; min-height:66px; background:linear-gradient(110deg,#c9ad8f,#ad947c); border:0; color:#fff; font-size:17px; }
+.edu-hero .edu-link { color:#fff; font-size:16px; border-bottom-color:#c8a985; }
+.edu-facts { display:grid; grid-template-columns:198px 250px 210px; margin-top:48px; }
 .edu-facts>div { padding-left:44px; border-left:1px solid #ffffff40; display:flex; flex-direction:column; align-items:flex-start; }
 .edu-facts>div:first-child { border:0; padding:0; }
-.edu-facts b,.edu-contact-facts b { display:block; font-size:19px; line-height:1.35; font-weight:400; margin:9px 0 3px; }
-.edu-facts span,.edu-contact-facts span { font-size:16px; line-height:1.4; color:#bdbab5; }
-.edu-motto { position:absolute; z-index:1; top:72px; right:6.5%; text-align:center; color:var(--edu-gold); font-size:17px; line-height:1.8; letter-spacing:6px; text-transform:uppercase; }
+.edu-facts b,.edu-contact-facts b { display:block; font-size:16px; line-height:1.35; font-weight:600; margin:7px 0 2px; }
+.edu-facts span,.edu-contact-facts span { font-size:13px; line-height:1.4; color:#ddd8d2; }
+.edu-facts .edu-icon { width:40px; height:40px; }
+.edu-motto { position:absolute; z-index:1; top:59px; right:4.5%; text-align:left; color:#d0b293; font-size:12px; line-height:2.05; letter-spacing:5px; text-transform:uppercase; }
 .edu-motto>span,.edu-programs-motto>span,.edu-doc-motto>span,.edu-teacher-motto>span { display:block; width:46px; height:1px; background:var(--edu-gold); margin:36px auto 0; }
+.edu-hero .edu-motto>span { width:1px; height:98px; margin:13px 0 0; }
 .edu-programs { position:relative; padding:72px 0 105px; background:linear-gradient(90deg,#222221ee,#222221c4),url('assets/images/training/interior.png') center/cover; margin-top:0; }
 .edu-programs-intro { display:grid; grid-template-columns:690px 1fr; margin-bottom:26px; }
 .edu-programs h2 { margin:22px 0 22px; }
