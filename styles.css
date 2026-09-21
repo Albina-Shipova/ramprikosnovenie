@@ -2241,12 +2241,19 @@ body[data-page="training"] .training-page-hero__copy {
 }
 
 body[data-page="training"] .training-page-hero .eyebrow,
-body[data-page="training"] .training-programs .eyebrow,
-body[data-page="training"] .training-page-contact .eyebrow {
+body[data-page="training"] .training-programs .eyebrow {
   display: flex;
   align-items: center;
   gap: 16px;
   color: #eeeae3;
+  letter-spacing: .2em;
+}
+
+body[data-page="training"] .training-page-contact .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--graphite);
   letter-spacing: .2em;
 }
 
@@ -2443,22 +2450,23 @@ body[data-page="training"] .training-page-contact {
   overflow: hidden;
   padding-block: clamp(88px, 9vw, 136px);
   background:
-    linear-gradient(90deg, rgba(27,26,25,.98) 0 56%, rgba(27,26,25,.72)),
+    linear-gradient(90deg, var(--gray-light) 0 56%, rgba(231,228,222,.72)),
     url('assets/images/studio-light.webp') right 62% / 48% auto no-repeat,
-    var(--training-ink);
+    var(--gray-light);
   mask-image: var(--mirror-mask-bottom);
   -webkit-mask-image: var(--mirror-mask-bottom);
   mask-size: 100% 100%;
   -webkit-mask-size: 100% 100%;
 }
 body[data-page="training"] .training-page-contact__inner { grid-template-columns: minmax(0, .9fr) minmax(320px, .55fr); align-items: center; }
-body[data-page="training"] .training-page-contact h2 { max-width: 11ch; color: #fff; font-size: clamp(2.8rem, 4.8vw, 5rem); line-height: 1; }
+body[data-page="training"] .training-page-contact h2 { max-width: 11ch; color: var(--graphite); font-size: clamp(2.8rem, 4.8vw, 5rem); line-height: 1; }
+body[data-page="training"] .training-page-contact p:last-child { color: var(--graphite); opacity: .68; }
 body[data-page="training"] .training-page-contact .button-row {
   display: grid;
   justify-content: stretch;
   padding: clamp(24px, 3vw, 38px);
-  border: 1px solid rgba(255,255,255,.24);
-  background: rgba(20,19,18,.48);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.6);
   backdrop-filter: blur(12px);
 }
 body[data-page="training"] .training-page-contact .button { width: 100%; font-size: 1.1rem; }

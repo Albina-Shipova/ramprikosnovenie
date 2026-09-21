@@ -1,14 +1,5 @@
 /* Desktop composition matched to the supplied 1448px reference boards. */
 body[data-page="training"] { --edu-gold:#c5a98a; --edu-paper:#f6f3ee; --edu-dark:#1e1e1c; background:var(--edu-paper); }
-body[data-page="training"] .site-header { background:#f5f2ee; backdrop-filter:none; border-bottom:0; }
-body[data-page="training"] .header-inner { width:min(1536px,calc(100% - 96px)); max-width:none; min-height:82px; grid-template-columns:360px 1fr auto; gap:36px; }
-body[data-page="training"] .brand__logo { display:none; }
-body[data-page="training"] .brand__name { font-family:"Cormorant Garamond",Georgia,serif; font-size:31px; line-height:.95; font-weight:500; letter-spacing:.025em; text-transform:uppercase; }
-body[data-page="training"] .brand__tag { margin-top:7px; padding-left:31px; font-size:9px; line-height:1; letter-spacing:.29em; color:#292825; }
-body[data-page="training"] .site-nav { gap:clamp(18px,2.4vw,34px); }
-body[data-page="training"] .site-nav a { padding:30px 0 25px; font-size:14px; font-weight:400; white-space:nowrap; }
-body[data-page="training"] .site-nav a::after { bottom:14px; height:1px; background:#9c8065; }
-body[data-page="training"] .header-cta { min-width:200px; min-height:52px; height:auto; padding-inline:38px; border-radius:7px; font-size:15px; font-weight:400; }
 body[data-page="training"] .site-footer { padding:0; }
 body[data-page="training"] .training-footer-row { display:grid; grid-template-columns:auto minmax(160px,.8fr) minmax(190px,.9fr) minmax(300px,1.65fr) auto; align-items:center; gap:clamp(22px,3vw,48px); min-height:126px; padding-block:24px; }
 body[data-page="training"] .training-footer-row p { margin:0; color:var(--gray-light); opacity:.8; font-size:clamp(.72rem,.8vw,.875rem); line-height:1.5; }
@@ -20,7 +11,7 @@ body[data-page="training"] .training-footer-copy { color:var(--gray-light); opac
 .edu *, .edu *::before, .edu *::after { box-sizing:border-box; }
 .edu-shell { width:min(var(--shell), calc(100% - var(--gutter) * 2)); margin:0 auto; position:relative; z-index:1; }
 .edu h1,.edu h2,.edu h3 { font-family:var(--font-display); font-weight:600; letter-spacing:var(--type-heading-track); text-wrap:balance; color:inherit; overflow-wrap:break-word; }
-.edu h1 { font-family:"Cormorant Garamond",Georgia,serif; font-size:86px; line-height:.94; font-weight:400; letter-spacing:-.035em; }
+.edu h1 { font-size:86px; line-height:.94; letter-spacing:-.035em; }
 .edu h2 { font-size:62px; line-height:1.04; }
 .edu h3 { font-size:30px; line-height:1.08; }
 .edu em { color:var(--heading-accent); font-style:normal; }
@@ -36,7 +27,7 @@ body[data-page="training"] .training-footer-copy { color:var(--gray-light); opac
 .edu-link { display:inline-flex; align-items:center; gap:10px; border-bottom:1px solid #bdb7ae; padding-bottom:4px; font-size:17px; line-height:1.3; }
 .edu-link:hover { color:var(--edu-gold); }
 .edu-icon { width:46px; height:46px; flex:none; fill:none; stroke:var(--edu-gold); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
-.edu-wave { position:absolute; z-index:2; bottom:-1px; left:0; width:100%; height:60px; fill:#faf8f5; pointer-events:none; }
+.edu-wave { position:absolute; z-index:2; bottom:-1px; left:0; width:100%; height:60px; fill:#fff; pointer-events:none; }
 .edu-hero { position:relative; isolation:isolate; overflow:hidden; min-height:calc(100vh - 82px); padding:104px 0 92px; background:#1e1e1c; }
 .edu-hero::before { content:""; position:absolute; z-index:-2; inset:-3px; background:url('assets/images/training/hero-training-session.png') center center/cover no-repeat; filter:blur(.9px); transform:scale(1.004); }
 .edu-hero::after { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(90deg,rgba(21,21,20,.94) 0%,rgba(24,24,22,.84) 25%,rgba(25,25,23,.52) 43%,rgba(20,20,19,.05) 64%,rgba(16,16,15,.1) 100%); pointer-events:none; }
@@ -251,8 +242,9 @@ body[data-page="training"] #seminars .training-fire__copy .training__list span {
 .edu-doc-bottom { display:flex; justify-content:space-between; align-items:center; padding:48px 0 20px; border-bottom:1px solid #c6ae904f; color:#85817b; }
 .edu-doc-bottom .edu-eyebrow { font-size:11px; letter-spacing:2.4px; }
 .edu-doc-bottom .edu-link { font-size:13px; }
-.edu-teacher { position:relative; height:100svh; min-height:720px; max-height:900px; overflow:hidden; background:linear-gradient(90deg,rgba(24,23,22,.58) 0%,rgba(24,23,22,.34) 46%,rgba(24,23,22,.08) 70%),url('assets/images/training/teacher.png') center/cover; padding:clamp(38px,5vh,58px) 0; color:#f8f7f5; }
-.edu-teacher-copy { width:640px; }
+.edu-teacher { position:relative; height:100svh; min-height:660px; max-height:840px; overflow:hidden; background:linear-gradient(90deg,rgba(24,23,22,.58) 0%,rgba(24,23,22,.34) 46%,rgba(24,23,22,.08) 70%),url('assets/images/training/teacher.png') center 20%/cover; padding:clamp(52px,6vw,96px) 0; color:#f8f7f5; }
+.edu-teacher .edu-shell { height:100%; }
+.edu-teacher-copy { width:640px; height:100%; display:flex; flex-direction:column; justify-content:space-between; }
 .edu-teacher .edu-eyebrow { color:#eeeae3; }
 .edu-teacher h2 { color:#fff; font-size:clamp(44px,5.2vh,56px); margin:clamp(18px,2.6vh,28px) 0 clamp(16px,2.2vh,24px); line-height:.98; overflow-wrap:break-word; }
 .edu-teacher .edu-lead { color:#e4e1dc; font-size:clamp(16px,1.8vh,18px); line-height:1.42; }
@@ -327,7 +319,6 @@ body[data-page="training"] #seminars .training-fire__copy .training__list span {
  body[data-page="training"] .training-footer-row { grid-template-columns:1fr 1fr; align-items:start; gap:24px 32px; padding-block:32px; }
  body[data-page="training"] .training-footer-license { grid-column:1/-1; }
  .edu-shell { width:min(var(--shell), calc(100% - var(--gutter) * 2)); }
- body[data-page="training"] .header-inner { min-height:62px; }
  .edu-hero {
   min-height:auto;
   padding:68px 0 112px;
