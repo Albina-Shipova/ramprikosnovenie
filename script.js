@@ -5,17 +5,33 @@ function setupNavigation() {
 
   const toggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.site-nav');
+  const header = document.querySelector('.site-header');
   if (!toggle || !nav) return;
+  const syncHeaderHeight = () => {
+    if (header) document.documentElement.style.setProperty('--header-h', `${header.getBoundingClientRect().height}px`);
+  };
+  let lockedScrollY = 0;
   const closeMenu = () => {
     toggle.setAttribute('aria-expanded', 'false');
     nav.classList.remove('open');
     document.body.classList.remove('menu-open');
+    document.body.style.top = '';
+    window.scrollTo(0, lockedScrollY);
   };
   toggle.addEventListener('click', () => {
     const willOpen = toggle.getAttribute('aria-expanded') !== 'true';
+    if (willOpen) {
+      syncHeaderHeight();
+      lockedScrollY = window.scrollY;
+      document.body.style.top = `-${lockedScrollY}px`;
+    }
     toggle.setAttribute('aria-expanded', String(willOpen));
     nav.classList.toggle('open', willOpen);
     document.body.classList.toggle('menu-open', willOpen);
+    if (!willOpen) {
+      document.body.style.top = '';
+      window.scrollTo(0, lockedScrollY);
+    }
   });
   nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
   document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
@@ -681,6 +697,62 @@ function setupMasterVideoModal() {
   });
 }
 
+function setupScrollProgress() {
+  const bar = document.querySelector('.scroll-progress span');
+  if (!bar) return;
+  let scheduled = false;
+  const update = () => {
+    scheduled = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = max > 0 ? window.scrollY / max : 0;
+    bar.style.width = `${Math.min(1, Math.max(0, ratio)) * 100}%`;
+  };
+  window.addEventListener('scroll', () => {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+}
+
+function setupTopControls() {
+  const totop = document.querySelector('.totop');
+  const fab = document.querySelector('.contact-fab');
+  if (!totop && !fab) return;
+
+  let scheduled = false;
+  const update = () => {
+    scheduled = false;
+    const visible = window.scrollY > 480;
+    if (totop) totop.classList.toggle('is-visible', visible);
+    if (fab) fab.classList.toggle('is-visible', visible);
+  };
+  window.addEventListener('scroll', () => {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
+  update();
+
+  if (totop) totop.addEventListener('click', event => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  if (fab) {
+    const btn = fab.querySelector('.contact-fab__toggle');
+    const setOpen = open => {
+      fab.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    };
+    btn.addEventListener('click', () => setOpen(!fab.classList.contains('is-open')));
+    document.addEventListener('click', event => { if (!fab.contains(event.target)) setOpen(false); });
+    fab.querySelectorAll('.contact-fab__item').forEach(item => item.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') setOpen(false); });
+  }
+}
+
 setupNavigation();
 setupReveals();
 setupServices();
@@ -690,3 +762,5 @@ setupMasterCarouselHeight();
 setupReviewPagers();
 setupGallery();
 setupMasterVideoModal();
+setupScrollProgress();
+setupTopControls();

@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap">
   <link rel="preload" as="image" href="assets/images/hero-interior-client.png">
-  <link rel="stylesheet" href="styles.css?v=20260921-2">
+  <link rel="stylesheet" href="styles.css?v=20260921-3">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -94,7 +94,9 @@
 <body data-page="home">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
 
-  <header class="site-header">
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <header class="site-header" id="top">
     <div class="shell header-inner">
       <a class="brand" href="index.html" aria-label="Прикосновение — главная">
         <img class="brand__logo" src="assets/images/logo-transparent.png" alt="" width="1254" height="1254">
@@ -327,7 +329,12 @@
               </div>
             </article>
             <article class="master-slide reveal">
-              <img class="master-slide__photo" src="assets/images/team/master-maria-2026.webp" alt="Мария" width="1122" height="1402" loading="lazy">
+              <div class="master-slide__visual">
+                <img class="master-slide__photo" src="assets/images/team/master-maria-2026.webp" alt="Мария" width="1122" height="1402" loading="lazy">
+                <div class="master-videos" data-master-video="assets/video/maria-web.mp4">
+                  <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство с Марией"><span class="master-video-trigger__icon" aria-hidden="true">▶</span><span>Видео-знакомство · 3:49</span></button>
+                </div>
+              </div>
               <div class="master-slide__body">
                 <div class="master-slide__head">
                   <h3>Мария</h3>
@@ -359,14 +366,19 @@
                     <button type="button" data-review-next aria-label="Следующий отзыв">→</button>
                   </div>
                 </div>
-                <div class="master-videos" data-master-video="assets/video/maria-web.mp4">
-                  <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство с Марией"><span class="master-video-trigger__icon" aria-hidden="true">▶</span><span>Видео-знакомство · 3:49</span></button>
-                </div>
                 <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/2744722" target="_blank" rel="noopener">Профиль ↗</a>
               </div>
             </article>
             <article class="master-slide reveal">
-              <img class="master-slide__photo" src="assets/images/team/master-svetlana-2026.webp" alt="Светлана" width="1122" height="1402" loading="lazy">
+              <div class="master-slide__visual">
+                <img class="master-slide__photo" src="assets/images/team/master-svetlana-2026.webp" alt="Светлана" width="1122" height="1402" loading="lazy">
+                <div class="master-videos" data-master-video="assets/video/svetlana-1.mp4" data-master-video-poster="assets/video/svetlana-1-poster.webp">
+                  <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство со Светланой">
+                    <span class="master-video-trigger__icon" aria-hidden="true">▶</span>
+                    <span>Видео-знакомство · 2:04</span>
+                  </button>
+                </div>
+              </div>
               <div class="master-slide__body">
                 <div class="master-slide__head">
                   <h3>Светлана</h3>
@@ -398,17 +410,16 @@
                     <button type="button" data-review-next aria-label="Следующий отзыв">→</button>
                   </div>
                 </div>
-                <div class="master-videos" data-master-video="assets/video/svetlana-1.mp4" data-master-video-poster="assets/video/svetlana-1-poster.webp">
-                  <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство со Светланой">
-                    <span class="master-video-trigger__icon" aria-hidden="true">▶</span>
-                    <span>Видео-знакомство · 2:04</span>
-                  </button>
-                </div>
                 <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/3513507" target="_blank" rel="noopener">Профиль ↗</a>
               </div>
             </article>
             <article class="master-slide reveal">
-              <img class="master-slide__photo" src="assets/images/team/master-viktoria-2026.webp" alt="Виктория" width="1122" height="1402" loading="lazy">
+              <div class="master-slide__visual">
+                <img class="master-slide__photo" src="assets/images/team/master-viktoria-2026.webp" alt="Виктория" width="1122" height="1402" loading="lazy">
+                <div class="master-videos" data-master-video="assets/video/viktoria-web.mp4">
+                  <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство с Викторией"><span class="master-video-trigger__icon" aria-hidden="true">▶</span><span>Видео-знакомство · 4:09</span></button>
+                </div>
+              </div>
               <div class="master-slide__body">
                 <div class="master-slide__head">
                   <h3>Виктория</h3>
@@ -440,9 +451,6 @@
                     <button type="button" data-review-next aria-label="Следующий отзыв">→</button>
                   </div>
                 </div>
-                <div class="master-videos" data-master-video="assets/video/viktoria-web.mp4">
-                  <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство с Викторией"><span class="master-video-trigger__icon" aria-hidden="true">▶</span><span>Видео-знакомство · 4:09</span></button>
-                </div>
                 <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/3621175" target="_blank" rel="noopener">Профиль ↗</a>
               </div>
             </article>
@@ -464,7 +472,12 @@
               </div>
             </article>
             <article class="master-slide reveal">
-              <img class="master-slide__photo" src="assets/images/team/master-yulia-2026.webp" alt="Юлия" width="1122" height="1402" loading="lazy">
+              <div class="master-slide__visual">
+                <img class="master-slide__photo" src="assets/images/team/master-yulia-2026.webp" alt="Юлия" width="1122" height="1402" loading="lazy">
+                <div class="master-videos" data-master-video="assets/video/yulia-web.mp4">
+                  <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство с Юлией"><span class="master-video-trigger__icon" aria-hidden="true">▶</span><span>Видео-знакомство · 2:07</span></button>
+                </div>
+              </div>
               <div class="master-slide__body">
                 <div class="master-slide__head">
                   <h3>Юлия</h3>
@@ -496,43 +509,44 @@
                     <button type="button" data-review-next aria-label="Следующий отзыв">→</button>
                   </div>
                 </div>
-                <div class="master-videos" data-master-video="assets/video/yulia-web.mp4">
-                  <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство с Юлией"><span class="master-video-trigger__icon" aria-hidden="true">▶</span><span>Видео-знакомство · 2:07</span></button>
-                </div>
                 <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/4128904" target="_blank" rel="noopener">Профиль ↗</a>
               </div>
             </article>
             <article class="master-slide reveal">
-              <img class="master-slide__photo" src="assets/images/team/master-anastasia-2026.webp" alt="Анастасия, мастер массажа лица" width="1122" height="1402" loading="lazy">
-              <div class="master-slide__body">
-                <div class="master-slide__head">
-                  <h3>Анастасия</h3>
-                  <p class="team__role">Мастер массажа лица</p>
-                </div>
-                <p class="team__fit">Позитивный мастер массажа лица с уверенной техникой и сильными руками. Легко поддерживает разговор, внимательно относится к вопросам клиента и помогает разобраться в уходе. Хорошо находит общий язык с клиентами старшего возраста — её работу особенно ценят гости 50+.</p>
+              <div class="master-slide__visual">
+                <img class="master-slide__photo" src="assets/images/team/master-anastasia-2026.webp" alt="Анастасия, мастер массажа лица" width="1122" height="1402" loading="lazy">
                 <div class="master-videos" data-master-video="assets/video/anastasia-web.mp4">
                   <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство с Анастасией">
                     <span class="master-video-trigger__icon" aria-hidden="true">▶</span>
                     <span>Видео-знакомство · 2:48</span>
                   </button>
                 </div>
+              </div>
+              <div class="master-slide__body">
+                <div class="master-slide__head">
+                  <h3>Анастасия</h3>
+                  <p class="team__role">Мастер массажа лица</p>
+                </div>
+                <p class="team__fit">Позитивный мастер массажа лица с уверенной техникой и сильными руками. Легко поддерживает разговор, внимательно относится к вопросам клиента и помогает разобраться в уходе. Хорошо находит общий язык с клиентами старшего возраста — её работу особенно ценят гости 50+.</p>
                 <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/4470767" target="_blank" rel="noopener">Профиль ↗</a>
               </div>
             </article>
             <article class="master-slide reveal">
-              <img class="master-slide__photo" src="assets/images/team/master-nastya-2026.webp" alt="Настя, мастер массажа тела" width="1122" height="1402" loading="lazy">
-              <div class="master-slide__body">
-                <div class="master-slide__head">
-                  <h3>Настя</h3>
-                  <p class="team__role">Мастер массажа тела</p>
-                </div>
-                <p class="team__fit">Специалист с медицинской подготовкой и хорошим знанием анатомии. Точно работает с напряжёнными зонами, подбирает интенсивность под состояние и запрос клиента. Подходит тем, кто ценит бережную, вдумчивую работу и ощутимый результат без лишней жёсткости.</p>
+              <div class="master-slide__visual">
+                <img class="master-slide__photo" src="assets/images/team/master-nastya-2026.webp" alt="Настя, мастер массажа тела" width="1122" height="1402" loading="lazy">
                 <div class="master-videos" data-master-video="assets/video/nastya-web.mp4">
                   <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство с Настей">
                     <span class="master-video-trigger__icon" aria-hidden="true">▶</span>
                     <span>Видео-знакомство · 1:52</span>
                   </button>
                 </div>
+              </div>
+              <div class="master-slide__body">
+                <div class="master-slide__head">
+                  <h3>Настя</h3>
+                  <p class="team__role">Мастер массажа тела</p>
+                </div>
+                <p class="team__fit">Специалист с медицинской подготовкой и хорошим знанием анатомии. Точно работает с напряжёнными зонами, подбирает интенсивность под состояние и запрос клиента. Подходит тем, кто ценит бережную, вдумчивую работу и ощутимый результат без лишней жёсткости.</p>
                 <a class="team__link" href="https://dikidi.net/ru/profile/studiya_massazha_i_estetiki_prikosnovenie_1188196/master/4551597" target="_blank" rel="noopener">Профиль ↗</a>
               </div>
             </article>
@@ -781,12 +795,24 @@
     </div>
   </footer>
 
+  <a class="totop" href="#top" aria-label="Наверх">↑</a>
+
+  <div class="contact-fab" id="contact-fab">
+    <div class="contact-fab__menu">
+      <a class="contact-fab__item" href="tel:+79164729423">Позвонить</a>
+      <a class="contact-fab__item" href="https://wa.me/79164729423" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="contact-fab__item" href="https://t.me/prikosnoveniemassage" target="_blank" rel="noopener">Telegram</a>
+      <a class="contact-fab__item" href="https://vk.ru/id532941121" target="_blank" rel="noopener">ВКонтакте</a>
+    </div>
+    <button class="contact-fab__toggle" type="button" aria-expanded="false" aria-label="Способы связи">Связь</button>
+  </div>
+
   <nav class="mobile-actions" aria-label="Быстрые действия">
     <a href="tel:+79164729423">Позвонить</a>
     <a href="https://wa.me/79164729423" target="_blank" rel="noopener">WhatsApp</a>
     <a href="https://dikidi.net/1188196" target="_blank" rel="noopener">Записаться</a>
   </nav>
 
-  <script src="script.js?v=20260901"></script>
+  <script src="script.js?v=20260921"></script>
 </body>
 </html>

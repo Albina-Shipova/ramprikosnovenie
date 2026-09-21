@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=20260921-2">
+  <link rel="stylesheet" href="styles.css?v=20260921-3">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -56,7 +56,9 @@
 <body data-page="gallery">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
 
-  <header class="site-header">
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <header class="site-header" id="top">
     <div class="shell header-inner">
       <a class="brand" href="index.html" aria-label="Прикосновение — главная">
         <img class="brand__logo" src="assets/images/logo-transparent.png" alt="" width="1254" height="1254">
@@ -153,6 +155,18 @@
     </div>
   </footer>
 
+  <a class="totop" href="#top" aria-label="Наверх">↑</a>
+
+  <div class="contact-fab" id="contact-fab">
+    <div class="contact-fab__menu">
+      <a class="contact-fab__item" href="tel:+79164729423">Позвонить</a>
+      <a class="contact-fab__item" href="https://wa.me/79164729423" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="contact-fab__item" href="https://t.me/prikosnoveniemassage" target="_blank" rel="noopener">Telegram</a>
+      <a class="contact-fab__item" href="https://vk.ru/id532941121" target="_blank" rel="noopener">ВКонтакте</a>
+    </div>
+    <button class="contact-fab__toggle" type="button" aria-expanded="false" aria-label="Способы связи">Связь</button>
+  </div>
+
   <nav class="mobile-actions" aria-label="Быстрые действия">
     <a href="tel:+79164729423">Позвонить</a>
     <a href="https://wa.me/79164729423" target="_blank" rel="noopener">WhatsApp</a>
@@ -166,6 +180,6 @@
     <button class="lightbox-next" type="button" aria-label="Следующее фото">→</button>
   </div>
 
-  <script src="script.js?v=20260901"></script>
+  <script src="script.js?v=20260921"></script>
 </body>
 </html>

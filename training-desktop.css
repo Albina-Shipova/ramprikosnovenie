@@ -499,7 +499,8 @@ body[data-page="training"] #seminars .training-fire__copy .seminar-more { width:
 .edu-doc-bottom .edu-link { font-size:13px; }
 .edu-teacher { position:relative; height:100svh; min-height:660px; max-height:840px; overflow:hidden; background:linear-gradient(90deg,rgba(24,23,22,.58) 0%,rgba(24,23,22,.34) 46%,rgba(24,23,22,.08) 70%),url('assets/images/training/teacher.png') center 20%/cover; padding:clamp(52px,6vw,96px) 0; color:#f8f7f5; }
 .edu-teacher .edu-shell { height:100%; }
-.edu-teacher-copy { width:640px; height:100%; display:flex; flex-direction:column; justify-content:space-between; }
+.edu-teacher-copy { width:640px; height:100%; display:flex; flex-direction:column; justify-content:space-between; min-width:0; }
+.edu-teacher-copy > * { min-width:0; }
 .edu-teacher .edu-eyebrow { color:#eeeae3; }
 .edu-teacher h2 { color:#fff; font-size:clamp(44px,5.2vh,56px); margin:clamp(18px,2.6vh,28px) 0 clamp(16px,2.2vh,24px); line-height:.98; overflow-wrap:break-word; }
 .edu-teacher .edu-lead { color:#e4e1dc; font-size:clamp(16px,1.8vh,18px); line-height:1.42; }
@@ -638,8 +639,6 @@ body[data-page="training"] #seminars .training-fire__copy .seminar-more { width:
   max-width:100%;
   font-size:clamp(32px,9vw,38px);
   line-height:1.02;
-  overflow-wrap:normal;
-  word-break:normal;
  }
  .edu-teacher h2 br { display:none; }
  .edu-teacher .edu-lead br { display:none; }
@@ -814,8 +813,8 @@ body[data-page="training"] .training-page-contact .button {
 @media (max-width:820px) {
  body[data-page="training"] #programs,
  body[data-page="training"] #seminars,
- body[data-page="training"] .training-page-documents,
- body[data-page="training"] .training-page-contact { padding-block:var(--section-space); }
+ body[data-page="training"] .training-page-documents { padding-block:var(--section-space); }
+ body[data-page="training"] .training-page-contact { padding-bottom:var(--section-space); }
 
  .edu-hero .edu-shell { width:calc(100% - var(--gutter) * 2); }
  .edu-hero .edu-actions { width:100%; }

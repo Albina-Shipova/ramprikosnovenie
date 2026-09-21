@@ -4,8 +4,9 @@
     {
       "name": "touch3-static",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["-y", "serve", "-l", "5173", "."],
-      "port": 5173
+      "runtimeArgs": ["-y", "serve", "."],
+      "port": 3000,
+      "autoPort": true
     }
   ]
 }
