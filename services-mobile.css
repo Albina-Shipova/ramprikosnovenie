@@ -1,0 +1,128 @@
+/* Mobile-only refinements for the services hero. Desktop stays on styles.css. */
+@media (max-width: 560px) {
+  body[data-page="services"] .services-showcase {
+    min-height: 600px;
+    height: clamp(600px, calc(100vh - 110px), 640px);
+  }
+
+  body[data-page="services"] .services-showcase__inner {
+    min-height: 100%;
+    height: 100%;
+  }
+
+  body[data-page="services"] .services-showcase__copy {
+    padding-top: 66px;
+    padding-bottom: 178px;
+  }
+
+  body[data-page="services"] .services-showcase__eyebrow { margin-bottom: 24px; }
+  body[data-page="services"] .services-showcase h1 { margin-bottom: 18px; }
+  body[data-page="services"] .services-showcase__subtitle { margin-bottom: 12px; }
+  body[data-page="services"] .services-showcase__categories { margin-top: 20px; }
+
+  body[data-page="services"] .services-showcase__facts {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    bottom: 0;
+    width: 100vw;
+    height: 112px;
+    margin: 0 0 0 -50vw;
+    padding: 13px 12px 22px;
+    align-items: start;
+    background: #111212;
+  }
+
+  body[data-page="services"] .services-showcase__facts > div,
+  body[data-page="services"] .services-showcase__facts > div:first-child {
+    display: flex;
+    min-height: 62px;
+    padding: 0 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border-right: 1px solid rgba(255, 255, 255, .23);
+    text-align: center;
+  }
+
+  body[data-page="services"] .services-showcase__facts > div:last-child {
+    padding-right: 10px;
+    border-right: 0;
+  }
+
+  body[data-page="services"] .services-showcase__facts > div::before {
+    position: static;
+    display: block;
+    width: 25px;
+    height: 25px;
+    margin: 0 0 8px;
+    color: transparent;
+    font-size: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  body[data-page="services"] .services-showcase__facts .fact-clock::before {
+    content: "";
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cg fill='none' stroke='%23b89b79' stroke-width='1.55' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='24' cy='24' r='17'/%3E%3Cpath d='M24 7v17h17'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  body[data-page="services"] .services-showcase__facts .fact-calendar::before {
+    content: "";
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cg fill='none' stroke='%23b89b79' stroke-width='1.55' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 8h32v34H8zM8 17h32M16 5v7M32 5v7M15 24h5M27 24h5M15 31h5M27 31h5'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  body[data-page="services"] .services-showcase__facts .fact-lotus::before {
+    content: "";
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 38C11 25 18 11 24 5c7 8 13 22 0 33M20 37C7 37 4 28 4 20c10 1 15 6 16 17m8 0c13 0 16-9 16-17-10 1-15 6-16 17M7 40c10 5 24 5 34 0' fill='none' stroke='%23b89b79' stroke-width='1.55' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  body[data-page="services"] .services-showcase__facts dt {
+    width: 100%;
+    max-width: 92px;
+    color: #f4f1ed;
+    font-family: var(--font-body);
+    font-size: clamp(.6rem, 2.75vw, .7rem);
+    font-weight: 500;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  body[data-page="services"] .services-showcase__facts .fact-lotus dt { font-size: 0; }
+  body[data-page="services"] .services-showcase__facts .fact-lotus dt::after {
+    content: "Для лица и тела";
+    font-size: clamp(.6rem, 2.75vw, .7rem);
+  }
+  body[data-page="services"] .services-showcase__facts dd { display: none; }
+
+  body[data-page="services"] .services-showcase__wave {
+    position: absolute;
+    z-index: 5;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    display: block;
+    height: 34px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 52' preserveAspectRatio='none'%3E%3Cpath fill='%23f7f6f3' d='M0 23C53 3 101 10 145 25c48 17 74 19 119 5 49-15 77-17 126-4v26H0Z'/%3E%3C/svg%3E") center bottom / 100% 100% no-repeat;
+    pointer-events: none;
+  }
+
+  body[data-page="services"] .contact-fab {
+    right: 8px;
+    bottom: calc(2px + env(safe-area-inset-bottom, 0px));
+  }
+  body[data-page="services"] .contact-fab__toggle {
+    width: 46px;
+    min-width: 46px;
+    height: 46px;
+    border: 0;
+    background: #9f8873;
+    box-shadow: 0 9px 20px rgba(30, 24, 20, .28);
+  }
+  body[data-page="services"] .contact-fab__icon {
+    width: 21px;
+    height: 21px;
+    stroke-width: 1.7;
+  }
+}

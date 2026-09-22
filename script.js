@@ -348,9 +348,9 @@ function setupCarousels() {
 
     const step = () => {
       const item = [...track.children].find(child => !child.classList.contains('filtered-out'));
-      if (!item) return track.clientWidth;
+      if (!item) return track.clientWidth || 1;
       const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-      return item.getBoundingClientRect().width + gap;
+      return item.getBoundingClientRect().width + gap || 1;
     };
 
     const update = () => {
@@ -365,7 +365,8 @@ function setupCarousels() {
       if (previous) previous.disabled = track.scrollLeft <= 2;
       if (next) next.disabled = track.scrollLeft >= max - 2;
       if (nameButtons.length) {
-        const current = Math.max(0, Math.min(nameButtons.length - 1, Math.round(track.scrollLeft / step())));
+        const raw = Math.round(track.scrollLeft / step());
+        const current = Math.max(0, Math.min(nameButtons.length - 1, Number.isFinite(raw) ? raw : 0));
         if (masterCounter) {
           masterCounter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(nameButtons.length).padStart(2, '0')}`;
         }

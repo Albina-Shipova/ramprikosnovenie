@@ -792,6 +792,11 @@ body[data-page="training"] .seminar-more--filled {
 body[data-page="training"] #seminars .training-fire__copy .seminar-more--filled {
  color:var(--graphite);
 }
+
+/* На мобильных карточки семинаров подходят ближе к краям экрана. */
+@media (max-width:600px) {
+ body[data-page="training"] #seminars .shell { width:calc(100% - 20px); }
+}
 body[data-page="training"] #seminars .seminar-more--filled {
  min-height:var(--control-sm);
  padding:0 20px;
