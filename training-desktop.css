@@ -828,7 +828,7 @@ body[data-page="training"] .training-page-contact .button {
  }
  .edu-hero::before {
   inset:-65px 0 65px;
-  background-image:url('assets/images/training/hero-training-mobile-v2.png');
+  background-image:url('assets/images/training/hero-training-mobile-crop-v3.png');
   background-position:center top;
   background-size:cover;
   background-repeat:no-repeat;

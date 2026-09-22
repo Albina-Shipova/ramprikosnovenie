@@ -1044,12 +1044,17 @@ body[data-page="training"] #programs .training__card h3 {
     font-size: clamp(1rem, 4.4vw, 1.25rem);
     line-height: 1.45;
   }
-  #reviews .reviews__copy .button {
+  #reviews .reviews__cta--intro { display: none; }
+  #reviews .reviews__cta--mobile {
+    display: flex;
+    margin-top: 22px;
+  }
+  #reviews .reviews__cta {
     justify-content: space-between;
     min-height: 58px;
     padding-inline: clamp(18px, 6vw, 28px);
   }
-  #reviews .reviews__copy .button::after {
+  #reviews .reviews__cta::after {
     content: '\2192';
     margin-left: 18px;
     font-size: 1.45em;
@@ -1425,6 +1430,51 @@ body[data-page="training"] #programs .training__card h3 {
   color: var(--wood);
 }
 
+/* Предыдущий вариант блока — временно оставлен под текущим для сравнения. */
+.certificate-legacy { background: var(--gray-light); border-top: 1px solid var(--line); }
+.certificate-legacy__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: clamp(32px, 6vw, 88px);
+  align-items: center;
+}
+.certificate-legacy__visual {
+  padding: clamp(10px, 1.5vw, 18px);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: 0 18px 48px rgba(38, 38, 38, .08);
+}
+.certificate-legacy__visual img { display: block; width: 100%; border-radius: calc(var(--radius-card) * .55); }
+.certificate-legacy__copy { max-width: 35em; }
+.certificate-legacy__copy h2 { margin-bottom: 20px; }
+.certificate-legacy__copy h2 .accent { display: block; color: var(--heading-accent); }
+.certificate-legacy__copy p { margin: 0 0 16px; color: var(--gray); }
+.certificate-legacy__copy .lead { color: var(--graphite); }
+.certificate-legacy__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+  margin-top: 30px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+.certificate-legacy__perks { display: flex; flex-wrap: wrap; gap: 20px 32px; margin-top: 28px; }
+.certificate-legacy__perk { display: flex; align-items: center; gap: 14px; max-width: 240px; }
+.certificate-legacy__perk b { color: var(--graphite); }
+.certificate-legacy__perk-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--gray-light);
+  color: var(--wood);
+}
+
 /* ------------------------------ Галерея ------------------------------ */
 
 .filter-group { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -1548,6 +1598,7 @@ body[data-page="training"] #programs .training__card h3 {
 .reviews__copy h2 em { color: var(--heading-accent); font-style: normal; font-weight: inherit; }
 .reviews__lead { color: var(--white) !important; opacity: 1 !important; font-size: clamp(1.15rem, 1.5vw, 1.45rem); margin-bottom: 18px !important; }
 .reviews__copy p { color: var(--gray-light); opacity: .86; margin-bottom: 18px; }
+.reviews__cta--mobile { display: none; }
 
 /* Фрагменты отзывов с Яндекс Карт */
 .review-grid {
@@ -2180,7 +2231,7 @@ body[data-page="training"] #programs .training__card h3 {
   .location { grid-template-columns: minmax(0, 1fr); gap: clamp(24px, 4vw, 36px); }
   .contacts-location__head { grid-template-columns: minmax(0, 1fr); }
   .contact-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
-  .gift-certificate, .spa-highlight, .faq { grid-template-columns: minmax(0, 1fr); }
+  .gift-certificate, .certificate-legacy__layout, .spa-highlight, .faq { grid-template-columns: minmax(0, 1fr); }
   .faq__visual { max-width: 320px; }
   .spa-highlight { padding: 10px; }
   .spa-highlight img { min-height: 0; max-height: 520px; aspect-ratio: 4 / 3; }
@@ -2285,6 +2336,18 @@ body[data-page="training"] #programs .training__card h3 {
   .lightbox-prev, .lightbox-next { top: auto; bottom: 16px; transform: none; }
   .lightbox-prev { left: 16px; }
   .lightbox-next { right: 16px; }
+}
+
+/* Узкие встроенные окна: не удерживаем страницу на минимальной ширине 320px,
+   иначе заголовок направлений оказывается за краем видимой области. */
+@media (max-width: 260px) {
+  body { min-width: 0; }
+  #services .shell { width: calc(100% - 26px); }
+  #services .section-head h2 {
+    max-width: 100%;
+    font-size: clamp(1.4rem, 12vw, 1.7rem) !important;
+    overflow-wrap: anywhere;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2613,7 +2676,7 @@ body[data-page="training"] .training-page-contact .text-link { justify-self: sta
   body[data-page="training"] .training-championship { min-height: auto; }
   body[data-page="training"] .training-championship img { aspect-ratio: 4 / 5; max-height: 560px; }
   body[data-page="training"] .training-championship figcaption { padding: 52px var(--gutter) 74px; }
-  body[data-page="training"] .training-page-contact { padding: 150px 0 72px; background: var(--training-ink); }
+  body[data-page="training"] .training-page-contact { padding: 150px 0 72px; }
 }
 
 /* На тач-экранах мелкие кнопки и ссылки получают площадь, в которую можно попасть пальцем */
@@ -3573,6 +3636,7 @@ body[data-page="gallery"] .gallery-item[data-gallery-category="specialists"] img
   transition: background-color .2s var(--ease), border-color .2s var(--ease);
 }
 .contact-fab.is-open .contact-fab__toggle { background: var(--graphite); border-color: var(--wood); }
+.contact-fab__icon { display: none; width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .contact-fab__item {
   padding: 10px 16px; border-radius: 999px;
   background: var(--graphite); color: var(--white);
@@ -3582,8 +3646,27 @@ body[data-page="gallery"] .gallery-item[data-gallery-category="specialists"] img
 }
 
 @media (max-width: 820px) {
-  .totop { left: auto; right: 14px; bottom: calc(66px + env(safe-area-inset-bottom, 0px)); width: 46px; height: 46px; }
-  .contact-fab { display: none; }
+  body { padding-bottom: 0; }
+  .mobile-actions { display: none; }
+  .totop { left: 14px; right: auto; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); width: 46px; height: 46px; }
+  .contact-fab {
+    display: block;
+    right: 14px;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+  .contact-fab__toggle {
+    width: 46px;
+    min-width: 46px;
+    height: 46px;
+    padding: 0;
+    border-radius: 50%;
+  }
+  .contact-fab__icon { display: block; }
+  .contact-fab__label { display: none; }
 }
 
 /* Мобильные первые экраны услуг: композиция собрана по портретному референсу. */
@@ -3628,7 +3711,7 @@ body[data-page="gallery"] .gallery-item[data-gallery-category="specialists"] img
     background: #171818;
   }
   body[data-page="services"] .services-showcase__backdrop {
-    background-image: url('assets/images/services-hero-mobile-v2.png');
+    background-image: url('assets/images/services-hero-mobile-crop-v3.png');
     background-position: center top;
     background-size: cover;
     background-repeat: no-repeat;
@@ -3715,4 +3798,50 @@ body[data-page="gallery"] .gallery-item[data-gallery-category="specialists"] img
   body[data-page="services"] .brand__tag { max-width: 155px; font-size: .43rem; }
   body[data-page="services"] .header-cta { min-width: 78px; min-height: 40px; padding-inline: 9px; font-size: .7rem; }
   body[data-page="services"] .menu-toggle { width: 38px; height: 40px; padding-inline: 8px; }
+}
+
+/* Одна мобильная шапка на главной, в услугах и в обучении. */
+@media (max-width: 820px) {
+  body:is([data-page="home"], [data-page="services"], [data-page="training"]) .site-header {
+    position: sticky;
+    top: 0;
+    background: #f7f6f3;
+    border-bottom: 0;
+  }
+  body:is([data-page="home"], [data-page="services"], [data-page="training"]) .header-inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 20px;
+    min-height: 54px;
+  }
+  body:is([data-page="home"], [data-page="services"], [data-page="training"]) .brand { gap: 10px; }
+  body:is([data-page="home"], [data-page="services"], [data-page="training"]) .brand__logo {
+    width: 42px;
+    height: 42px;
+    transform: scale(1.08);
+  }
+  body:is([data-page="home"], [data-page="services"], [data-page="training"]) .brand__name {
+    font-size: .92rem;
+  }
+  body:is([data-page="home"], [data-page="services"], [data-page="training"]) .brand__tag {
+    max-width: none;
+    margin-top: 1px;
+    font-size: .51rem;
+    letter-spacing: .15em;
+  }
+  body:is([data-page="home"], [data-page="services"], [data-page="training"]) .header-cta {
+    display: none;
+  }
+  body:is([data-page="home"], [data-page="services"], [data-page="training"]) .menu-toggle {
+    display: block;
+    order: 3;
+    width: 32px;
+    height: 38px;
+    padding: 7px 2px;
+    border: 0;
+    border-radius: 0;
+  }
+  body:is([data-page="home"], [data-page="services"], [data-page="training"]) .menu-toggle span:not(.sr-only) {
+    height: 2px;
+    margin: 5px 0;
+  }
 }
