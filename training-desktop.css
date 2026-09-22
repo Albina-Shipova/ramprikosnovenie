@@ -661,7 +661,6 @@ body[data-page="training"] {
  --edu-dark:#2d2d2d;
  background:var(--edu-paper);
 }
-body[data-page="training"] .site-header { background:var(--edu-paper); }
 .edu-hero { background:var(--graphite); }
 .edu-hero::before { filter:saturate(.8) contrast(1.02) brightness(.92) blur(.9px); }
 .edu-hero::after { background:linear-gradient(90deg,rgba(28,28,28,.95) 0%,rgba(31,31,30,.86) 25%,rgba(34,34,33,.56) 43%,rgba(27,27,26,.08) 66%,rgba(22,22,21,.12) 100%); }
@@ -819,4 +818,66 @@ body[data-page="training"] .training-page-contact .button {
  .edu-hero .edu-shell { width:calc(100% - var(--gutter) * 2); }
  .edu-hero .edu-actions { width:100%; }
  .edu-hero .edu-button { width:100%; min-width:0; }
+}
+
+/* Мобильный первый экран обучения: единый тёмный фотографический постер. */
+@media (max-width:820px) {
+ .edu-hero {
+  min-height:850px;
+  padding:111px 0 82px;
+ }
+ .edu-hero::before {
+  inset:-65px 0 65px;
+  background-image:url('assets/images/training/hero-training-mobile-v2.png');
+  background-position:center top;
+  background-size:cover;
+  background-repeat:no-repeat;
+ }
+ .edu-hero::after {
+  background:
+   linear-gradient(90deg,rgba(20,20,19,.92) 0%,rgba(20,20,19,.68) 48%,rgba(20,20,19,.12) 100%),
+   linear-gradient(180deg,rgba(20,20,19,.08) 0%,rgba(20,20,19,.18) 38%,rgba(20,20,19,.9) 76%,rgba(20,20,19,.98) 100%);
+ }
+ .edu-hero .edu-shell { width:calc(100% - var(--gutter) * 2); }
+ .edu-hero h1 {
+  max-width:310px;
+  margin:6px 0 19px;
+  font-size:clamp(2.35rem,8.8vw,2.6rem);
+  line-height:1.01;
+  letter-spacing:-.045em;
+ }
+ .edu-hero .edu-lead { max-width:310px; font-size:.92rem; line-height:1.5; }
+ .edu-hero .edu-actions { align-items:flex-start; margin-top:25px; gap:18px; }
+ .edu-hero .edu-button {
+  justify-content:space-between;
+  max-width:230px;
+  min-height:48px;
+  padding-inline:20px;
+  border-radius:5px;
+  font-size:.88rem;
+ }
+ .edu-hero .edu-button::after { content:"→"; font-size:1.45rem; font-weight:400; }
+ .edu-hero .edu-link { padding-top:0; font-size:.9rem; }
+ .edu-facts {
+  grid-template-columns:1fr;
+  max-width:360px;
+  margin-top:16px;
+ }
+ .edu-facts>div,
+ .edu-facts>div:first-child {
+  grid-template-columns:48px minmax(0,1fr);
+  column-gap:18px;
+  min-height:82px;
+  padding:12px 0;
+  border-top:0;
+ }
+ .edu-facts .edu-icon { width:36px; height:36px; }
+ .edu-facts b { font-size:.94rem; }
+ .edu-facts span { font-size:.79rem; }
+ .edu-wave { height:50px; }
+}
+
+@media (max-width:410px) {
+ .edu-hero { min-height:820px; padding-top:103px; }
+ .edu-hero h1 { font-size:clamp(2.25rem,8.8vw,2.45rem); }
 }
