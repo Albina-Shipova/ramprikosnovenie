@@ -54,6 +54,7 @@
 
   /* Движение */
   --ease: cubic-bezier(.2, .6, .25, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
   --dur: 420ms;
 
   /* Мотив зеркала */
@@ -2152,20 +2153,19 @@ body[data-page="training"] #programs .training__card h3 {
 
 /* ------------------------------ Появление при прокрутке ------------------------------ */
 
+/* Сдвиг через translate, а не transform: не спорит с hover-подъёмом карточек.
+   Лесенку задаёт скрипт через --i (порядок появления в одном кадре). */
 .reveal {
+  --reveal-delay: calc(var(--i, 0) * 75ms);
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 560ms var(--ease), transform 560ms var(--ease);
+  translate: 0 28px;
+  transition:
+    opacity 700ms var(--ease-out) var(--reveal-delay),
+    translate 900ms var(--ease-out) var(--reveal-delay),
+    transform var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
 }
-.reveal.visible { opacity: 1; transform: none; }
-
-/* Каскадное появление карточек в сетках и списках */
-.direction-grid > .reveal:nth-child(2), .trust-grid > .reveal:nth-child(2), .gallery-grid > .reveal:nth-child(2), .review-grid > .reveal:nth-child(2), .master-carousel__track > .reveal:nth-child(2) { transition-delay: 70ms; }
-.direction-grid > .reveal:nth-child(3), .trust-grid > .reveal:nth-child(3), .gallery-grid > .reveal:nth-child(3), .review-grid > .reveal:nth-child(3), .master-carousel__track > .reveal:nth-child(3) { transition-delay: 140ms; }
-.direction-grid > .reveal:nth-child(4), .trust-grid > .reveal:nth-child(4), .gallery-grid > .reveal:nth-child(4), .review-grid > .reveal:nth-child(4), .master-carousel__track > .reveal:nth-child(4) { transition-delay: 210ms; }
-.trust-grid > .reveal:nth-child(5), .gallery-grid > .reveal:nth-child(5), .review-grid > .reveal:nth-child(5), .master-carousel__track > .reveal:nth-child(5) { transition-delay: 280ms; }
-.trust-grid > .reveal:nth-child(6), .gallery-grid > .reveal:nth-child(6), .review-grid > .reveal:nth-child(6), .master-carousel__track > .reveal:nth-child(6) { transition-delay: 350ms; }
-.gallery-grid > .reveal:nth-child(n+7), .master-carousel__track > .reveal:nth-child(n+7) { transition-delay: 350ms; }
+.reveal.visible { opacity: 1; translate: none; }
 
 /* ------------------------------ Адаптив ------------------------------ */
 
@@ -2359,7 +2359,7 @@ body[data-page="training"] #programs .training__card h3 {
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
-  .reveal { opacity: 1; transform: none; }
+  .reveal { opacity: 1; translate: none; }
 }
 
 /* ==================================================================
@@ -3756,4 +3756,177 @@ body[data-page="gallery"] .gallery-item[data-gallery-category="specialists"] img
     height: 2px;
     margin: 5px 0;
   }
+}
+
+/* ==================================================================
+   Движение: первый экран, заголовки по словам, раскрытие фото аркой,
+   параллакс на scroll-timeline, переходы между страницами.
+   Анимируются только opacity / translate / scale / clip-path.
+   ================================================================== */
+
+/* ---------- Первый экран главной: блоки поднимаются друг за другом ---------- */
+
+.hero__copy.reveal { opacity: 1; translate: none; }
+.hero__copy.reveal > :not(h1),
+.hero__copy.reveal .hero__facts > div {
+  opacity: 0;
+  translate: 0 22px;
+  transition: opacity 800ms var(--ease-out), translate 1000ms var(--ease-out);
+}
+.hero__copy.reveal > .hero__lead { transition-delay: 380ms; }
+.hero__copy.reveal > .button-row { transition-delay: 480ms; }
+.hero__copy.reveal > .hero__facts { opacity: 1; translate: none; }
+.hero__copy.reveal .hero__facts > div:nth-child(1) { transition-delay: 600ms; }
+.hero__copy.reveal .hero__facts > div:nth-child(2) { transition-delay: 680ms; }
+.hero__copy.reveal .hero__facts > div:nth-child(3) { transition-delay: 760ms; }
+.hero__copy.visible > :not(h1),
+.hero__copy.visible .hero__facts > div { opacity: 1; translate: none; }
+
+/* ---------- Первые экраны услуг и обучения: те же ступени, но на ключевых кадрах ---------- */
+
+@keyframes riseIn { from { opacity: 0; translate: 0 24px; } }
+@keyframes fadeIn { from { opacity: 0; } }
+@keyframes archIn {
+  from { clip-path: inset(18% 12% 0 12% round 50% 50% 0 0 / 34% 34% 0 0); scale: 1.14; }
+  to { clip-path: inset(0 round 0); scale: 1; }
+}
+
+.services-showcase__copy > :not(h1),
+.edu-hero .edu-shell > :not(h1),
+.edu-hero .edu-facts > div { animation: riseIn 900ms var(--ease-out) both; }
+.services-showcase__copy > :nth-child(3), .edu-hero .edu-shell > :nth-child(3) { animation-delay: 360ms; }
+.services-showcase__copy > :nth-child(4), .edu-hero .edu-shell > :nth-child(4) { animation-delay: 440ms; }
+.services-showcase__copy > :nth-child(5) { animation-delay: 520ms; }
+.services-showcase__copy > :nth-child(6), .edu-hero .edu-facts { animation-delay: 600ms; }
+.edu-hero .edu-facts { animation: none; }
+.edu-hero .edu-facts > div:nth-child(1) { animation-delay: 560ms; }
+.edu-hero .edu-facts > div:nth-child(2) { animation-delay: 640ms; }
+.edu-hero .edu-facts > div:nth-child(3) { animation-delay: 720ms; }
+.services-showcase__inset img { animation: archIn 1300ms var(--ease-out) 200ms both; }
+.services-showcase__care, .edu-motto { animation: fadeIn 1200ms var(--ease) 700ms both; }
+
+/* ---------- Заголовки: слова поднимаются из-под линии ---------- */
+
+.split .word {
+  display: inline-block;
+  clip-path: inset(-.3em -.4em -.16em -.4em);
+}
+.split .word__in {
+  display: inline-block;
+  translate: 0 115%;
+  transition: translate 950ms var(--ease-out) calc(var(--w, 0) * 45ms + 60ms);
+}
+.split-in .word__in { translate: none; }
+.split-done .word { clip-path: none; }
+
+/* ---------- Фото раскрываются аркой — отсылка к фигурному зеркалу студии ---------- */
+
+.reveal :is(.direction__media, .about__figures img, .gift-certificate__visual img, .faq__visual img,
+  .contact-photos figure, .spa-highlight img, .training-fire img, .seminar-card__media img,
+  .training-documents img, .master-slide__photo, .gallery-item img) {
+  clip-path: inset(14% 10% 0 10% round 50% 50% 0 0 / 30% 30% 0 0);
+  scale: 1.12;
+  transition:
+    clip-path 1100ms var(--ease-out) calc(var(--reveal-delay, 0ms) + 80ms),
+    scale 1500ms var(--ease-out) calc(var(--reveal-delay, 0ms) + 80ms),
+    transform 500ms var(--ease),
+    filter 500ms var(--ease);
+}
+.reveal.visible :is(.direction__media, .about__figures img, .gift-certificate__visual img, .faq__visual img,
+  .contact-photos figure, .spa-highlight img, .training-fire img, .seminar-card__media img,
+  .training-documents img, .master-slide__photo, .gallery-item img) {
+  clip-path: inset(0 round 0);
+  scale: 1;
+}
+.about__figures.reveal img:last-child,
+.contact-photos.reveal figure:nth-child(2) { transition-delay: 200ms; }
+.contact-photos.reveal figure:nth-child(3) { transition-delay: 300ms; }
+.contact-photos.reveal figure:nth-child(4) { transition-delay: 400ms; }
+
+/* ---------- Линия у надзаголовка прочерчивается ---------- */
+
+.reveal .eyebrow::before {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 800ms var(--ease-out) calc(var(--reveal-delay, 0ms) + 250ms);
+}
+.reveal.visible .eyebrow::before { transform: none; }
+
+/* ---------- Рейтинг: звёзды зажигаются по очереди ---------- */
+
+.rating-panel .stars span {
+  display: inline-block;
+  opacity: .18;
+  scale: .4;
+  transition: opacity 400ms var(--ease), scale 600ms cubic-bezier(.34, 1.56, .64, 1);
+  transition-delay: calc(var(--s, 0) * 90ms + 200ms);
+}
+.rating-panel.is-lit .stars span { opacity: 1; scale: 1; }
+
+/* ---------- «Прикосновение»: тёплый свет за курсором и круг от нажатия ---------- */
+
+.touch-glow::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 1;
+  border-radius: inherit;
+  background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(236, 204, 158, .26), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 450ms var(--ease);
+}
+.touch-glow:hover::before { opacity: 1; }
+
+:where(.button, .edu-button) { position: relative; overflow: hidden; isolation: isolate; }
+.touch-ripple {
+  position: absolute; z-index: -1;
+  border-radius: 50%;
+  background: currentColor;
+  pointer-events: none;
+  transform: scale(0);
+}
+
+/* ---------- Параллакс: считает браузер по прокрутке, без скрипта ---------- */
+
+@keyframes parallaxDrift { to { translate: 0 14%; } }
+@keyframes parallaxFloat { from { translate: 0 48px; } to { translate: 0 -48px; } }
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__bg {
+      animation: heroZoom 7s var(--ease) forwards, parallaxDrift linear both;
+      animation-timeline: auto, scroll(root);
+      animation-range: normal, 0 100vh;
+    }
+    .services-showcase__backdrop {
+      animation: parallaxDrift linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+    }
+    .about__figures img:last-child,
+    .photo-band p {
+      animation: parallaxFloat linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}
+
+/* ---------- Переходы между страницами (Chrome, Edge, Safari 18.2+) ---------- */
+
+@view-transition { navigation: auto; }
+.site-header { view-transition-name: site-header; }
+::view-transition-old(root) { animation: pageOut 240ms var(--ease) both; }
+::view-transition-new(root) { animation: pageIn 460ms var(--ease-out) both; }
+@keyframes pageOut { to { opacity: 0; translate: 0 -10px; } }
+@keyframes pageIn { from { opacity: 0; translate: 0 16px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__copy.reveal > :not(h1),
+  .hero__copy.reveal .hero__facts > div { opacity: 1; translate: none; }
+  .reveal :is(.direction__media, .about__figures img, .gift-certificate__visual img, .faq__visual img,
+    .contact-photos figure, .spa-highlight img, .training-fire img, .seminar-card__media img,
+    .training-documents img, .master-slide__photo, .gallery-item img) { clip-path: none; scale: 1; }
+  .reveal .eyebrow::before { transform: none; }
+  .touch-glow::before { display: none; }
+  @view-transition { navigation: none; }
 }

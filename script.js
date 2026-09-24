@@ -38,47 +38,81 @@ function setupNavigation() {
   window.addEventListener('resize', () => { if (window.innerWidth > 820) closeMenu(); });
 }
 
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const canObserve = 'IntersectionObserver' in window;
+// Два кадра, чтобы браузер нарисовал исходное состояние. В фоновой вкладке кадров нет —
+// страхуемся таймером, иначе первый экран остался бы скрытым (и для поисковых роботов тоже).
+const nextFrames = callback => {
+  let done = false;
+  const run = () => { if (!done) { done = true; callback(); } };
+  requestAnimationFrame(() => requestAnimationFrame(run));
+  setTimeout(run, 300);
+};
+
+// Всё, что попало в экран за один кадр, появляется лесенкой: сверху вниз, слева направо.
+// Задержку снимаем после показа, иначе она тормозила бы и hover-переходы карточки.
+function showStaggered(items) {
+  items
+    .map(item => ({ item, box: item.getBoundingClientRect() }))
+    .sort((a, b) => (a.box.top - b.box.top) || (a.box.left - b.box.left))
+    .forEach(({ item }, index) => {
+      item.style.setProperty('--i', Math.min(index, 6));
+      item.classList.add('visible');
+      setTimeout(() => item.style.removeProperty('--i'), 1600);
+    });
+}
+
 function setupReveals() {
-  const items = document.querySelectorAll('.reveal');
+  const items = [...document.querySelectorAll('.reveal')];
   if (!items.length) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+  if (reduceMotion.matches || !canObserve) {
     items.forEach(item => item.classList.add('visible'));
     return;
   }
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -20px' });
-  items.forEach(item => {
-    if (item.getBoundingClientRect().top < window.innerHeight * 1.05) {
-      item.classList.add('visible');
-    } else {
-      observer.observe(item);
-    }
-  });
+    const shown = entries.filter(entry => entry.isIntersecting).map(entry => entry.target);
+    shown.forEach(item => observer.unobserve(item));
+    const fresh = shown.filter(item => !item.classList.contains('visible'));
+    if (fresh.length) showStaggered(fresh);
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px' });
+
+  // Первый экран тоже появляется с анимацией.
+  const inView = item => item.getBoundingClientRect().top < window.innerHeight * 1.02;
+  const initial = items.filter(inView);
+  items.filter(item => !initial.includes(item)).forEach(item => observer.observe(item));
+  nextFrames(() => showStaggered(initial));
 
   // При быстрой прокрутке наблюдатель пропускает блоки, пролетевшие между кадрами:
   // добираем всё, что уже попало в экран или ушло выше него.
   let scheduled = false;
   const sweep = () => {
     scheduled = false;
-    items.forEach(item => {
-      if (item.classList.contains('visible')) return;
-      if (item.getBoundingClientRect().top < window.innerHeight * 1.05) {
-        item.classList.add('visible');
-        observer.unobserve(item);
-      }
-    });
+    const missed = items.filter(item => !item.classList.contains('visible') && inView(item));
+    missed.forEach(item => observer.unobserve(item));
+    if (missed.length) showStaggered(missed);
   };
   window.addEventListener('scroll', () => {
     if (scheduled) return;
     scheduled = true;
     requestAnimationFrame(sweep);
   }, { passive: true });
+}
+
+// Лента карусели появляется целиком, когда доезжает до экрана: наблюдатель
+// не видит карточки, уехавшие вбок за край ленты.
+function revealWhenSeen(container) {
+  const items = [...container.querySelectorAll('.reveal:not(.visible)')];
+  if (!items.length) return;
+  if (reduceMotion.matches || !canObserve) {
+    items.forEach(item => item.classList.add('visible'));
+    return;
+  }
+  const observer = new IntersectionObserver(entries => {
+    if (!entries.some(entry => entry.isIntersecting)) return;
+    observer.disconnect();
+    showStaggered(items.filter(item => !item.classList.contains('visible')));
+  }, { threshold: 0.12 });
+  observer.observe(container);
 }
 
 // Карточки услуг лежат в HTML (нужно поиску), скрипт только фильтрует их.
@@ -519,8 +553,7 @@ function setupCarousels() {
       const active = always || query.matches;
       carousel.classList.toggle('is-active', active);
       if (active) {
-        // В ленте наблюдатель не увидит карточки, уехавшие вбок, — показываем сразу.
-        track.querySelectorAll('.reveal').forEach(item => item.classList.add('visible'));
+        revealWhenSeen(track);
       } else {
         track.scrollLeft = 0;
       }
@@ -754,8 +787,131 @@ function setupTopControls() {
   }
 }
 
+// Заголовки поднимаются по словам из-под невидимой линии.
+// Делим только пробелами: неразрывные пробелы остаются внутри слова.
+function splitWords(heading) {
+  let count = 0;
+  const walk = node => {
+    [...node.childNodes].forEach(child => {
+      if (child.nodeType === Node.ELEMENT_NODE) {
+        if (child.tagName !== 'BR') walk(child);
+        return;
+      }
+      if (child.nodeType !== Node.TEXT_NODE || !child.textContent.trim()) return;
+      const fragment = document.createDocumentFragment();
+      child.textContent.split(/([ \t\r\n]+)/).forEach(part => {
+        if (!part) return;
+        if (!part.trim()) { fragment.append(part); return; }
+        const word = document.createElement('span');
+        const inner = document.createElement('span');
+        word.className = 'word';
+        inner.className = 'word__in';
+        inner.style.setProperty('--w', Math.min(count++, 9));
+        inner.textContent = part;
+        word.append(inner);
+        fragment.append(word);
+      });
+      child.replaceWith(fragment);
+    });
+  };
+  walk(heading);
+  heading.classList.add('split');
+}
+
+function setupHeadings() {
+  if (reduceMotion.matches || !canObserve) return;
+  const headings = [...document.querySelectorAll('main h1, main h2:not(.trust-title)')];
+  headings.forEach(splitWords);
+  const show = heading => {
+    heading.classList.add('split-in');
+    // После подъёма снимаем обрезку слов, чтобы не держать лишние слои.
+    setTimeout(() => heading.classList.add('split-done'), 1500);
+  };
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      observer.unobserve(entry.target);
+      show(entry.target);
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -40px' });
+  nextFrames(() => headings.forEach(heading => {
+    if (heading.getBoundingClientRect().top < window.innerHeight) show(heading);
+    else observer.observe(heading);
+  }));
+}
+
+// Рейтинг: звёзды зажигаются по очереди, оценка набирается от нуля.
+function setupRating() {
+  const panel = document.querySelector('.rating-panel');
+  if (!panel || reduceMotion.matches || !canObserve) return;
+  const stars = panel.querySelector('.stars');
+  const score = panel.querySelector('strong');
+  if (stars) {
+    stars.innerHTML = [...stars.textContent.trim()]
+      .map((star, index) => `<span style="--s:${index}">${star}</span>`).join('');
+  }
+  const target = score ? parseFloat(score.textContent.replace(',', '.')) : NaN;
+  const observer = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) return;
+    observer.disconnect();
+    panel.classList.add('is-lit');
+    if (Number.isNaN(target)) return;
+    const start = performance.now();
+    const tick = now => {
+      const part = Math.min(1, (now - start) / 1100);
+      const eased = 1 - Math.pow(1 - part, 3);
+      score.textContent = (target * eased).toFixed(1).replace('.', ',');
+      if (part < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, { threshold: 0.5 });
+  observer.observe(panel);
+}
+
+// Мотив «прикосновения»: тёплый свет идёт за курсором по фото-карточкам,
+// а по кнопке от точки нажатия расходится мягкий круг.
+function setupTouch() {
+  if (reduceMotion.matches) return;
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.direction, .gallery-item').forEach(card => {
+      let frame = 0;
+      let x = 0;
+      let y = 0;
+      card.classList.add('touch-glow');
+      card.addEventListener('pointermove', event => {
+        const box = card.getBoundingClientRect();
+        x = event.clientX - box.left;
+        y = event.clientY - box.top;
+        if (frame) return;
+        frame = requestAnimationFrame(() => {
+          frame = 0;
+          card.style.setProperty('--mx', `${x}px`);
+          card.style.setProperty('--my', `${y}px`);
+        });
+      }, { passive: true });
+    });
+  }
+  document.addEventListener('pointerdown', event => {
+    const button = event.target.closest('.button, .edu-button');
+    if (!button || !button.animate) return;
+    const box = button.getBoundingClientRect();
+    const size = Math.max(box.width, box.height) * 2.4;
+    const ripple = document.createElement('span');
+    ripple.className = 'touch-ripple';
+    ripple.style.cssText = `width:${size}px;height:${size}px;left:${event.clientX - box.left - size / 2}px;top:${event.clientY - box.top - size / 2}px`;
+    button.append(ripple);
+    ripple.animate(
+      [{ transform: 'scale(0)', opacity: .38 }, { transform: 'scale(1)', opacity: 0 }],
+      { duration: 650, easing: 'cubic-bezier(.16, 1, .3, 1)' }
+    ).onfinish = () => ripple.remove();
+  }, { passive: true });
+}
+
 setupNavigation();
 setupReveals();
+setupHeadings();
+setupRating();
+setupTouch();
 setupServices();
 setupProcedureMenu();
 setupCarousels();
