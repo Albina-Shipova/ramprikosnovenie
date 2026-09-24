@@ -211,7 +211,7 @@ body[data-page="training"] .training-documents__motto::before { content:"";width
  body[data-page="training"] .training-documents__examples { grid-template-columns:1fr;gap:20px; }
  body[data-page="training"] .training-document>span { min-height:112px;grid-template-columns:1fr 52px;padding:21px 20px; }
  body[data-page="training"] .training-document i { width:48px;height:48px; }
- body[data-page="training"] .training-documents__motto { margin-top:44px;font-size:9px;line-height:1.5; }
+ body[data-page="training"] .training-documents__motto { margin-top:44px;font-size:11px;line-height:1.5; }
 }
 
 /* Семинары: светлая редакционная композиция по референсу. */
@@ -772,6 +772,8 @@ body[data-page="training"] #seminars .training-fire .seminar-card__media img {
  .edu-programs h2,
  .edu-teacher h2,
  .edu-contact h2 { font-size:clamp(2.3rem,11vw,3.35rem); }
+ /* «профессиональной» — самое длинное слово заголовков: кегль считается от ширины экрана, чтобы слово не обрезалось */
+ .edu-teacher h2 { font-size:clamp(1.75rem,calc((100vw - 56px) / 9.4),3.35rem); }
 
  .edu-hero h1 {
   max-width:none;
@@ -885,4 +887,10 @@ body[data-page="training"] .training-page-contact .button {
 @media (max-width:410px) {
  .edu-hero { min-height:820px; padding-top:103px; }
  .edu-hero h1 { font-size:clamp(2.25rem,8.8vw,2.45rem); }
+}
+
+/* Зоны нажатия для текстовых ссылок на телефоне; отрицательный отступ сохраняет вёрстку */
+@media (max-width:820px) {
+ .edu-hero .edu-link { padding-top:16px; margin-top:-16px; }
+ body[data-page="training"] #seminars .seminar-program__cta { display:inline-block; padding-block:13px; margin-block:-9px -13px; }
 }

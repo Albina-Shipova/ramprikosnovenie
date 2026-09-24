@@ -83,7 +83,7 @@
     max-width: 92px;
     color: #f4f1ed;
     font-family: var(--font-body);
-    font-size: clamp(.6rem, 2.75vw, .7rem);
+    font-size: clamp(.7rem, 3vw, .78rem);
     font-weight: 500;
     line-height: 1.25;
     text-align: center;
@@ -92,7 +92,7 @@
   body[data-page="services"] .services-showcase__facts .fact-lotus dt { font-size: 0; }
   body[data-page="services"] .services-showcase__facts .fact-lotus dt::after {
     content: "Для лица и тела";
-    font-size: clamp(.6rem, 2.75vw, .7rem);
+    font-size: clamp(.7rem, 3vw, .78rem);
   }
   body[data-page="services"] .services-showcase__facts dd { display: none; }
 

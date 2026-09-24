@@ -58,7 +58,7 @@ function showStaggered(items) {
     .forEach(({ item }, index) => {
       item.style.setProperty('--i', Math.min(index, 6));
       item.classList.add('visible');
-      setTimeout(() => item.style.removeProperty('--i'), 1600);
+      setTimeout(() => item.style.removeProperty('--i'), 2600);
     });
 }
 
@@ -825,7 +825,7 @@ function setupHeadings() {
   const show = heading => {
     heading.classList.add('split-in');
     // После подъёма снимаем обрезку слов, чтобы не держать лишние слои.
-    setTimeout(() => heading.classList.add('split-done'), 1500);
+    setTimeout(() => heading.classList.add('split-done'), 2600);
   };
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -858,7 +858,7 @@ function setupRating() {
     if (Number.isNaN(target)) return;
     const start = performance.now();
     const tick = now => {
-      const part = Math.min(1, (now - start) / 1100);
+      const part = Math.min(1, (now - start) / 1800);
       const eased = 1 - Math.pow(1 - part, 3);
       score.textContent = (target * eased).toFixed(1).replace('.', ',');
       if (part < 1) requestAnimationFrame(tick);
@@ -902,7 +902,7 @@ function setupTouch() {
     button.append(ripple);
     ripple.animate(
       [{ transform: 'scale(0)', opacity: .38 }, { transform: 'scale(1)', opacity: 0 }],
-      { duration: 650, easing: 'cubic-bezier(.16, 1, .3, 1)' }
+      { duration: 950, easing: 'cubic-bezier(.16, 1, .3, 1)' }
     ).onfinish = () => ripple.remove();
   }, { passive: true });
 }
