@@ -680,11 +680,30 @@ body[data-page="training"] #programs .training__card h3 {
   align-items: start;
 }
 .about__figures img {
+  display: block;
   width: 100%; aspect-ratio: 3 / 4; object-fit: cover;
   border-radius: var(--radius-card);
   filter: saturate(.78) contrast(1.03) brightness(.96);
 }
-.about__figures img:last-child { margin-top: clamp(28px, 5vw, 64px); }
+.about__video video {
+  display: block;
+  width: 100%; height: auto; aspect-ratio: 9 / 16;
+  border-radius: var(--radius-card);
+}
+.about__figures > :last-child { margin-top: clamp(28px, 5vw, 64px); }
+.about__video {
+  position: relative; display: block; width: 100%;
+  padding: 0; border: 0; background: none; cursor: pointer;
+  border-radius: var(--radius-card); overflow: hidden;
+}
+.about__video-label {
+  position: absolute; left: 12px; right: 12px; bottom: 12px;
+  padding: 8px 12px; border-radius: 999px;
+  background: rgb(0 0 0 / .45); color: #fff;
+  font-size: .82rem; line-height: 1.3; text-align: left;
+  backdrop-filter: blur(6px);
+}
+.about__video:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 
 /* ------------------------------ Фото-полоса ------------------------------ */
 
@@ -2242,7 +2261,7 @@ body[data-page="training"] #programs .training__card h3 {
   .spa-highlight__copy { padding: 34px 18px 28px; }
   .spa-highlight__actions { grid-template-columns: 1fr; gap: 18px; }
 
-  .about__figures img:last-child { margin-top: 0; }
+  .about__figures > :last-child { margin-top: 0; }
 
   .footer-grid {
     flex-direction: column;
@@ -3823,7 +3842,7 @@ body[data-page="gallery"] .gallery-item[data-gallery-category="specialists"] img
 
 /* ---------- Фото раскрываются аркой — отсылка к фигурному зеркалу студии ---------- */
 
-.reveal :is(.direction__media, .about__figures img, .gift-certificate__visual img, .faq__visual img,
+.reveal :is(.direction__media, .about__figures img, .about__video, .gift-certificate__visual img, .faq__visual img,
   .contact-photos figure, .spa-highlight img, .training-fire img, .seminar-card__media img,
   .training-documents img, .master-slide__photo, .gallery-item img) {
   clip-path: inset(14% 10% 0 10% round 50% 50% 0 0 / 30% 30% 0 0);
@@ -3834,13 +3853,13 @@ body[data-page="gallery"] .gallery-item[data-gallery-category="specialists"] img
     transform 500ms var(--ease),
     filter 500ms var(--ease);
 }
-.reveal.visible :is(.direction__media, .about__figures img, .gift-certificate__visual img, .faq__visual img,
+.reveal.visible :is(.direction__media, .about__figures img, .about__video, .gift-certificate__visual img, .faq__visual img,
   .contact-photos figure, .spa-highlight img, .training-fire img, .seminar-card__media img,
   .training-documents img, .master-slide__photo, .gallery-item img) {
   clip-path: inset(0 round 0);
   scale: 1;
 }
-.about__figures.reveal img:last-child,
+.about__figures.reveal > :last-child,
 .contact-photos.reveal figure:nth-child(2) { transition-delay: 320ms; }
 .contact-photos.reveal figure:nth-child(3) { transition-delay: 480ms; }
 .contact-photos.reveal figure:nth-child(4) { transition-delay: 640ms; }
@@ -3904,7 +3923,7 @@ body[data-page="gallery"] .gallery-item[data-gallery-category="specialists"] img
       animation-timeline: scroll(root);
       animation-range: 0 100vh;
     }
-    .about__figures img:last-child,
+    .about__figures > :last-child,
     .photo-band p {
       animation: parallaxFloat linear both;
       animation-timeline: view();
@@ -3925,7 +3944,7 @@ body[data-page="gallery"] .gallery-item[data-gallery-category="specialists"] img
 @media (prefers-reduced-motion: reduce) {
   .hero__copy.reveal > :not(h1),
   .hero__copy.reveal .hero__facts > div { opacity: 1; translate: none; }
-  .reveal :is(.direction__media, .about__figures img, .gift-certificate__visual img, .faq__visual img,
+  .reveal :is(.direction__media, .about__figures img, .about__video, .gift-certificate__visual img, .faq__visual img,
     .contact-photos figure, .spa-highlight img, .training-fire img, .seminar-card__media img,
     .training-documents img, .master-slide__photo, .gallery-item img) { clip-path: none; scale: 1; }
   .reveal .eyebrow::before { transform: none; }

@@ -688,6 +688,32 @@ function setupGallery() {
   });
 }
 
+// Фоновое видео в «О студии»: грузится у края экрана, играет только на виду.
+function setupAboutVideo() {
+  const button = document.querySelector('.about__video');
+  if (!button) return;
+  const video = button.querySelector('video');
+  // На телефоне лёгкая версия 540p — и в блоке, и в окне просмотра, чтобы не качать дважды.
+  const src = window.matchMedia('(max-width: 767px)').matches && video.dataset.srcMobile
+    ? video.dataset.srcMobile
+    : video.dataset.src;
+  button.addEventListener('click', () => {
+    document.dispatchEvent(new CustomEvent('master-video:open', {
+      detail: { src, poster: button.dataset.masterVideoPoster || '' }
+    }));
+  });
+  const saveData = navigator.connection?.saveData;
+  if (saveData || reduceMotion.matches || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      if (!video.src) video.src = src;
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, { rootMargin: '200px 0px' }).observe(button);
+}
+
 function setupMasterVideoModal() {
   const modal = document.querySelector('.video-modal');
   if (!modal) return;
@@ -919,5 +945,6 @@ setupMasterCarouselHeight();
 setupReviewPagers();
 setupGallery();
 setupMasterVideoModal();
+setupAboutVideo();
 setupScrollProgress();
 setupTopControls();
