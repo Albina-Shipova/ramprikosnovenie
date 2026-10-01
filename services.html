@@ -28,7 +28,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap">
   <link rel="preload" as="image" href="assets/images/services-hero-massage.png">
-  <link rel="stylesheet" href="styles.css?v=20261001-3">
+  <link rel="stylesheet" href="styles.css?v=20261001-16">
   <link rel="stylesheet" href="services-mobile.css?v=20260924-1">
   <script type="application/ld+json">
   {
@@ -752,17 +752,18 @@
         </div>
 
         <nav class="procedure-menu__tabs" aria-label="Направления услуг">
-          <a class="active" href="#" data-menu-filter="massage">Массаж тела</a>
+          <a class="active" href="#" data-menu-filter="spa">SPA-программы</a>
+          <a href="#" data-menu-filter="massage">Массаж тела</a>
           <a href="#" data-menu-filter="face">Массаж лица</a>
           <a href="#" data-menu-filter="cosmetology">Косметология</a>
           <a href="#" data-menu-filter="peeling">Пилинги</a>
-          <a href="#" data-menu-filter="spa">SPA-программы</a>
           <a href="#" data-menu-filter="casmara">Casmara</a>
         </nav>
 
         <article class="procedure-menu__panel">
           <div class="procedure-menu__visual">
             <img src="assets/images/process-back-massage.webp" alt="Массаж спины в студии «Прикосновение»" width="960" height="1280" loading="lazy">
+            <video class="procedure-menu__video" muted loop playsinline preload="none" poster="assets/video/spa-wrap-poster.webp" data-src="assets/video/spa-wrap.mp4" data-src-mobile="assets/video/spa-wrap-mobile.mp4" aria-hidden="true" hidden></video>
             <div class="procedure-menu__visual-copy">
               <p class="procedure-menu__number">01 <i></i></p>
               <h3>Массаж тела</h3>
@@ -795,6 +796,9 @@
                 <article class="spa-highlight reveal">
           <div class="spa-highlight__media">
             <img src="assets/images/training/seminar-fire-massage.png" alt="Процедура огненного массажа в кабинете студии" width="1122" height="1402" loading="lazy">
+            <div class="spa-highlight__clip">
+              <video muted loop playsinline preload="none" poster="assets/video/fire-massage-clip-poster.webp" width="360" height="640" data-src="assets/video/fire-massage-clip.mp4" data-autoplay aria-hidden="true"></video>
+            </div>
           </div>
           <div class="spa-highlight__copy">
             <p class="spa-highlight__label"><span>Особая процедура</span></p>
@@ -938,6 +942,6 @@
     <a href="https://dikidi.net/1188196" target="_blank" rel="noopener">Записаться</a>
   </nav>
 
-  <script src="script.js?v=20261001-3"></script>
+  <script src="script.js?v=20261001-16"></script>
 </body>
 </html>

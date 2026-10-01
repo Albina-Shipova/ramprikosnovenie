@@ -693,7 +693,6 @@ body[data-page="training"] #programs .training__card h3 {
 .about__figures > :last-child { margin-top: clamp(28px, 5vw, 64px); }
 .about__video {
   position: relative; display: block; width: 100%;
-  padding: 0; border: 0; background: none; cursor: pointer;
   border-radius: var(--radius-card); overflow: hidden;
 }
 .about__video-label {
@@ -703,7 +702,6 @@ body[data-page="training"] #programs .training__card h3 {
   font-size: .82rem; line-height: 1.3; text-align: left;
   backdrop-filter: blur(6px);
 }
-.about__video:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 
 /* ------------------------------ Фото-полоса ------------------------------ */
 
@@ -2072,7 +2070,8 @@ body[data-page="training"] #programs .training__card h3 {
 .safety-note { background: var(--gray-light); }
 .safety-note__inner {
   display: grid;
-  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  /* Колонки поровну: в узкой левой «противопоказания» на 1025–1440px рвалось посреди слова */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(24px, 4vw, 64px);
 }
 .safety-note p { margin: 0; color: var(--graphite-2); }
@@ -2731,7 +2730,8 @@ body[data-page="services"] .site-header { background: #f5f3ef; }
 .procedure-menu__panel { display: grid; grid-template-columns: minmax(360px, .84fr) minmax(520px, 1fr); min-height: 500px; border: 1px solid #d8d2cb; border-radius: var(--radius-card); overflow: hidden; background: #f7f5f1; }
 .procedure-menu__visual { position: relative; min-height: 500px; overflow: hidden; background: var(--graphite); color: var(--white); }
 .procedure-menu__visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(13,13,13,.76), rgba(13,13,13,.24) 70%, rgba(13,13,13,.04)); }
-.procedure-menu__visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 56%; filter: saturate(.75) brightness(.72) contrast(1.05); }
+.procedure-menu__visual :is(img, video) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 56%; filter: saturate(.75) brightness(.72) contrast(1.05); }
+.procedure-menu__visual [hidden] { display: none; }
 .procedure-menu__visual-copy { position: absolute; z-index: 2; top: 30px; left: 32px; }
 .procedure-menu__number { display: flex; align-items: center; gap: 20px; margin: 0 0 8px; color: #c1a68e; font-size: 38px; font-weight: 300; }
 .procedure-menu__number i { display: block; width: 38px; height: 1px; background: currentColor; }
@@ -2786,7 +2786,7 @@ body[data-page="services"] .site-header { background: #f5f3ef; }
   position: relative;
   min-height: min(830px, calc(100svh - 80px));
   overflow: hidden;
-  background: #f3efe9;
+  background: var(--strip); /* цвет полосы ниже, иначе под волной другой белый */
   color: #f7f6f3;
 }
 .services-showcase__backdrop {
@@ -3017,7 +3017,7 @@ body[data-page="services"] .procedure-menu__panel {
   border-radius: var(--radius-card);
   background: var(--white);
 }
-body[data-page="services"] .procedure-menu__visual img {
+body[data-page="services"] .procedure-menu__visual :is(img, video) {
   filter: var(--image-overlay);
 }
 body[data-page="services"] .procedure-menu__visual::after {
@@ -3025,6 +3025,11 @@ body[data-page="services"] .procedure-menu__visual::after {
     linear-gradient(rgba(35, 61, 70, .08), rgba(35, 61, 70, .08)),
     linear-gradient(90deg, rgba(22, 22, 21, .86), rgba(22, 22, 21, .2) 74%, rgba(22, 22, 21, .06));
 }
+/* Видео SPA: без обрезки по высоте и без затемнения, тень только под текстом */
+/* Видео SPA: без затемнения, текст читается за счёт тени у букв */
+body[data-page="services"] .procedure-menu__visual video { filter: none; }
+body[data-page="services"] .has-video .procedure-menu__visual::after { background: none; }
+.has-video .procedure-menu__visual-copy { text-shadow: 0 1px 12px rgba(22, 22, 21, .55); }
 body[data-page="services"] .procedure-menu__number { color: var(--warm); }
 body[data-page="services"] .procedure-menu__visual h3 { font-weight: 600; }
 body[data-page="services"] .procedure-menu__rows details { border-bottom-color: var(--line); }
@@ -3045,7 +3050,21 @@ body[data-page="services"] .spa-highlight {
   background: linear-gradient(135deg, #202223 0%, #181a1b 100%);
   box-shadow: 0 30px 80px rgba(11, 13, 14, .18);
 }
-body[data-page="services"] .spa-highlight__media { min-width: 0; overflow: hidden; }
+body[data-page="services"] .spa-highlight__media { position: relative; min-width: 0; overflow: hidden; }
+/* Окошко с видео огненного массажа в углу фото */
+.spa-highlight__clip {
+  position: absolute; right: clamp(14px, 2vw, 28px); bottom: clamp(14px, 2vw, 28px);
+  width: clamp(96px, 24%, 170px);
+  border: 2px solid rgba(245, 240, 233, .85);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .45);
+}
+.spa-highlight .spa-highlight__clip video {
+  display: block; width: 100%; height: auto; min-height: 0;
+  aspect-ratio: 9 / 16; object-fit: cover;
+  border-radius: 0; filter: none;
+}
 body[data-page="services"] .spa-highlight img {
   min-height: 680px;
   border-radius: 0;
@@ -3917,11 +3936,6 @@ body[data-page="gallery"] .gallery-item[data-gallery-category="specialists"] img
       animation: heroZoom 7s var(--ease) forwards, parallaxDrift linear both;
       animation-timeline: auto, scroll(root);
       animation-range: normal, 0 100vh;
-    }
-    .services-showcase__backdrop {
-      animation: parallaxDrift linear both;
-      animation-timeline: scroll(root);
-      animation-range: 0 100vh;
     }
     .about__figures > :last-child,
     .photo-band p {

@@ -180,23 +180,23 @@ function setupProcedureMenu() {
       intro: 'Выберите направление и найдите процедуру, которая подходит вашему запросу.'
     },
     massage: {
-      image: 'assets/images/process-back-massage.webp', alt: 'Массаж спины в студии «Прикосновение»', number: '01',
+      image: 'assets/images/process-back-massage.webp', alt: 'Массаж спины в студии «Прикосновение»', number: '02',
       intro: 'Восстановление, лёгкость и внутренняя энергия. Подберём технику массажа под ваши цели и состояние.'
     },
     face: {
-      image: 'assets/images/process-face-care.webp', alt: 'Массаж и уход за лицом', number: '02',
+      image: 'assets/images/process-face-care.webp', alt: 'Массаж и уход за лицом', number: '03',
       intro: 'Деликатные техники для расслабления, свежего вида и комплексного ухода за лицом.'
     },
     cosmetology: {
-      image: 'assets/images/process-cosmetology.webp', alt: 'Косметологическая процедура в студии', number: '03',
+      image: 'assets/images/process-cosmetology.webp', alt: 'Косметологическая процедура в студии', number: '04',
       intro: 'Современные процедуры с индивидуальным подбором средств и параметров воздействия.'
     },
     peeling: {
-      image: 'assets/images/process-face-glass.webp', alt: 'Профессиональный уход за кожей лица', number: '04',
+      image: 'assets/images/process-face-glass.webp', alt: 'Профессиональный уход за кожей лица', number: '05',
       intro: 'Мягкое обновление кожи, работа с текстурой и тоном под контролем специалиста.'
     },
     spa: {
-      image: 'assets/images/fire-massage.webp', alt: 'Авторская SPA-процедура в студии', number: '05',
+      image: 'assets/images/fire-massage.webp', alt: 'Авторская SPA-процедура в студии', number: '01', video: true,
       intro: 'Продуманные программы для глубокого отдыха, ухода за телом и ощущения лёгкости.'
     },
     casmara: {
@@ -204,6 +204,38 @@ function setupProcedureMenu() {
       intro: 'Профессиональные программы Casmara для питания, восстановления и сияния кожи.'
     }
   };
+
+  // Видео SPA-программ: грузится только на вкладке SPA и только у края экрана.
+  const video = menu.querySelector('.procedure-menu__video');
+  const allowVideo = video && !navigator.connection?.saveData && !reduceMotion.matches && 'IntersectionObserver' in window;
+  let videoActive = false;
+  let videoInView = false;
+  const syncVideo = () => {
+    if (videoActive && videoInView) {
+      if (!video.src) {
+        video.src = window.matchMedia('(max-width: 767px)').matches && video.dataset.srcMobile
+          ? video.dataset.srcMobile
+          : video.dataset.src;
+      }
+      video.play().catch(() => {});
+    } else if (video) {
+      video.pause();
+    }
+  };
+  const showVideo = on => {
+    if (!video) return;
+    videoActive = on && allowVideo;
+    video.hidden = !on;
+    visualImage.hidden = on;
+    video.closest('.procedure-menu__panel').classList.toggle('has-video', on);
+    syncVideo();
+  };
+  if (allowVideo) {
+    new IntersectionObserver(([entry]) => {
+      videoInView = entry.isIntersecting;
+      syncVideo();
+    }, { rootMargin: '200px 0px' }).observe(video.parentElement);
+  }
 
   const bindRows = () => {
     [...rowsHost.querySelectorAll('details')].forEach(row => row.addEventListener('toggle', () => {
@@ -246,6 +278,7 @@ function setupProcedureMenu() {
     const visual = categoryVisuals[filter];
     visualImage.src = visual.image;
     visualImage.alt = visual.alt;
+    showVideo(Boolean(visual.video));
     visualNumber.firstChild.textContent = `${visual.number} `;
     visualIntro.textContent = visual.intro;
     tabs.forEach(tab => tab.classList.toggle('active', tab.dataset.menuFilter === filter));
@@ -266,7 +299,8 @@ function setupProcedureMenu() {
       });
     });
   }
-  bindRows();
+  const requested = new URLSearchParams(location.search).get('category');
+  render(tabs.some(tab => tab.dataset.menuFilter === requested) ? requested : tabs[0].dataset.menuFilter);
 }
 
 // Дорожка мастеров держит высоту открытой карточки, а не самой длинной из всех.
@@ -476,7 +510,9 @@ function setupCarousels() {
     const openMasterVideo = videoData => {
       document.dispatchEvent(new CustomEvent('master-video:open', {
         detail: {
-          src: videoData.dataset.masterVideo,
+          src: window.matchMedia('(max-width: 767px)').matches && videoData.dataset.masterVideoMobile
+            ? videoData.dataset.masterVideoMobile
+            : videoData.dataset.masterVideo,
           poster: videoData.dataset.masterVideoPoster || ''
         }
       }));
@@ -688,30 +724,22 @@ function setupGallery() {
   });
 }
 
-// Фоновое видео в «О студии»: грузится у края экрана, играет только на виду.
-function setupAboutVideo() {
-  const button = document.querySelector('.about__video');
-  if (!button) return;
-  const video = button.querySelector('video');
-  // На телефоне лёгкая версия 540p — и в блоке, и в окне просмотра, чтобы не качать дважды.
-  const src = window.matchMedia('(max-width: 767px)').matches && video.dataset.srcMobile
-    ? video.dataset.srcMobile
-    : video.dataset.src;
-  button.addEventListener('click', () => {
-    document.dispatchEvent(new CustomEvent('master-video:open', {
-      detail: { src, poster: button.dataset.masterVideoPoster || '' }
-    }));
-  });
-  const saveData = navigator.connection?.saveData;
-  if (saveData || reduceMotion.matches || !('IntersectionObserver' in window)) return;
-  new IntersectionObserver(([entry]) => {
+// Фоновые видео (data-autoplay): грузятся у края экрана, играют только на виду.
+function setupAutoVideos() {
+  const videos = [...document.querySelectorAll('video[data-autoplay]')];
+  if (!videos.length) return;
+  if (navigator.connection?.saveData || reduceMotion.matches || !('IntersectionObserver' in window)) return;
+  const mobile = window.matchMedia('(max-width: 767px)').matches;
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    const video = entry.target;
     if (entry.isIntersecting) {
-      if (!video.src) video.src = src;
+      if (!video.src) video.src = mobile && video.dataset.srcMobile ? video.dataset.srcMobile : video.dataset.src;
       video.play().catch(() => {});
     } else {
       video.pause();
     }
-  }, { rootMargin: '200px 0px' }).observe(button);
+  }), { rootMargin: '200px 0px' });
+  videos.forEach(video => observer.observe(video));
 }
 
 function setupMasterVideoModal() {
@@ -741,6 +769,8 @@ function setupMasterVideoModal() {
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     close.focus();
+    // Открытие — это клик пользователя, поэтому браузер разрешает старт со звуком.
+    video.play().catch(() => {});
   });
 
   close.addEventListener('click', closeModal);
@@ -945,6 +975,6 @@ setupMasterCarouselHeight();
 setupReviewPagers();
 setupGallery();
 setupMasterVideoModal();
-setupAboutVideo();
+setupAutoVideos();
 setupScrollProgress();
 setupTopControls();
