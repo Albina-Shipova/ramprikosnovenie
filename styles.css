@@ -375,7 +375,7 @@ body[data-page="training"] #programs .training__card h3 {
 /* Фото-фон и мягкий переход графита в фотографию слева направо */
 .hero__bg {
   position: absolute; inset: 0; z-index: 0;
-  background-image: url('assets/images/hero-interior-client.png');
+  background-image: url('assets/images/hero-interior-client.webp');
   background-size: cover;
   background-position: calc(50% + 105px) center;
   transform: scale(1.035);
@@ -2278,7 +2278,7 @@ body[data-page="training"] #programs .training__card h3 {
   .hero { min-height: calc(100svh - 72px); padding-block: clamp(46px, 10vw, 72px) clamp(156px, 30vw, 184px); }
   .hero__bg {
     inset: 0;
-    background-image: url('assets/images/hero-interior-client.png');
+    background-image: url('assets/images/hero-interior-client.webp');
     background-position: 58% center;
   }
   .hero--chair .hero__bg {

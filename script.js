@@ -309,12 +309,17 @@ function setupMasterCarouselHeight() {
   const slides = [...track.children];
   if (!slides.length) return;
 
+  // Размеры слайдов берём из ResizeObserver: он отдаёт их без принудительной компоновки.
+  // Без него (старые браузеры) меряем напрямую.
+  const sizes = new Map();
+  const sizeOf = slide => sizes.get(slide) || slide.getBoundingClientRect();
+
   const apply = () => {
     const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    const step = slides[0].getBoundingClientRect().width + gap;
+    const step = sizeOf(slides[0]).width + gap;
     const index = step ? Math.round(track.scrollLeft / step) : 0;
     const slide = slides[Math.min(Math.max(index, 0), slides.length - 1)];
-    track.style.height = `${slide.offsetHeight}px`;
+    track.style.height = `${sizeOf(slide).height}px`;
   };
 
   let frame = null;
@@ -329,14 +334,21 @@ function setupMasterCarouselHeight() {
   };
 
   track.addEventListener('scroll', schedule, { passive: true });
-  window.addEventListener('resize', schedule, { passive: true });
   if ('ResizeObserver' in window) {
-    const observer = new ResizeObserver(schedule);
+    // Первый вызов наблюдателя приходит сам и запускает первый замер.
+    const observer = new ResizeObserver(entries => {
+      entries.forEach(entry => {
+        const box = entry.borderBoxSize && entry.borderBoxSize[0];
+        if (box) sizes.set(entry.target, { width: box.inlineSize, height: box.blockSize });
+      });
+      schedule();
+    });
     slides.forEach(slide => observer.observe(slide));
+  } else {
+    window.addEventListener('resize', schedule, { passive: true });
+    track.querySelectorAll('img').forEach(image => image.addEventListener('load', schedule));
+    schedule();
   }
-  track.querySelectorAll('img').forEach(image => image.addEventListener('load', schedule));
-  // Первый замер — в кадре, а не синхронно при загрузке (иначе принудительная компоновка).
-  schedule();
 }
 
 // Карусель: с планшета и ниже дорожка становится горизонтальной лентой.
@@ -602,7 +614,8 @@ function setupCarousels() {
       track.scrollLeft = 0;
       update();
     });
-    apply();
+    // Первый расчёт — в кадре: сразу после правок DOM выше замер вызвал бы принудительную компоновку.
+    requestAnimationFrame(apply);
   });
 }
 
@@ -965,16 +978,13 @@ function setupTouch() {
 
 // Для мобильных подменяем отложенные изображения на компактные копии до их загрузки.
 // Постер видео грузится сразу, поэтому в разметке стоит мобильный, а крупный ставим на desktop.
+// Картинки выбирает сам браузер через srcset/sizes.
 function setupMobileImageSources() {
   if (!window.matchMedia('(max-width: 820px)').matches) {
     document.querySelectorAll('video[data-desktop-poster]').forEach(video => {
       video.poster = video.dataset.desktopPoster;
     });
-    return;
   }
-  document.querySelectorAll('img[data-mobile-src]').forEach(image => {
-    image.src = image.dataset.mobileSrc;
-  });
 }
 
 setupMobileImageSources();
