@@ -1358,6 +1358,8 @@ body[data-page="training"] #programs .training__card h3 {
 }
 
 @media (max-width: 820px) {
+  /* На сенсорных экранах не тратим кадры на hover-переходы имён карусели. */
+  .master-carousel__name { transition: none; }
   .training-page-hero__grid, .training-page-contact__inner { grid-template-columns: minmax(0, 1fr); }
   .training-page-hero__visual { max-width: 520px; }
   .training-page-contact .button-row { justify-content: flex-start; }

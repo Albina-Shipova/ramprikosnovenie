@@ -973,8 +973,17 @@ setupProcedureMenu();
 setupCarousels();
 setupMasterCarouselHeight();
 setupReviewPagers();
-setupGallery();
-setupMasterVideoModal();
-setupAutoVideos();
-setupScrollProgress();
-setupTopControls();
+
+// Второстепенные обработчики не должны конкурировать с первым экраном на мобильных.
+// Инициализируем их после свободного кадра браузера, сохраняя полную функциональность.
+const runWhenIdle = callback => {
+  if ('requestIdleCallback' in window) window.requestIdleCallback(callback, { timeout: 1200 });
+  else setTimeout(callback, 700);
+};
+runWhenIdle(() => {
+  setupGallery();
+  setupMasterVideoModal();
+  setupAutoVideos();
+  setupScrollProgress();
+  setupTopControls();
+});
