@@ -817,6 +817,7 @@ body[data-page="training"] #programs .training__card h3 {
   filter: saturate(.88) contrast(1.02) brightness(.98);
 }
 .master-slide__photo[src*="master-viktoria"] { object-position: center 8%; }
+.master-slide__photo[src*="master-oksana"] { object-position: center top; }
 /* Правый отступ — чтобы строки не подлезали под стрелку карусели */
 .master-slide__body {
   display: flex; flex-direction: column; gap: clamp(16px, 1.8vw, 22px);
@@ -4014,3 +4015,10 @@ body[data-page="gallery"] .gallery-item[data-gallery-category="specialists"] img
     margin-top: -13px;
   }
 }
+/* Crawlable full procedure catalogue */
+.procedure-seo__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;margin-top:2rem}
+.procedure-seo__grid article{padding:1.5rem;border:1px solid rgba(35,35,35,.12);border-radius:1rem;background:#fff}
+.procedure-seo__grid h3{margin:0 0 .9rem}
+.procedure-seo__grid p{margin:.55rem 0;line-height:1.6}
+@media (max-width:700px){.procedure-seo__grid{grid-template-columns:1fr}}
+.procedure-menu__rows details > div > a { display: none; }

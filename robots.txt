@@ -4,5 +4,5 @@ Disallow: /tmp/
 Disallow: /assets/new/
 Disallow: /seo-otchet.html
 
-Sitemap: https://touch3.asama.site/sitemap.xml
-Host: https://touch3.asama.site
+Sitemap: https://ramprikosnovenie.ru/sitemap.xml
+Host: https://ramprikosnovenie.ru
