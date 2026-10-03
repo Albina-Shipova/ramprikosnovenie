@@ -314,7 +314,7 @@ body[data-page="training"] #programs .training__card h3 {
   display: block;
 }
 .brand__name { display: block; font-family: var(--font-display); font-size: 1.0625rem; font-weight: 600; letter-spacing: -.01em; }
-.brand__tag { display: block; margin-top: 3px; color: #8b8177; font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; opacity: 1; }
+.brand__tag { display: block; margin-top: 3px; color: #6b6158; font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; opacity: 1; }
 
 .site-nav { display: flex; justify-content: center; gap: clamp(18px, 2.4vw, 34px); }
 .site-nav a {
@@ -555,7 +555,7 @@ body[data-page="training"] #programs .training__card h3 {
   font-family: var(--font-display);
   font-size: 1.5rem; font-weight: 500; line-height: 1;
   letter-spacing: .02em;
-  color: #c7b39a;
+  color: #7a6553;
 }
 .trust-dash { flex: none; width: 26px; height: 1px; background: rgba(154, 128, 105, .45); }
 
@@ -566,7 +566,7 @@ body[data-page="training"] #programs .training__card h3 {
   letter-spacing: -.01em;
   color: var(--graphite);
 }
-.trust-text { margin: 0; font-size: .875rem; line-height: 1.45; color: #77736f; }
+.trust-text { margin: 0; font-size: .875rem; line-height: 1.45; color: #5f5b57; }
 
 .trust-leaf {
   position: absolute; z-index: 0;
@@ -881,7 +881,7 @@ body[data-page="training"] #programs .training__card h3 {
   transition: transform 280ms var(--ease);
 }
 .master-carousel__name:hover { color: var(--graphite); }
-.master-carousel__name.is-active { color: var(--wood); font-weight: 650; }
+.master-carousel__name.is-active { color: #75604e; font-weight: 650; }
 .master-carousel__name.is-active::after { transform: scaleX(1); }
 .master-carousel__video-mark {
   display: grid;

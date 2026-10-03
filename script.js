@@ -76,11 +76,10 @@ function setupReveals() {
     if (fresh.length) showStaggered(fresh);
   }, { threshold: 0.08, rootMargin: '0px 0px -40px' });
 
-  // Первый экран тоже появляется с анимацией.
+  // Первый экран тоже появляется с анимацией: начальное попадание в экран отдаёт сам
+  // наблюдатель, без синхронного замера всех блоков при загрузке (принудительная компоновка).
+  items.forEach(item => observer.observe(item));
   const inView = item => item.getBoundingClientRect().top < window.innerHeight * 1.02;
-  const initial = items.filter(inView);
-  items.filter(item => !initial.includes(item)).forEach(item => observer.observe(item));
-  nextFrames(() => showStaggered(initial));
 
   // При быстрой прокрутке наблюдатель пропускает блоки, пролетевшие между кадрами:
   // добираем всё, что уже попало в экран или ушло выше него.
