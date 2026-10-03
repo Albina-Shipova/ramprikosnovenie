@@ -4027,6 +4027,14 @@ body[data-page="gallery"] .gallery-item[data-gallery-category="specialists"] img
 @media (max-width:700px){.procedure-seo__grid{grid-template-columns:1fr}}
 .procedure-menu__rows details > div > a { display: none; }
 
+.legal-page { max-width: 760px; margin: 0 auto; padding: 4rem 1.25rem 5rem; color: #332f2a; }
+.legal-page__back { color: #6e665c; text-decoration: none; }
+.legal-page h1 { max-width: 650px; margin: 1.5rem 0 .6rem; font-family: var(--font-display, inherit); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; }
+.legal-page h2 { margin: 2.2rem 0 .65rem; font-family: var(--font-display, inherit); font-size: 1.35rem; }
+.legal-page p { color: #625a52; line-height: 1.7; }
+.legal-page a { color: #6e665c; }
+.legal-page__updated { font-size: .82rem; }
+
 .cookie-banner {
   position: fixed;
   z-index: 1000;

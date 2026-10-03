@@ -996,7 +996,7 @@ setupReviewPagers();
   banner.innerHTML = `
     <div class="cookie-banner__copy">
       <strong>Здесь есть cookies</strong>
-      <p>Мы используем их и Яндекс.Метрику, чтобы сайт работал удобнее и помогал нам улучшать сервис. Выберите, разрешить ли аналитику.</p>
+      <p>Мы используем cookies и Яндекс.Метрику, чтобы улучшать сайт. <a href="privacy.html">Подробнее о cookies</a>. Выберите, разрешить ли аналитику.</p>
     </div>
     <div class="cookie-banner__actions">
       <button class="cookie-banner__button cookie-banner__button--muted" type="button" data-consent="declined">Отказаться</button>
