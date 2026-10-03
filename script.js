@@ -983,7 +983,6 @@ setupTouch();
 setupServices();
 setupProcedureMenu();
 setupCarousels();
-setupMasterCarouselHeight();
 setupReviewPagers();
 
 // Уведомление о cookies и согласие на аналитические cookies.
@@ -1028,6 +1027,7 @@ const runWhenIdle = callback => {
   else setTimeout(callback, 700);
 };
 runWhenIdle(() => {
+  setupMasterCarouselHeight();
   setupGallery();
   setupMasterVideoModal();
   setupAutoVideos();
