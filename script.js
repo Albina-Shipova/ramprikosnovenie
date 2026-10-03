@@ -963,13 +963,16 @@ function setupTouch() {
 }
 
 // Для мобильных подменяем отложенные изображения на компактные копии до их загрузки.
+// Постер видео грузится сразу, поэтому в разметке стоит мобильный, а крупный ставим на desktop.
 function setupMobileImageSources() {
-  if (!window.matchMedia('(max-width: 820px)').matches) return;
+  if (!window.matchMedia('(max-width: 820px)').matches) {
+    document.querySelectorAll('video[data-desktop-poster]').forEach(video => {
+      video.poster = video.dataset.desktopPoster;
+    });
+    return;
+  }
   document.querySelectorAll('img[data-mobile-src]').forEach(image => {
     image.src = image.dataset.mobileSrc;
-  });
-  document.querySelectorAll('video[data-mobile-poster]').forEach(video => {
-    video.poster = video.dataset.mobilePoster;
   });
 }
 
