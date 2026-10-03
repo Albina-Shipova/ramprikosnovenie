@@ -4026,3 +4026,34 @@ body[data-page="gallery"] .gallery-item[data-gallery-category="specialists"] img
 .procedure-seo__grid p{margin:.55rem 0;line-height:1.6}
 @media (max-width:700px){.procedure-seo__grid{grid-template-columns:1fr}}
 .procedure-menu__rows details > div > a { display: none; }
+
+.cookie-banner {
+  position: fixed;
+  z-index: 1000;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 1.15rem 1.35rem;
+  color: #332f2a;
+  background: rgba(249, 247, 243, .97);
+  border: 1px solid rgba(108, 88, 67, .2);
+  border-radius: 1rem;
+  box-shadow: 0 14px 45px rgba(58, 45, 34, .18);
+  backdrop-filter: blur(14px);
+}
+.cookie-banner__copy { max-width: 650px; }
+.cookie-banner__copy strong { display: block; margin-bottom: .3rem; font-family: var(--font-display, inherit); font-size: 1.05rem; }
+.cookie-banner__copy p { margin: 0; color: #6c6259; font-size: .82rem; line-height: 1.5; }
+.cookie-banner__actions { display: flex; flex-shrink: 0; gap: .55rem; }
+.cookie-banner__button { padding: .7rem 1rem; color: #fff; background: #6e665c; border: 0; border-radius: 999px; cursor: pointer; font: inherit; font-size: .78rem; }
+.cookie-banner__button--muted { color: #6e665c; background: transparent; border: 1px solid rgba(108, 88, 67, .3); }
+@media (max-width: 640px) {
+  .cookie-banner { align-items: stretch; flex-direction: column; gap: .9rem; bottom: .7rem; left: .7rem; right: .7rem; padding: 1rem; }
+  .cookie-banner__actions { justify-content: flex-end; }
+}

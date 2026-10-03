@@ -117,6 +117,7 @@
   </script>
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
+      if (localStorage.getItem('site-consent') === 'accepted') {
       (function(m,e,t,r,i,k,a){
           m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
           m[i].l=1*new Date();
@@ -125,6 +126,7 @@
       })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113366309', 'ym');
 
       ym(113366309, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+      }
   </script>
   <noscript><div><img src="https://mc.yandex.ru/watch/113366309" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
   <!-- /Yandex.Metrika counter -->
@@ -238,7 +240,7 @@
 
         <div class="direction-grid">
           <a class="direction reveal" href="services.html?category=massage">
-            <div class="direction__media"><img src="assets/images/process-body-massage.webp" alt="Мастер выполняет массаж тела" width="1500" height="2000" loading="lazy"></div>
+            <div class="direction__media"><img src="assets/images/process-body-massage.webp" data-mobile-src="assets/images/mobile/process-body-mobile.webp" alt="Мастер выполняет массаж тела" width="1500" height="2000" loading="lazy"></div>
             <div class="direction__body">
               <h3>Массаж тела</h3>
               <p>Глубокая работа с телом: расслабление и восстановление.</p>
@@ -249,7 +251,7 @@
             </div>
           </a>
           <a class="direction reveal" href="services.html?category=face">
-            <div class="direction__media"><img src="assets/images/process-face-care.webp" alt="Мастер выполняет массаж лица" width="1500" height="2000" loading="lazy"></div>
+            <div class="direction__media"><img src="assets/images/process-face-care.webp" data-mobile-src="assets/images/mobile/process-face-mobile.webp" alt="Мастер выполняет массаж лица" width="1500" height="2000" loading="lazy"></div>
             <div class="direction__body">
               <h3>Массаж лица</h3>
               <p>Естественная красота и глубокое расслабление.</p>
@@ -260,7 +262,7 @@
             </div>
           </a>
           <a class="direction reveal" href="services.html?category=spa">
-            <div class="direction__media"><img src="assets/images/process-wood-therapy.webp" alt="Процедура с деревянным массажным роллером" width="1500" height="2000" loading="lazy"></div>
+            <div class="direction__media"><img src="assets/images/process-wood-therapy.webp" data-mobile-src="assets/images/mobile/process-wood-mobile.webp" alt="Процедура с деревянным массажным роллером" width="1500" height="2000" loading="lazy"></div>
             <div class="direction__body">
               <h3>SPA-программы</h3>
               <p>Комплексные ритуалы для гармонии и заботы о себе.</p>
@@ -271,7 +273,7 @@
             </div>
           </a>
           <a class="direction reveal" href="services.html?category=cosmetology">
-            <div class="direction__media"><img src="assets/images/process-cosmetology.webp" alt="Косметологическая процедура в студии" width="1500" height="2000" loading="lazy"></div>
+            <div class="direction__media"><img src="assets/images/process-cosmetology.webp" data-mobile-src="assets/images/mobile/process-cosmetology-mobile.webp" alt="Косметологическая процедура в студии" width="1500" height="2000" loading="lazy"></div>
             <div class="direction__body">
               <h3>Эстетические уходы</h3>
               <p>Уходы для здоровья и сияния вашей кожи.</p>
@@ -298,17 +300,17 @@
         </div>
         <div class="about__figures reveal">
           <div class="about__video">
-            <video muted loop playsinline preload="none" poster="assets/video/oksana-loop-poster.webp" width="720" height="1280" data-src="assets/video/oksana-web.mp4" data-src-mobile="assets/video/oksana-mobile.mp4" data-autoplay aria-hidden="true"></video>
+            <video muted loop playsinline preload="none" poster="assets/video/oksana-loop-poster.webp" data-mobile-poster="assets/images/mobile/oksana-loop-poster-mobile.webp" width="720" height="1280" data-src="assets/video/oksana-web.mp4" data-src-mobile="assets/video/oksana-mobile.mp4" data-autoplay aria-hidden="true"></video>
             <span class="about__video-label">Оксана Потоцкая, основатель</span>
           </div>
-          <img src="assets/images/studio-mirror.webp" alt="Фигурное зеркало и зелёный декор в студии" width="1050" height="1400" loading="lazy">
+          <img src="assets/images/studio-mirror.webp" data-mobile-src="assets/images/mobile/studio-mirror-mobile.webp" alt="Фигурное зеркало и зелёный декор в студии" width="1050" height="1400" loading="lazy">
         </div>
       </div>
     </section>
 
     <!-- 5. Фото-полоса -->
     <section class="photo-band" aria-label="Интерьер студии">
-      <img src="assets/images/studio-shelf.webp" alt="Декоративная зелень и тёплая подсветка в студии" width="1672" height="940" loading="lazy">
+      <img src="assets/images/studio-shelf.webp" data-mobile-src="assets/images/mobile/studio-shelf-mobile.webp" alt="Декоративная зелень и тёплая подсветка в студии" width="1672" height="940" loading="lazy">
       <div class="photo-band__caption">
         <div class="shell">
           <p class="reveal">Тёплый свет, приглушённый графит и час, в котором никуда не нужно спешить.</p>
@@ -337,7 +339,7 @@
           <div class="master-carousel__track carousel__track" role="group" aria-label="Мастера студии">
             <article class="master-slide reveal">
               <div class="master-slide__visual">
-                <img class="master-slide__photo" src="assets/images/team/master-oksana-2026-10.webp" alt="Оксана Потоцкая" width="1122" height="1402" loading="lazy">
+                <img class="master-slide__photo" src="assets/images/team/master-oksana-2026-10.webp" data-mobile-src="assets/images/mobile/master-oksana-mobile.webp" alt="Оксана Потоцкая" width="1122" height="1402" loading="lazy">
                 <div class="master-videos" data-master-video="assets/video/oksana-interview.mp4" data-master-video-mobile="assets/video/oksana-interview-mobile.mp4" data-master-video-poster="assets/video/oksana-interview-poster.webp">
                   <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство с Оксаной"><span class="master-video-trigger__icon" aria-hidden="true">▶</span><span>Видео-знакомство · 1:28</span></button>
                 </div>
@@ -378,7 +380,7 @@
             </article>
             <article class="master-slide reveal">
               <div class="master-slide__visual">
-                <img class="master-slide__photo" src="assets/images/team/master-maria-2026.webp" alt="Мария" width="1122" height="1402" loading="lazy">
+                <img class="master-slide__photo" src="assets/images/team/master-maria-2026.webp" data-mobile-src="assets/images/mobile/master-maria-mobile.webp" alt="Мария" width="1122" height="1402" loading="lazy">
                 <div class="master-videos" data-master-video="assets/video/maria-web.mp4">
                   <button class="master-video-trigger" type="button" aria-label="Открыть видео-знакомство с Марией"><span class="master-video-trigger__icon" aria-hidden="true">▶</span><span>Видео-знакомство · 3:49</span></button>
                 </div>

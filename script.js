@@ -963,6 +963,18 @@ function setupTouch() {
   }, { passive: true });
 }
 
+// Для мобильных подменяем отложенные изображения на компактные копии до их загрузки.
+function setupMobileImageSources() {
+  if (!window.matchMedia('(max-width: 820px)').matches) return;
+  document.querySelectorAll('img[data-mobile-src]').forEach(image => {
+    image.src = image.dataset.mobileSrc;
+  });
+  document.querySelectorAll('video[data-mobile-poster]').forEach(video => {
+    video.poster = video.dataset.mobilePoster;
+  });
+}
+
+setupMobileImageSources();
 setupNavigation();
 setupReveals();
 setupHeadings();
@@ -973,6 +985,41 @@ setupProcedureMenu();
 setupCarousels();
 setupMasterCarouselHeight();
 setupReviewPagers();
+
+// Уведомление о cookies и согласие на аналитические cookies.
+(function setupCookieConsent() {
+  const key = 'site-consent';
+  if (localStorage.getItem(key)) return;
+
+  const banner = document.createElement('aside');
+  banner.className = 'cookie-banner';
+  banner.setAttribute('aria-label', 'Уведомление о cookies');
+  banner.innerHTML = `
+    <div class="cookie-banner__copy">
+      <strong>Здесь есть cookies</strong>
+      <p>Мы используем их и Яндекс.Метрику, чтобы сайт работал удобнее и помогал нам улучшать сервис. Выберите, разрешить ли аналитику.</p>
+    </div>
+    <div class="cookie-banner__actions">
+      <button class="cookie-banner__button cookie-banner__button--muted" type="button" data-consent="declined">Отказаться</button>
+      <button class="cookie-banner__button" type="button" data-consent="accepted">Разрешить</button>
+    </div>`;
+  document.body.append(banner);
+
+  banner.addEventListener('click', event => {
+    const button = event.target.closest('[data-consent]');
+    if (!button) return;
+    localStorage.setItem(key, button.dataset.consent);
+    if (button.dataset.consent === 'accepted') {
+      const script = document.createElement('script');
+      script.src = 'https://mc.yandex.ru/metrika/tag.js?id=113366309';
+      script.async = true;
+      document.head.append(script);
+      window.ym = window.ym || function(){(window.ym.a=window.ym.a||[]).push(arguments)};
+      window.ym(113366309, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:'dataLayer', referrer:document.referrer, url:location.href, accurateTrackBounce:true, trackLinks:true});
+    }
+    banner.remove();
+  });
+})();
 
 // Второстепенные обработчики не должны конкурировать с первым экраном на мобильных.
 // Инициализируем их после свободного кадра браузера, сохраняя полную функциональность.
