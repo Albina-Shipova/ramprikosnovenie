@@ -335,7 +335,8 @@ function setupMasterCarouselHeight() {
     slides.forEach(slide => observer.observe(slide));
   }
   track.querySelectorAll('img').forEach(image => image.addEventListener('load', schedule));
-  apply();
+  // Первый замер — в кадре, а не синхронно при загрузке (иначе принудительная компоновка).
+  schedule();
 }
 
 // Карусель: с планшета и ниже дорожка становится горизонтальной лентой.
