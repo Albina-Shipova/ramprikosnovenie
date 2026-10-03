@@ -314,7 +314,7 @@ body[data-page="training"] #programs .training__card h3 {
   display: block;
 }
 .brand__name { display: block; font-family: var(--font-display); font-size: 1.0625rem; font-weight: 600; letter-spacing: -.01em; }
-.brand__tag { display: block; margin-top: 3px; color: var(--gray); font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; }
+.brand__tag { display: block; margin-top: 3px; color: #8b8177; font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; opacity: 1; }
 
 .site-nav { display: flex; justify-content: center; gap: clamp(18px, 2.4vw, 34px); }
 .site-nav a {
@@ -1839,7 +1839,7 @@ body[data-page="training"] #programs .training__card h3 {
 .footer-brand { gap: 10px; }
 .footer-brand .brand__logo { filter: none; opacity: .94; width: 68px; height: 68px; }
 .footer-brand .brand__name { color: var(--white); font-size: .9rem; }
-.footer-brand .brand__tag { margin-top: 2px; color: var(--gray-light); opacity: .7; font-size: .625rem; letter-spacing: .1em; }
+.footer-brand .brand__tag { margin-top: 2px; color: #d3cbc1; opacity: 1; font-size: .625rem; letter-spacing: .1em; }
 
 .footer-bottom {
   padding-bottom: 20px;
