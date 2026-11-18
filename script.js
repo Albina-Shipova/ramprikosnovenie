@@ -1001,7 +1001,29 @@ setupReviewPagers();
 // Уведомление о cookies и согласие на аналитические cookies.
 (function setupCookieConsent() {
   const key = 'site-consent';
-  if (localStorage.getItem(key)) return;
+  function startAnalytics() {
+    const script = document.createElement('script');
+    script.src = 'https://mc.yandex.ru/metrika/tag.js?id=113366309';
+    script.async = true;
+    document.head.append(script);
+    window.ym = window.ym || function(){(window.ym.a=window.ym.a||[]).push(arguments)};
+    window.ym(113366309, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:'dataLayer', referrer:document.referrer, url:location.href, accurateTrackBounce:true, trackLinks:true});
+    document.addEventListener('click', event => {
+      const link = event.target.closest('a[href]');
+      if (!link) return;
+
+      const goal = link.dataset.metrikaGoal;
+      if (goal) {
+        window.ym(113366309, 'reachGoal', goal);
+      } else if (link.origin === 'https://dikidi.net' && /^\/1188196\/?$/.test(link.pathname)) {
+        window.ym(113366309, 'reachGoal', 'booking_click');
+      }
+    });
+  }
+
+  const consent = localStorage.getItem(key);
+  if (consent === 'accepted') startAnalytics();
+  if (consent) return;
 
   const banner = document.createElement('aside');
   banner.className = 'cookie-banner';
@@ -1021,14 +1043,7 @@ setupReviewPagers();
     const button = event.target.closest('[data-consent]');
     if (!button) return;
     localStorage.setItem(key, button.dataset.consent);
-    if (button.dataset.consent === 'accepted') {
-      const script = document.createElement('script');
-      script.src = 'https://mc.yandex.ru/metrika/tag.js?id=113366309';
-      script.async = true;
-      document.head.append(script);
-      window.ym = window.ym || function(){(window.ym.a=window.ym.a||[]).push(arguments)};
-      window.ym(113366309, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:'dataLayer', referrer:document.referrer, url:location.href, accurateTrackBounce:true, trackLinks:true});
-    }
+    if (button.dataset.consent === 'accepted') startAnalytics();
     banner.remove();
   });
 })();
