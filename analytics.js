@@ -1,15 +1,35 @@
 (() => {
-  const key = 'site-analytics-consent-v1';
+  const key = 'site-analytics-consent-v2';
   const counter = 113366309;
+  const version = '2026-11-18-v2';
+  const endpoint = 'https://asama79164.tw1.ru/api/site-consent/';
   const year = 365 * 24 * 60 * 60 * 1000;
   const settings = document.querySelector('#analytics-controls');
 
-  function readChoice() {
+  function readState() {
     try {
-      const choice = JSON.parse(localStorage.getItem(key));
-      if (choice && Date.now() - choice.at < year) return choice.value;
+      return JSON.parse(localStorage.getItem(key)) || {};
     } catch {
-      // Если хранилище недоступно, аналитика остаётся выключенной.
+      return {};
+    }
+  }
+
+  function readChoice() {
+    const state = readState();
+    if (Date.now() - state.at < year) return state.value;
+  }
+
+  async function send(event) {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'omit',
+      referrerPolicy: 'no-referrer',
+      signal: AbortSignal.timeout(7000),
+      body: JSON.stringify(event)
+    });
+    if (!response.ok || !(await response.json()).saved) {
+      throw new Error('Не удалось записать выбор');
     }
   }
 
@@ -50,15 +70,67 @@
     }
   }
 
-  function choose(value) {
-    try {
-      localStorage.setItem(key, JSON.stringify({ value, at: Date.now() }));
-    } catch {
-      return false;
+  function saveState(state) {
+    localStorage.setItem(key, JSON.stringify(state));
+  }
+
+  async function completeRevoke(state) {
+    await send(state.pending);
+    if (readState().pending?.event_id === state.pending.event_id) {
+      saveState({ ...state, pending: null });
     }
+  }
+
+  function makeEvent(action, browserId) {
+    return { action, browser_id: browserId, event_id: crypto.randomUUID(), version };
+  }
+
+  async function choose(value) {
+    let state = readState();
+    if (value === 'declined') {
+      const needsRevoke = state.value === 'accepted' || state.pending?.action === 'grant';
+      const pending = needsRevoke ? makeEvent('revoke', state.browserId) : state.pending;
+      state = { value, at: Date.now(), browserId: state.browserId, pending };
+      saveState(state);
+      currentChoice = value;
+      if (analyticsStarted) location.reload();
+      if (pending) await completeRevoke(state);
+      return;
+    }
+
+    if (state.pending?.action === 'revoke') await completeRevoke(state);
+    if (readChoice() === 'accepted') return;
+    state = readState();
+    const browserId = state.browserId || crypto.randomUUID();
+    const event = state.pending?.action === 'grant' ? state.pending : makeEvent('grant', browserId);
+    saveState({ ...state, browserId, pending: event });
+    await send(event);
+    if (readState().pending?.event_id !== event.event_id) return;
+    saveState({ value, at: Date.now(), browserId });
     currentChoice = value;
     applyChoice();
-    return true;
+  }
+
+  let updating = false;
+  async function updateChoice(value, status, onSuccess) {
+    if (updating) return;
+    updating = true;
+    status.textContent = 'Сохраняем выбор…';
+    try {
+      await choose(value);
+      onSuccess();
+    } catch {
+      status.textContent = value === 'declined' && currentChoice === 'declined'
+        ? 'Аналитика отключена. Отзыв будет отправлен при следующем открытии сайта.'
+        : 'Не удалось сохранить выбор. Повторите попытку.';
+    } finally {
+      updating = false;
+    }
+  }
+
+  const savedState = readState();
+  if (savedState.pending?.action === 'revoke') {
+    completeRevoke(savedState).catch(() => {});
   }
 
   if (settings) {
@@ -73,8 +145,7 @@
     settings.addEventListener('click', event => {
       const button = event.target.closest('[data-consent]');
       if (!button) return;
-      if (choose(button.dataset.consent)) showStatus();
-      else status.textContent = 'Браузер не позволяет сохранить выбор.';
+      updateChoice(button.dataset.consent, status, showStatus);
     });
     window.addEventListener('storage', event => {
       if (event.key !== key && event.key !== null) return;
@@ -105,11 +176,12 @@
       <div class="cookie-banner__actions">
         <button class="cookie-banner__button cookie-banner__button--muted" type="button" data-consent="declined">Отказаться</button>
         <button class="cookie-banner__button" type="button" data-consent="accepted">Разрешить аналитику</button>
-      </div>`;
+      </div>
+      <span role="status"></span>`;
     document.body.append(banner);
     banner.addEventListener('click', event => {
       const button = event.target.closest('[data-consent]');
-      if (button && choose(button.dataset.consent)) banner.remove();
+      if (button) updateChoice(button.dataset.consent, banner.querySelector('[role="status"]'), () => banner.remove());
     });
   }
 })();
